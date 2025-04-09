@@ -1,0 +1,126 @@
+INFORMACIÓN DE LA APLICACIÓN
+-------------------------------
+
+Permisos de usuario:
+    Los permisos para publicar y eliminar publicaciones propias responden al permios "1"
+    Los permisos de adminstridar para eliminar publicaciones ajenas y usuarios responden al permiso "2"
+    Ningun usuario puede eliminar a un administrador, ni siquiera otro administrador o el mismo
+
+Servidor de base de datos:
+    Paso 1, instalación de MySQL
+    Paso 2, fichero my.ini (usar doble barra):
+        [mysqld]
+        # set basedir to your installation path
+        basedir=<RUTA DE LA CARPETA mysql-9.2.0-winx64 (MYSQL)>
+        # set datadir to the location of yout data directory
+        datadir=<RUTA DE LA CARPETA mysql-9.2.0-winx64\\data (MYSQL/DATA)>
+        bind-address = 0.0.0.0
+        skip-networking=0
+
+    Paso 3, Java:
+        La IP debe ser la del ordenador/servidor que aloje la base de datos
+        //String url = "jdbc:mysql://tu_IP_publica:3306/";
+        Para saber tu IP: https://www.whatismyip.com/
+
+
+Para registrar empresas asociadas, se registraran normal y el administrador les asignara los permisos correspondientes
+
+
+⚙️ 2. Instalación del software necesario
+🔸 MySQL Server
+Descarga desde MySQL oficial
+
+Durante la instalación:
+
+Elige configuración como servidor
+
+Define un puerto (por defecto 3306)
+
+Activa acceso remoto si lo necesitas
+
+🔸 Configura firewall de Windows
+Permite entrada/salida en el puerto 3306 si accederás desde otras máquinas
+
+Crea reglas específicas por IP o rango si quieres limitar acceso
+
+🔸 API/Backend (opcional pero recomendable)
+Si no quieres que las apps se conecten directamente a la base de datos, crea una pequeña API con:
+
+Spring Boot (Java)
+
+Se ejecutará como una app Java (puedes hacer un .jar que corra al iniciar el sistema)
+
+Expón la API en el puerto que quieras (por ejemplo 8080)
+
+Permite que las apps (escritorio y Android) se comuniquen a través de esta capa segura
+
+🔸 Acceso desde Android
+Si los móviles estarán dentro de la misma red, basta con usar la IP local del servidor.
+
+Si necesitas acceso desde fuera de la red:
+
+Opción 1: Redireccionar puertos en tu router hacia el servidor (y usar DDNS si no tienes IP fija)
+
+Opción 2: Montar una VPN (tipo ZeroTier o WireGuard)
+
+Opción 3: Exponer API con HTTPS usando servicios como ngrok, Cloudflare Tunnel, o montar un certificado Let's Encrypt con un proxy (como nginx para Windows)
+
+🔒 Seguridad básica en Windows 11 Pro
+Crea un usuario separado sin privilegios de administrador para ejecutar los servicios
+
+Usa tareas programadas para hacer backups diarios de la base de datos (con mysqldump)
+
+Activa el BitLocker si quieres cifrar el disco
+
+Instala antivirus/antimalware ligero (Windows Defender está bien)
+
+Considera instalar WSL (Windows Subsystem for Linux) si quieres usar herramientas Linux dentro de Windows (muy útil)
+
+🚀 Arranque automático
+Puedes configurar que el servidor MySQL, el backend .jar y otros servicios se auto-inicien al encender el equipo usando el Programador de Tareas o colocando accesos directos en la carpeta de inicio.
+
+🗂️ Estructura de red recomendada
+css
+Copiar
+Editar
+[ PC cliente con app Java ]  --->  [ Servidor Windows 11 Pro con MySQL y API (192.168.1.X) ]
+[ Android app Kotlin ]      --->  [ API REST (en mismo servidor o expuesto por VPN / DDNS) ]
+
+Backups automáticos con mysqldump cada noche a carpeta externa
+
+Si hay dispositivos fuera de la red:
+
+Usas VPN, o
+
+Abres un puerto y usas DNS dinámico (No-IP, DuckDNS)
+
+O montas una API pública con HTTPS
+
+
+
+--------------------------------------------------------------------------------------
+
+Esquema de red:
+
+           [Red Local / Internet]
+                     |
+            +--------+--------+
+            |                 |
+     [App de escritorio]   [App Android]
+        (Java)               (Kotlin)
+            |                 |
+            +--------+--------+
+                     |
+             Dirección IP pública
+              o IP local (192.168.X.X)
+                     |
+              +------------------+
+              |  Router/Firewall |
+              +------------------+
+                     |
+              [PC servidor local]
+              Windows 11 Pro
+              ├── MySQL Server
+              ├── Backend/API (Spring Boot .jar)
+              └── Carpeta de backups
+
