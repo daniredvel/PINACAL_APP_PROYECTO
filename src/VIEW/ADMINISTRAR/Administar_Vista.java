@@ -37,6 +37,7 @@ public class Administar_Vista extends JPanel {
     private static Usuario usuario_actual;
 
     public Administar_Vista(Usuario usuario_actual, Connection conexion) {
+        setBackground(new Color(211, 205, 192));
         Administar_Vista.usuario_actual = usuario_actual;
         LOGGER.log(Level.INFO, "Iniciando vista de administrar");
         Administar_Vista.conn = conexion;
