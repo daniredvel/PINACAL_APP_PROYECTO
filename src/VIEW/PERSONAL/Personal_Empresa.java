@@ -33,19 +33,6 @@ public class Personal_Empresa extends JPanel {
         Personal_Empresa.conn = conn;
         Personal_Empresa.usuario_actual = usuario_actual;
 
-        /*
-        setTitle("Personal Empresa");
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana al tamaño de la pantalla
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        // Icono
-        setIconImage(Rutas.getImage(Rutas.ICONO));
-
-        // Color de fondo
-        getContentPane().setBackground(backgroundColor);
-
-         */
 
         Color backgroundColor = new Color(211, 205, 192);
         setLayout(new BorderLayout());
@@ -55,20 +42,6 @@ public class Personal_Empresa extends JPanel {
         panelSuperior.setBackground(backgroundColor);
 
         Font fuenteButton = new Font("Arial", Font.PLAIN, 18);
-
-        JButton inicioButton = new JButton("Inicio");
-        inicioButton.setFont(fuenteButton);
-        inicioButton.setBackground(new Color(174, 101, 7));
-        inicioButton.setForeground(Color.WHITE);
-        inicioButton.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen para que se adapte al texto
-        inicioButton.setPreferredSize(null); // Permite que el tamaño se ajuste automáticamente
-
-        JButton personalButton = new JButton("Personal");
-        personalButton.setFont(fuenteButton);
-        personalButton.setBackground(new Color(174, 101, 7));
-        personalButton.setForeground(Color.WHITE);
-        personalButton.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen para que se adapte al texto
-        personalButton.setPreferredSize(null); // Permite que el tamaño se ajuste automáticamente
 
         JButton modificarButton = new JButton("Modificar");
         modificarButton.setFont(fuenteButton);
@@ -95,20 +68,15 @@ public class Personal_Empresa extends JPanel {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.gridx = 0;
         gbc.gridy = 0;
-        panelSuperior.add(inicioButton, gbc);
+        gbc.gridx = 0;
 
-        gbc.gridx = 1;
-        panelSuperior.add(personalButton, gbc);
-
-        gbc.gridx = 2;
         panelSuperior.add(modificarButton, gbc);
 
-        gbc.gridx = 3;
+        gbc.gridx = 1;
         panelSuperior.add(aceptarButton, gbc);
 
-        gbc.gridx = 4;
+        gbc.gridx = 2;
         panelSuperior.add(cancelarButton, gbc);
 
         add(panelSuperior, BorderLayout.NORTH);
@@ -219,14 +187,7 @@ public class Personal_Empresa extends JPanel {
 
         add(mainPanel, BorderLayout.CENTER);
 
-        inicioButton.addActionListener(e -> {
-            //dispose();
-            new Inicio_Vista(usuario_actual, conn).setVisible(true);
-        });
-        personalButton.addActionListener(e -> {
-            //dispose();
-            new Personal_Empresa(usuario_actual, conn).setVisible(true);
-        });
+
         modificarButton.setEnabled(true);
         modificarButton.addActionListener(e -> {
             boolean admin = usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.ADMINISTRADOR));

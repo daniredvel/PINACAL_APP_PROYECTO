@@ -3,10 +3,8 @@ package VIEW.PERFILES;
 import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
-import VIEW.INICIO.Inicio_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
-import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,27 +14,16 @@ import java.sql.Connection;
 import java.util.List;
 
 public class Perfil_Usuario_Vista extends JPanel {
-    private final Usuario usuario; //Usuario cuyo perfil se esta viendo
-    private final DefaultListModel<Publicacion> listModel; //Modelo de la lista de publicaciones
-    private final Connection conn; //Conexion a la base de datos
-    private final Usuario usuario_actual; //Usuario que ha iniciado sesion
+    private final Usuario usuario; // Usuario cuyo perfil se está viendo
+    private final DefaultListModel<Publicacion> listModel; // Modelo de la lista de publicaciones
+    private final Connection conn; // Conexión a la base de datos
+    private final Usuario usuario_actual; // Usuario que ha iniciado sesión
 
     public Perfil_Usuario_Vista(Connection conn, Usuario usuario, Usuario usuario_actual) {
         this.conn = conn;
         this.usuario = usuario;
         this.usuario_actual = usuario_actual;
         this.listModel = new DefaultListModel<>();
-
-        /*
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Ocupa toda la pantalla
-        setTitle("Perfil de " + usuario.getUsuario());
-        setLocationRelativeTo(null);
-        // Icono
-        setIconImage(Rutas.getImage(Rutas.ICONO));
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-         */
-
 
         List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, usuario);
         for (Publicacion publicacion : publicaciones) {
@@ -49,6 +36,7 @@ public class Perfil_Usuario_Vista extends JPanel {
         setLayout(new BorderLayout());
         setBackground(new Color(211, 205, 192));
 
+        // Panel de información del usuario
         JPanel infoPanel = new JPanel(new GridBagLayout());
         infoPanel.setBackground(new Color(211, 205, 192));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -78,24 +66,11 @@ public class Perfil_Usuario_Vista extends JPanel {
         gbc.gridy = 3;
         infoPanel.add(emailLabel, gbc);
 
-        JButton inicioButton = new JButton("Inicio");
-        inicioButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        inicioButton.setBackground(new Color(174, 101, 7));
-        inicioButton.setForeground(Color.WHITE);
-        inicioButton.addActionListener(e -> {
-            //dispose();
-            // Cerrar la ventana actual y abrir la ventana de inicio
-            SwingUtilities.invokeLater(() -> new Inicio_Vista(usuario_actual, conn).setVisible(true));
-        });
-        gbc.gridy = 4;
-        infoPanel.add(inicioButton, gbc);
-
         add(infoPanel, BorderLayout.NORTH);
         add(getJScrollPane(), BorderLayout.CENTER);
     }
 
-
-    protected JScrollPane getJScrollPane() {
+    private JScrollPane getJScrollPane() {
         JList<Publicacion> publicacionesList = getPublicacionJList();
         publicacionesList.setBackground(new Color(211, 205, 192));
 
@@ -104,7 +79,7 @@ public class Perfil_Usuario_Vista extends JPanel {
                 if (e.getClickCount() == 2) {
                     Publicacion selectedPublicacion = publicacionesList.getSelectedValue();
                     if (selectedPublicacion != null) {
-                        Publicacion_Detalle_Vista detalleVista = new Publicacion_Detalle_Vista(Perfil_Usuario_Vista.this, selectedPublicacion, usuario_actual, conn);
+                        Publicacion_Detalle_Vista detalleVista = new Publicacion_Detalle_Vista(null, selectedPublicacion, usuario_actual, conn);
                         detalleVista.setVisible(true);
                     }
                 }
@@ -129,5 +104,18 @@ public class Perfil_Usuario_Vista extends JPanel {
             return publicacionVista;
         });
         return publicacionesList;
+    }
+
+    // Método estático para abrir el diálogo modal
+    public static void mostrarDialogo(Window parent, Connection conn, Usuario autor, Usuario usuario_actual) {
+        JDialog dialog = new JDialog(parent, "Perfil de Usuario", Dialog.ModalityType.APPLICATION_MODAL);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setSize(800, 600);
+        dialog.setLocationRelativeTo(parent);
+
+        Perfil_Usuario_Vista perfilVista = new Perfil_Usuario_Vista(conn, autor, usuario_actual);
+        dialog.setContentPane(perfilVista);
+
+        dialog.setVisible(true);
     }
 }

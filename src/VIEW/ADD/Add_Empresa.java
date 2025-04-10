@@ -35,16 +35,7 @@ public class Add_Empresa extends JPanel {
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
-        /*
-        // Icono
-        setIconImage(Rutas.getImage(Rutas.ICONO));
 
-        setTitle("Publicaciones del Usuario");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(211, 205, 192)); // Color de fondo de las publicaciones
-        */
         setLayout(new BorderLayout());
 
         JPanel topPanel = new JPanel();
@@ -53,26 +44,6 @@ public class Add_Empresa extends JPanel {
 
         Font buttonFont = new Font("Arial", Font.PLAIN, 18);
 
-        JButton inicioButton = new JButton("Inicio");
-        inicioButton.setFont(buttonFont);
-        inicioButton.setBackground(new Color(174, 101, 7));
-        inicioButton.setForeground(Color.WHITE);
-        inicioButton.setPreferredSize(new Dimension(150, 50));
-        inicioButton.setMargin(new Insets(10, 20, 10, 20));
-
-        JButton personalButton = new JButton("Personal");
-        personalButton.setFont(buttonFont);
-        personalButton.setBackground(new Color(174, 101, 7));
-        personalButton.setForeground(Color.WHITE);
-        personalButton.setPreferredSize(new Dimension(150, 50));
-        personalButton.setMargin(new Insets(10, 20, 10, 20));
-
-        JButton anadirButton = new JButton("Mis Publicaciones");
-        anadirButton.setFont(buttonFont);
-        anadirButton.setBackground(new Color(174, 101, 7));
-        anadirButton.setForeground(Color.WHITE);
-        anadirButton.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen para que se adapte al texto
-        anadirButton.setPreferredSize(null); // Permite que el tamaño se ajuste automáticamente
 
         JButton nuevaPublicacionButton = new JButton("Nueva Publicación");
         nuevaPublicacionButton.setFont(buttonFont);
@@ -85,15 +56,6 @@ public class Add_Empresa extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        topPanel.add(inicioButton, gbc);
-
-        gbc.gridx = 1;
-        topPanel.add(personalButton, gbc);
-
-        gbc.gridx = 2;
-        topPanel.add(anadirButton, gbc);
-
-        gbc.gridx = 3;
         topPanel.add(nuevaPublicacionButton, gbc);
 
         add(topPanel, BorderLayout.NORTH);
@@ -104,18 +66,7 @@ public class Add_Empresa extends JPanel {
 
         cargarPublicaciones(usuario_actual);
 
-        inicioButton.addActionListener(e -> {
-            //dispose();
-            new Inicio_Vista(usuario_actual, conn).setVisible(true);
-        });
-        personalButton.addActionListener(e -> {
-            //dispose();
-            new Personal_Empresa(usuario_actual, conn).setVisible(true);
-        });
-        anadirButton.addActionListener(e -> {
-            //dispose();
-            new Add_Empresa(usuario_actual, conn).setVisible(true);
-        });
+
         nuevaPublicacionButton.addActionListener(e -> {
             Add_Publicacion_Vista dialog = new Add_Publicacion_Vista(this, usuario_actual, conn);
             dialog.setVisible(true);

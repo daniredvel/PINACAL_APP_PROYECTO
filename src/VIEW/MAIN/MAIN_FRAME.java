@@ -60,7 +60,7 @@ public class MAIN_FRAME extends JFrame {
 
         } else if (usuario_actual.getPermisos().equals(Usuario.getTipos(Usuario.EMPRESA_ASOCIADA))) {
 
-            tabbedPane.addTab("Inicio Empresa", new Inicio_Empresa_Asociada_Vista(usuario_actual, conn));
+            tabbedPane.addTab("Inicio", new Inicio_Empresa_Asociada_Vista(usuario_actual, conn));
             tabbedPane.addTab("Personal", new Personal_Empresa(usuario_actual, conn));
             tabbedPane.addTab("Mis Publicaciones", new Add_Empresa(usuario_actual, conn));
 
@@ -72,7 +72,7 @@ public class MAIN_FRAME extends JFrame {
 
         } else if (usuario_actual.getPermisos().equals(Usuario.getTipos(Usuario.ADMINISTRADOR))) {
 
-            tabbedPane.addTab("Inicio Empresa", new Inicio_Empresa_Asociada_Vista(usuario_actual, conn));
+            tabbedPane.addTab("Inicio", new Inicio_Empresa_Asociada_Vista(usuario_actual, conn));
             tabbedPane.addTab("Personal", new Personal_Empresa(usuario_actual, conn));
             tabbedPane.addTab("Mis Publicaciones", new Add_Empresa(usuario_actual, conn));
             tabbedPane.addTab("Administrar", new Administar_Vista(usuario_actual, conn));

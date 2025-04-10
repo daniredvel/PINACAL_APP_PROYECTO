@@ -22,14 +22,13 @@ public class Publicacion_Detalle_Vista extends JDialog {
     private static boolean isOriginalIcon = true;
     private final JButton saveButton;
     private static final Logger LOGGER = Logger.getLogger(Publicacion_Detalle_Vista.class.getName());
-    private static Window owner;
     private static Usuario usuario_actual;
     private static Connection conn;
+    private static JPanel owner;
 
     public Publicacion_Detalle_Vista(JPanel owner, Publicacion publicacion, Usuario usuario_actual, Connection conexion) {
-        //super(owner, "Detalle de Publicación", ModalityType.APPLICATION_MODAL);
-        //Publicacion_Detalle_Vista.owner = owner;
         Publicacion_Detalle_Vista.usuario_actual = usuario_actual;
+        Publicacion_Detalle_Vista.owner = owner;
         Publicacion_Detalle_Vista.conn = conexion;
 
         // Configuración inicial de la ventana
@@ -145,11 +144,20 @@ public class Publicacion_Detalle_Vista extends JDialog {
     }
 
     private void abrirPerfil(Usuario autor) {
-        // Cerrar la ventana de inicio y la ventana actual
-        owner.dispose();
+        // Cerrar el JDialog actual
         this.dispose();
 
-        // Abrir la ventana del perfil
-        SwingUtilities.invokeLater(() -> new Perfil_Usuario_Vista(conn, autor, usuario_actual).setVisible(true));
+        // Crear un nuevo JDialog modal para mostrar el perfil
+        JDialog perfilDialog = new JDialog(SwingUtilities.getWindowAncestor(owner), "Perfil de Usuario", Dialog.ModalityType.APPLICATION_MODAL);
+        perfilDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        perfilDialog.setSize(800, 600); // Tamaño de la ventana
+        perfilDialog.setLocationRelativeTo(owner); // Centrar la ventana
+
+        // Crear la vista del perfil y agregarla al JDialog
+        Perfil_Usuario_Vista perfilVista = new Perfil_Usuario_Vista(conn, autor, usuario_actual);
+        perfilDialog.setContentPane(perfilVista);
+
+        // Hacer visible el JDialog
+        perfilDialog.setVisible(true);
     }
 }

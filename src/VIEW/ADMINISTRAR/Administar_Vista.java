@@ -48,15 +48,6 @@ public class Administar_Vista extends JPanel {
 
         assert conn != null;
 
-        /*
-        setIconImage(Rutas.getImage(Rutas.ICONO));
-        setTitle("Administrar Publicaciones y Usuarios");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(211, 205, 192));
-         */
-
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -65,50 +56,8 @@ public class Administar_Vista extends JPanel {
         // Panel superior
         JPanel topPanel = new JPanel(new GridBagLayout());
         topPanel.setBackground(new Color(211, 205, 192));
-        Font buttonFont = new Font("Arial", Font.PLAIN, 18);
 
-        JButton inicioButton = new JButton("Inicio");
-        //JButton personalButton = new JButton("Personal");
-        //JButton anadirButton = new JButton("Mis Publicaciones");
-        JButton adminButton = new JButton("Administrador");
 
-        /*
-        JButton[] buttons = {inicioButton, personalButton, anadirButton, adminButton};
-        for (JButton button : buttons) {
-            button.setFont(buttonFont);
-            button.setBackground(new Color(174, 101, 7));
-            button.setForeground(Color.WHITE);
-            button.setPreferredSize(new Dimension(150, 50));
-            button.setMargin(new Insets(10, 20, 10, 20));
-        }
-
-         */
-        JButton[] buttons = {inicioButton, adminButton};
-        for (JButton button : buttons) {
-            button.setFont(buttonFont);
-            button.setBackground(new Color(174, 101, 7));
-            button.setForeground(Color.WHITE);
-            button.setPreferredSize(new Dimension(150, 50));
-            button.setMargin(new Insets(10, 20, 10, 20));
-        }
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        topPanel.add(inicioButton, gbc);
-        gbc.gridx = 1;
-        /*
-        topPanel.add(personalButton, gbc);
-        gbc.gridx = 2;
-        topPanel.add(anadirButton, gbc);
-        gbc.gridx = 3;
-
-         */
-        topPanel.add(adminButton, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 4;
-        add(topPanel, gbc);
 
         // Área de texto para la publicación
         publicacionArea = new JTextArea(10, 50);
@@ -250,26 +199,6 @@ public class Administar_Vista extends JPanel {
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un usuario para eliminar.");
             }
-        });
-
-        inicioButton.addActionListener(e -> {
-            //dispose();
-            new Inicio_Vista(usuario_actual, conn).setVisible(true);
-        });
-        /*
-        personalButton.addActionListener(e -> {
-            dispose();
-            new Personal_Empresa(usuario_actual, conn).setVisible(true);
-        });
-        anadirButton.addActionListener(e -> {
-            dispose();
-            new Add_Empresa(usuario_actual, conn).setVisible(true);
-        });
-
-         */
-        adminButton.addActionListener(e -> {
-            //dispose();
-            new Administar_Vista(usuario_actual, conn).setVisible(true);
         });
 
         cargarPublicaciones();
