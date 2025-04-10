@@ -108,35 +108,7 @@ public class Administar_Vista extends JPanel {
         add(justificacionField, gbc);
 
         // Botón "Siguiente" debajo del campo de justificación
-        JButton siguienteButton = new JButton("Siguiente");
-        siguienteButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        siguienteButton.setBackground(new Color(174, 101, 7));
-        siguienteButton.setForeground(Color.WHITE);
-
-        siguienteButton.addActionListener(e -> {
-            if (!aceptadaButton.isSelected() && !denegadaButton.isSelected()) {
-                JOptionPane.showMessageDialog(this, "Debe aprobar o denegar la publicación antes de continuar.");
-                return;
-            }
-
-            if (denegadaButton.isSelected() && justificacionField.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe proporcionar una justificación para denegar la publicación.");
-                return;
-            }
-
-            // Llamar al método gestionarPublicacion antes de avanzar
-            gestionarPublicacion();
-
-            if (currentIndex < publicaciones.size() - 1) {
-                currentIndex++;
-                mostrarPublicacion();
-            } else {
-                JOptionPane.showMessageDialog(this, "No hay más publicaciones para administrar.");
-            }
-        });
-        JPanel siguientePanel = new JPanel();
-        siguientePanel.add(siguienteButton);
-        siguientePanel.setBackground(new Color(211, 205, 192));
+        JPanel siguientePanel = getSiguientePanel();
 
         gbc.gridy = 4; // Fila 4, debajo del campo de justificación
         gbc.gridx = 0; // Primera columna
@@ -203,6 +175,39 @@ public class Administar_Vista extends JPanel {
         });
 
         cargarPublicaciones();
+    }
+
+    private JPanel getSiguientePanel() {
+        JButton siguienteButton = new JButton("Siguiente");
+        siguienteButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        siguienteButton.setBackground(new Color(174, 101, 7));
+        siguienteButton.setForeground(Color.WHITE);
+
+        siguienteButton.addActionListener(e -> {
+            if (!aceptadaButton.isSelected() && !denegadaButton.isSelected()) {
+                JOptionPane.showMessageDialog(this, "Debe aprobar o denegar la publicación antes de continuar.");
+                return;
+            }
+
+            if (denegadaButton.isSelected() && justificacionField.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe proporcionar una justificación para denegar la publicación.");
+                return;
+            }
+
+            // Llamar al método gestionarPublicacion antes de avanzar
+            gestionarPublicacion();
+
+            if (currentIndex < publicaciones.size() - 1) {
+                currentIndex++;
+                mostrarPublicacion();
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay más publicaciones para administrar.");
+            }
+        });
+        JPanel siguientePanel = new JPanel();
+        siguientePanel.add(siguienteButton);
+        siguientePanel.setBackground(new Color(211, 205, 192));
+        return siguientePanel;
     }
 
     private void mostrarPublicacion() {

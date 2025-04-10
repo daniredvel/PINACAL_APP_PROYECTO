@@ -39,8 +39,8 @@ public class Mensajes_Lista_Vista extends JPanel {
 
         // Lista de mensajes en la parte inferior
         listModel = new DefaultListModel<>();
-        setBackground(new Color(211, 205, 192));
         JScrollPane scrollPane = getJScrollPane();
+        scrollPane.setBackground(new Color(211, 205, 192));
         add(scrollPane, BorderLayout.CENTER);
 
         // Cargar mensajes
@@ -51,6 +51,7 @@ public class Mensajes_Lista_Vista extends JPanel {
     protected JScrollPane getJScrollPane() {
         setBackground(new Color(211, 205, 192));
         JList<Mensaje> mensajesList = getMensajesJList();
+        mensajesList.setBackground(new Color(211, 205, 192));;
 
         mensajesList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

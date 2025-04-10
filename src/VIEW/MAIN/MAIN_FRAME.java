@@ -35,6 +35,9 @@ public class MAIN_FRAME extends JFrame {
         // Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
+        //Fondo
+        setBackground(new Color(211, 205, 192));
+
         // Panel principal con pestañas
         mainPanel = new JPanel(new BorderLayout());
         tabbedPane = new JTabbedPane();
@@ -80,6 +83,10 @@ public class MAIN_FRAME extends JFrame {
 
         // Agregar vistas comunes
         tabbedPane.addTab("Mensajes", new Mensajes_Lista_Vista(usuario_actual, conn));
+
+        // Cambiar la fuente de las pestañas
+        Font font = new Font("Arial", Font.ITALIC, 18);
+        tabbedPane.setFont(font);
 
     }
 }
