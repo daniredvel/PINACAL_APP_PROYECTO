@@ -1,45 +1,59 @@
 package VIEW.PUBLICACIONES;
 
+import CONTROLLER.CRUD.PUBLICACION.EliminarPublicacion;
 import MODEL.Publicacion;
 import MODEL.Usuario;
-import VIEW.PERFILES.Perfil_Usuario_Vista;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Publicacion_Propia_Detalle_Vista extends JDialog {
-    private final Usuario usuario_actual;
-    private final Connection conn;
-    private final JPanel owner;
+public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista {
+    private final JButton deleteButton; // Botón para eliminar la publicación
+    private static final Logger LOGGER = Logger.getLogger(Publicacion_Propia_Detalle_Vista.class.getName());
+
 
     public Publicacion_Propia_Detalle_Vista(JPanel owner, Publicacion publicacion, Usuario usuario_actual, Connection conn) {
-        this.usuario_actual = usuario_actual;
-        this.conn = conn;
-        this.owner = owner;
+        super(owner, publicacion, usuario_actual, conn); // Llama al constructor de la clase base
 
-        // Configuración inicial
-        setSize(800, 300);
-        setLocationRelativeTo(owner);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setTitle(publicacion.getTitulo());
-    }
+        // Botón de eliminar
+        deleteButton = new JButton("Eliminar");
+        deleteButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        deleteButton.setBackground(new Color(220, 70, 90));
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-    private void abrirPerfil(Usuario autor) {
-        // Cerrar el JDialog actual
-        this.dispose();
+        // Acción del botón de eliminar
+        deleteButton.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Estás seguro de que deseas eliminar esta publicación?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
 
-        // Crear un nuevo JDialog modal para mostrar el perfil
-        JDialog perfilDialog = new JDialog(SwingUtilities.getWindowAncestor(owner), "Perfil de Usuario", Dialog.ModalityType.APPLICATION_MODAL);
-        perfilDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        perfilDialog.setSize(800, 600); // Tamaño de la ventana
-        perfilDialog.setLocationRelativeTo(owner); // Centrar la ventana
+            if (confirm == JOptionPane.YES_OPTION) {
+                boolean eliminado = EliminarPublicacion.eliminarPublicacion(publicacion, usuario_actual); // Método para eliminar
+                if (eliminado) {
+                    LOGGER.log(Level.INFO, "Publicación eliminada: " + publicacion.getTitulo());
+                    JOptionPane.showMessageDialog(this, "Publicación eliminada correctamente.", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    dispose(); // Cerrar la ventana actual
+                } else {
+                    LOGGER.log(Level.SEVERE, "Error al eliminar la publicación: " + publicacion.getTitulo());
+                    JOptionPane.showMessageDialog(this, "Error al eliminar la publicación.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
-        // Crear la vista del perfil y agregarla al JDialog
-        Perfil_Usuario_Vista perfilVista = new Perfil_Usuario_Vista(conn, autor, usuario_actual);
-        perfilDialog.setContentPane(perfilVista);
+        // Agregar el botón al diseño existente
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.setBackground(new Color(211, 205, 192));
+        buttonPanel.add(deleteButton);
 
-        // Hacer visible el JDialog
-        perfilDialog.setVisible(true);
+        // Añadir el panel del botón al final del contenido
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
     }
 }
