@@ -18,7 +18,7 @@ import java.util.logging.Level;
 
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
-public class Add_Empresa extends JFrame {
+public class Add_Empresa extends JPanel {
     private final DefaultListModel<Publicacion> listModel;
     private static Connection conn = null;
 
@@ -35,6 +35,7 @@ public class Add_Empresa extends JFrame {
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
+        /*
         // Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
@@ -42,9 +43,9 @@ public class Add_Empresa extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        setLayout(new BorderLayout());
         getContentPane().setBackground(new Color(211, 205, 192)); // Color de fondo de las publicaciones
+        */
+        setLayout(new BorderLayout());
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
@@ -104,15 +105,15 @@ public class Add_Empresa extends JFrame {
         cargarPublicaciones(usuario_actual);
 
         inicioButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Inicio_Vista(usuario_actual, conn).setVisible(true);
         });
         personalButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Personal_Empresa(usuario_actual, conn).setVisible(true);
         });
         anadirButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Add_Empresa(usuario_actual, conn).setVisible(true);
         });
         nuevaPublicacionButton.addActionListener(e -> {

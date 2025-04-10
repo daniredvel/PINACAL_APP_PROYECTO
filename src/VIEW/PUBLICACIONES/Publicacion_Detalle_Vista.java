@@ -26,9 +26,9 @@ public class Publicacion_Detalle_Vista extends JDialog {
     private static Usuario usuario_actual;
     private static Connection conn;
 
-    public Publicacion_Detalle_Vista(Window owner, Publicacion publicacion, Usuario usuario_actual, Connection conexion) {
-        super(owner, "Detalle de Publicación", ModalityType.APPLICATION_MODAL);
-        Publicacion_Detalle_Vista.owner = owner;
+    public Publicacion_Detalle_Vista(JPanel owner, Publicacion publicacion, Usuario usuario_actual, Connection conexion) {
+        //super(owner, "Detalle de Publicación", ModalityType.APPLICATION_MODAL);
+        //Publicacion_Detalle_Vista.owner = owner;
         Publicacion_Detalle_Vista.usuario_actual = usuario_actual;
         Publicacion_Detalle_Vista.conn = conexion;
 

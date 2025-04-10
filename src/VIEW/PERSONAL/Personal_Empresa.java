@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Personal_Empresa extends JFrame {
+public class Personal_Empresa extends JPanel {
     private final JTextField nombreField;
     private final JTextField direccionField;
     private final JLabel messageLabel;
@@ -32,6 +32,8 @@ public class Personal_Empresa extends JFrame {
     public Personal_Empresa(Usuario usuario_actual, Connection conn) {
         Personal_Empresa.conn = conn;
         Personal_Empresa.usuario_actual = usuario_actual;
+
+        /*
         setTitle("Personal Empresa");
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana al tamaño de la pantalla
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,9 +43,11 @@ public class Personal_Empresa extends JFrame {
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
         // Color de fondo
-        Color backgroundColor = new Color(211, 205, 192);
         getContentPane().setBackground(backgroundColor);
 
+         */
+
+        Color backgroundColor = new Color(211, 205, 192);
         setLayout(new BorderLayout());
 
         JPanel panelSuperior = new JPanel();
@@ -216,11 +220,11 @@ public class Personal_Empresa extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
 
         inicioButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Inicio_Vista(usuario_actual, conn).setVisible(true);
         });
         personalButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Personal_Empresa(usuario_actual, conn).setVisible(true);
         });
         modificarButton.setEnabled(true);

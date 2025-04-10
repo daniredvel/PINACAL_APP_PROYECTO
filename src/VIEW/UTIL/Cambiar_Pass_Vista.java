@@ -24,8 +24,8 @@ public class Cambiar_Pass_Vista extends JDialog {
     private static final Color BUTTON_COLOR = new Color(174, 101, 7);
     private static final Color BUTTON_TEXT_COLOR = Color.WHITE;
 
-    public Cambiar_Pass_Vista(JFrame parent, Usuario usuario_actual, Connection conn) {
-        super(parent, "Cambiar Contraseña", true);
+    public Cambiar_Pass_Vista(JPanel parent, Usuario usuario_actual, Connection conn) {
+        //super(parent, "Cambiar Contraseña", true);
         setSize(700, 450);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());

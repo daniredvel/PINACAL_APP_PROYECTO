@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.List;
 
-public class Perfil_Usuario_Vista extends JFrame {
+public class Perfil_Usuario_Vista extends JPanel {
     private final Usuario usuario; //Usuario cuyo perfil se esta viendo
     private final DefaultListModel<Publicacion> listModel; //Modelo de la lista de publicaciones
     private final Connection conn; //Conexion a la base de datos
@@ -26,12 +26,18 @@ public class Perfil_Usuario_Vista extends JFrame {
         this.usuario = usuario;
         this.usuario_actual = usuario_actual;
         this.listModel = new DefaultListModel<>();
+
+        /*
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Ocupa toda la pantalla
         setTitle("Perfil de " + usuario.getUsuario());
         setLocationRelativeTo(null);
         // Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+         */
+
+
         List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, usuario);
         for (Publicacion publicacion : publicaciones) {
             listModel.addElement(publicacion);
@@ -77,7 +83,7 @@ public class Perfil_Usuario_Vista extends JFrame {
         inicioButton.setBackground(new Color(174, 101, 7));
         inicioButton.setForeground(Color.WHITE);
         inicioButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             // Cerrar la ventana actual y abrir la ventana de inicio
             SwingUtilities.invokeLater(() -> new Inicio_Vista(usuario_actual, conn).setVisible(true));
         });

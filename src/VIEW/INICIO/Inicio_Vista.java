@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 import static DB.UTIL.CrearConn.conn;
 
-public class Inicio_Vista extends JFrame {
+public class Inicio_Vista extends JPanel {
     public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
     private JButton adminButton;
     protected final DefaultListModel<Publicacion> listModel;
@@ -45,6 +45,7 @@ public class Inicio_Vista extends JFrame {
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
+        /*
         // Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
@@ -52,9 +53,10 @@ public class Inicio_Vista extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana a la pantalla
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        getContentPane().setBackground(new Color(211, 205, 192)); // Color de fondo
+        */
 
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(211, 205, 192)); // Color de fondo
 
         // Panel superior con botones centrados
         JPanel topPanel = new JPanel();
@@ -138,12 +140,12 @@ public class Inicio_Vista extends JFrame {
         // «Escuchadores» de los botones
         inicioButton.addActionListener(e -> {
             LOGGER.log(Level.INFO, "Inicio button clicked");
-            dispose();
+            //dispose();
             new Inicio_Vista(usuario_actual, conn).setVisible(true);
         });
         personalButton.addActionListener(e -> {
             LOGGER.log(Level.INFO, "Personal button clicked");
-            dispose();
+            //dispose();
             if (usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.EMPRESA_ASOCIADA)) || usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.EMPRESA_NO_ASOCIADA)) || usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.ADMINISTRADOR))) {
                 new Personal_Empresa(usuario_actual, conn).setVisible(true);
             } else if (usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.USUARIO))) {
@@ -155,21 +157,21 @@ public class Inicio_Vista extends JFrame {
 
         mensajeButton.addActionListener(e -> {
             LOGGER.log(Level.INFO, "Mensaje button clicked");
-            dispose();
+            //dispose();
             new Mensajes_Lista_Vista(usuario_actual, conn).setVisible(true);
         });
 
         if (usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.EMPRESA_ASOCIADA)) || usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.ADMINISTRADOR))) {
             anadirButton.addActionListener(e -> {
                 LOGGER.log(Level.INFO, "Mis Publicaciones button clicked");
-                dispose();
+                //dispose();
                 new Add_Empresa(usuario_actual, conn).setVisible(true);
             });
         }
         if (usuario_actual.getTipo().equalsIgnoreCase(Usuario.getTipos(Usuario.ADMINISTRADOR))) {
             adminButton.addActionListener(e -> {
                 LOGGER.log(Level.INFO, "Administrador button clicked");
-                dispose();
+                //dispose();
                 new Administar_Vista(usuario_actual, conn).setVisible(true);
             });
         }

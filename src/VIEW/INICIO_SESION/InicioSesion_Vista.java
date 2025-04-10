@@ -1,8 +1,11 @@
 package VIEW.INICIO_SESION;
 
+import DB.UTIL.CrearConn;
 import MODEL.Usuario;
+import VIEW.ERROR.Error_INICIAR_BD;
 import VIEW.INICIO.Inicio_Empresa_Asociada_Vista;
 import VIEW.INICIO.Inicio_Vista;
+import VIEW.MAIN.MAIN_FRAME;
 import VIEW.REGISTRO.Registro_Vista;
 import VIEW.RES.Rutas;
 
@@ -126,24 +129,19 @@ public class InicioSesion_Vista extends JFrame {
                         System.out.println("Permisos de usuario: " + usuario_actual.getPermisos()); // Debug
                         System.out.println("Usuario encontrado: " + usuario_actual); // Debug
                         dispose();
-                        System.out.println("Creando Inicio_Vista..."); // Debug
+                        System.out.println("Creando la vista principal..."); // Debug
 
-                        if (usuario_actual.getTipo().equals(Usuario.getTipos(Usuario.ADMINISTRADOR)) || usuario_actual.getTipo().equals(Usuario.getTipos(Usuario.EMPRESA_ASOCIADA))){
-                            Inicio_Empresa_Asociada_Vista inicioVista = new Inicio_Empresa_Asociada_Vista(usuario_actual, conn);
-                            inicioVista.setVisible(true);
+                        SwingUtilities.invokeLater(() -> new MAIN_FRAME(usuario_actual, conn).setVisible(true));
 
-                        } else {
-                            Inicio_Vista inicioVista = new Inicio_Vista(usuario_actual, conn);
-                            inicioVista.setVisible(true);
+                        //MAIN_FRAME vista_principal_MAIN_FRAME = new MAIN_FRAME(usuario_actual, conn);
+                        //vista_principal_MAIN_FRAME.setVisible(true);
 
-                        }
-                                System.out.println("Inicio_Vista creada y visible."); // Debug
-                                break;
-                                case -1: case 0:
-                                messageLabel.setText("Contraseña o usuario incorrectos");
-                                messageLabel.setForeground(new Color(233, 30, 99));
-                                break;
-
+                        System.out.println("Vista princiapl __ MAIN_FRAME __ creada y visible."); // Debug
+                        break;
+                        case -1: case 0:
+                        messageLabel.setText("Contraseña o usuario incorrectos");
+                        messageLabel.setForeground(new Color(233, 30, 99));
+                        break;
                         }
             } catch (Exception ex) {
                 messageLabel.setText("Error al iniciar sesión");

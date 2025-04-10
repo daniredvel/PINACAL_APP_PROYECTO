@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Mensajes_Lista_Vista extends JFrame {
+public class Mensajes_Lista_Vista extends JPanel {
     public static final Logger LOGGER = Logger.getLogger(Mensajes_Lista_Vista.class.getName());
     private final DefaultListModel<Mensaje> listModel;
     private static Usuario usuario_actual = null;
@@ -28,6 +28,7 @@ public class Mensajes_Lista_Vista extends JFrame {
         // Si la conexión es nula, se crea una nueva
         if (conn == null) conn = conexion;
 
+        /*
         // Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
@@ -35,10 +36,11 @@ public class Mensajes_Lista_Vista extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana a la pantalla
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        getContentPane().setBackground(new Color(211, 205, 192)); // Color de fondo
+         */
         setBackground(new Color(211, 205, 192));
 
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(211, 205, 192)); // Color de fondo
 
         // Panel superior con botones centrados
         JPanel topPanel = new JPanel();
@@ -75,7 +77,7 @@ public class Mensajes_Lista_Vista extends JFrame {
         // Acción del botón Volver
         volverButton.addActionListener(e -> {
             LOGGER.log(Level.INFO, "Volver button clicked");
-            dispose();
+            //dispose();
             new Inicio_Vista(usuario_actual, conn).setVisible(true);
         });
     }

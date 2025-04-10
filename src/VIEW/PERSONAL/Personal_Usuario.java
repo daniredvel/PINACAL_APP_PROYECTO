@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Personal_Usuario extends JFrame {
+public class Personal_Usuario extends JPanel {
     private final JTextField nombreField;
     private final JTextField emailField;
     private final JTextField telefonoField;
@@ -32,8 +32,10 @@ public class Personal_Usuario extends JFrame {
     public Personal_Usuario(Usuario usuario_actual, Connection conn) {
         Personal_Usuario.conn = conn;
         Personal_Usuario.usuario_actual = usuario_actual;
+
+/*
         setTitle("Personal Usuario");
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana al tamaño de la pantalla
+        //setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana al tamaño de la pantalla
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -41,9 +43,10 @@ public class Personal_Usuario extends JFrame {
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
         // Color de fondo
-        Color backgroundColor = new Color(211, 205, 192);
         getContentPane().setBackground(backgroundColor);
 
+ */
+        Color backgroundColor = new Color(211, 205, 192);
         setLayout(new BorderLayout());
 
         JPanel panelSuperior = new JPanel();
@@ -202,11 +205,11 @@ public class Personal_Usuario extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
 
         inicioButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Inicio_Vista(usuario_actual, conn).setVisible(true);
         });
         personalButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Personal_Usuario(usuario_actual, conn).setVisible(true);
         });
         modificarButton.setEnabled(true);

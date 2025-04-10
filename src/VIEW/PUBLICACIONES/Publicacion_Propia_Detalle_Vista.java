@@ -24,8 +24,8 @@ public class Publicacion_Propia_Detalle_Vista extends JDialog {
     private final JButton saveButton; // Botón para guardar o retirar la publicación
     private static final Logger LOGGER = Logger.getLogger(Publicacion_Propia_Detalle_Vista.class.getName());
 
-    public Publicacion_Propia_Detalle_Vista(Window owner, Publicacion publicacion, Usuario usuario_actual, Connection conexion) {
-        super(owner, "Detalle de Publicación Propia", ModalityType.APPLICATION_MODAL);
+    public Publicacion_Propia_Detalle_Vista(JPanel owner, Publicacion publicacion, Usuario usuario_actual, Connection conexion) {
+        //super(owner, "Detalle de Publicación Propia", ModalityType.APPLICATION_MODAL);
 
         // Configuración inicial de la ventana
         setSize(800, 300);

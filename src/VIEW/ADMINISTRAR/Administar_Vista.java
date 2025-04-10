@@ -23,7 +23,7 @@ import java.util.logging.Level;
 
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
-public class Administar_Vista extends JFrame {
+public class Administar_Vista extends JPanel {
     private List<Publicacion> publicaciones;
     private int currentIndex = 0;
     private final JTextArea publicacionArea;
@@ -48,14 +48,16 @@ public class Administar_Vista extends JFrame {
 
         assert conn != null;
 
+        /*
         setIconImage(Rutas.getImage(Rutas.ICONO));
         setTitle("Administrar Publicaciones y Usuarios");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridBagLayout());
         getContentPane().setBackground(new Color(211, 205, 192));
+         */
 
+        setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -251,7 +253,7 @@ public class Administar_Vista extends JFrame {
         });
 
         inicioButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Inicio_Vista(usuario_actual, conn).setVisible(true);
         });
         /*
@@ -266,7 +268,7 @@ public class Administar_Vista extends JFrame {
 
          */
         adminButton.addActionListener(e -> {
-            dispose();
+            //dispose();
             new Administar_Vista(usuario_actual, conn).setVisible(true);
         });
 
