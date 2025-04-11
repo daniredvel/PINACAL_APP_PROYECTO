@@ -16,6 +16,16 @@ import java.util.logging.Level;
 
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
+/**
+ * Clase que representa la vista de las publicaciones de una empresa, desde la cúal se pueden crear nuevas publicaciones.
+ * Esta clase extiende JPanel y se encarga de mostrar una lista de publicaciones
+ * y permitir al usuario crear nuevas publicaciones.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Add_Empresa extends JPanel {
     private static int OFFSSET = 0;
     private boolean cargando = false; // Evitar múltiples cargas simultáneas

@@ -10,6 +10,17 @@ import java.sql.Connection;
 
 import static DB.UTIL.CrearConn.crearConexion;
 
+/**
+ * Clase principal de la aplicación.
+ * Esta clase da inicio a la aplicación, establece la conexión a la base de datos y lanza la vista de inicio de sesión.
+ * Esta clase gestiona el cierre de la base de datos al cerrar la aplicación.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
+
 public class Main {
 
         private static Connection conn;

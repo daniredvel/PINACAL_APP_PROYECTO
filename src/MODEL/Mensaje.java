@@ -2,6 +2,16 @@ package MODEL;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase Mensaje
+ * Esta clase representa un mensaje enviado por un usuario a otro usuario.
+ * Contiene información sobre el asunto, contenido, remitente, destinatario, fecha de envío y estado de lectura del mensaje.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Mensaje {
     private String asunto;
     private String contenido;

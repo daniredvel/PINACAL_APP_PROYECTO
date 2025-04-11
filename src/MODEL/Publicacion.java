@@ -2,10 +2,17 @@ package MODEL;
 
 import java.sql.Timestamp;
 
+/**
+ * Clase Publicacion
+ * Esta clase representa una publicación realizada por un usuario en la aplicación.
+ * Contiene información sobre el título, descripción, fecha de publicación, tipo de publicación, ID del usuario que la creó y el nombre del usuario.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Publicacion {
-    //Tipo de publicaciones
-    //Ofertas de trabajo, maquinaria...
-    //Demandas de trabajo, maquinaria...
 
     private int id_publicacion;
     private String titulo;

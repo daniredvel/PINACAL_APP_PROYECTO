@@ -1,5 +1,15 @@
 package MODEL;
 
+/**
+ * Clase Usuario
+ * Esta clase representa un usuario en la aplicación.
+ * Contiene información sobre el ID, nombre de usuario, contraseña, correo electrónico, dirección, teléfono, tipo de usuario y permisos.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Usuario {
     //Tipos de usario
     //El usuario administrador se encarga de la validación y tramitación de las publicaciones

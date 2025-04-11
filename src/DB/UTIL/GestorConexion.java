@@ -7,7 +7,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Clase que se encarga de gestionar la conexión con la base de datos.
+ * Clase encargada de gestionar la conexión con la base de datos.
+ *
+ * <p>Esta clase se encarga de gestionar la conexión con la base de datos y crear una instancia única para la conexión.</p>
+ *
+ * <strong>Dependencias:</strong>
+ * <ul>
+ *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
+ * </ul>
+ *
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
  */
 public class GestorConexion {
     /**

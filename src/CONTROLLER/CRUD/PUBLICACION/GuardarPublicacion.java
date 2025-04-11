@@ -15,6 +15,28 @@ import java.util.logging.Logger;
 
 import static DB.UTIL.CrearConn.conn;
 
+/**
+ * Clase encargada de la persistencia de publicaciones en la base de datos.
+ * Proporciona métodos para guardar publicaciones, ya sea creando nuevas entradas
+ * o actualizando entradas existentes en la tabla de publicaciones.
+ *
+ * <p>Esta clase se conecta a la base de datos y realiza operaciones de inserción o actualización
+ * (INSERT o UPDATE) en la tabla `PUBLICACIONES` dependiendo de las circunstancias.</p>
+ *
+ * <strong>Dependencias:</strong>
+ * <ul>
+ *     <li>La clase depende de los paquetes {@link DB.UTIL.GestorConexion} para gestionar la conexión
+ *         a la base de datos y el paquete {@link MODEL.Publicacion} para los modelos de publicaciones.
+ *     </li>
+ *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
+ * </ul>
+ *
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 
 public class GuardarPublicacion {
     private static final Logger LOGGER = Logger.getLogger(GuardarPublicacion.class.getName());

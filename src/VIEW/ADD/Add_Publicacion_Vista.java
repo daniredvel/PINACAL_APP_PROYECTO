@@ -14,6 +14,18 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase que representa la vista de la ventana emergente para la creación de publicaciones.
+ * Esta clase extiende JDialog y se encarga de mostrar un formulario para crear una nueva publicación.
+ * <p>
+ * Esta clase funciona como un diálogo modal, lo que significa que bloquea la interacción con la ventana principal
+ * hasta que el usuario haya completado la creación de la publicación.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Add_Publicacion_Vista extends JDialog {
     private static final Logger LOGGER = Logger.getLogger(Add_Publicacion_Vista.class.getName());
     private final JTextField tituloField;

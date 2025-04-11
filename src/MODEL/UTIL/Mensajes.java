@@ -1,5 +1,17 @@
 package MODEL.UTIL;
 
+
+/** * Clase Mensajes
+ * Esta clase contiene los mensajes de error y éxito que se utilizan en la aplicación.
+ * Los mensajes están organizados en constantes para facilitar su uso y mantenimiento.
+ * Cada mensaje se relaciona con un código de error específico, que se utiliza para identificar el tipo de error que ha ocurrido.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
+
 public class Mensajes {
     //Constantes de la Base de Datos
     public static final int OK = 0;

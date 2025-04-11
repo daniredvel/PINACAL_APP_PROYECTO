@@ -8,6 +8,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Clase encargada de validar el inicio de sesión de un usuario en la aplicación.
+ *
+ * <p>Esta clase se encarga de comparar la clave proporcionada por el usuario con la almacenada en la base de datos.</p>
+ *
+ * <strong>Dependencias:</strong>
+ * <ul>
+ *     <li>La clase depende de los paquetes {@link CONTROLLER.ENCRIPTACION.ControladorEncriptacion} para comparar la clave
+ *     proporcionada por el usuario con la almacenada en la base de datos.</li>
+ *     </li>
+ *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
+ * </ul>
+ *
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class ControladorInicioSesion {
 
 

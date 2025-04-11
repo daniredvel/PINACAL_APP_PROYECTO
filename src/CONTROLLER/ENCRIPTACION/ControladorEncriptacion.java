@@ -7,6 +7,22 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Objects;
 
+/**
+ * Clase encargada de encriptar los datos que entran en la base de datos.
+ *
+ * <p>Esta clase recibe un String y lo encripta utilizando el algoritmo SHA-256.</p>
+ *
+ * <strong>Dependencias:</strong>
+ * <ul>
+ *     <li>Utiliza el paquete <code>java.security.MessageDigest</code> para encriptar los datos.</li>
+ * </ul>
+ *
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class ControladorEncriptacion {
 
     /**

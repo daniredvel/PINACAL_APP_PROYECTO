@@ -19,6 +19,25 @@ import java.util.logging.Logger;
 
 import static DB.UTIL.CrearConn.conn;
 
+/**
+ * Clase encargada de gestionar la eliminación de publicaciones en la base de datos.
+ * Proporciona métodos para eliminar registros en la tabla de publicaciones.
+ *
+ * <p>Esta clase se conecta a la base de datos y realiza una operación de eliminación (DELETE)
+ * en la tabla `PUBLICACIONES` para eliminar una fila.</p>
+ *
+ * <strong>Dependencias:</strong>
+ * <ul>
+ *     <li>La clase depende de los paquetes {@link DB.UTIL.GestorConexion}, {@link MODEL.Publicacion} y {@link VIEW.ERROR.Error_INICIAR_BD}.</li>
+ *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
+ * </ul>
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
+
 public class EliminarPublicacion {
     private static final Logger LOGGER = Logger.getLogger(EliminarPublicacion.class.getName());
 

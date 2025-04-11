@@ -14,6 +14,26 @@ import java.util.logging.Logger;
 
 import static DB.UTIL.CrearConn.conn;
 
+/**
+ * Clase encargada de Actualizar los datos de los usuarios en la base de datos.
+ *
+ * <p>Esta clase se conecta a la base de datos y realiza operaciones de actualización
+ * (UPDATE) en la tabla `USUARIOS` dependiendo de las circunstancias.</p>
+ *
+ * <strong>Dependencias:</strong>
+ * <ul>
+ *     <li>La clase depende de los paquetes {@link DB.UTIL.GestorConexion} para gestionar la conexión
+ *         a la base de datos y el paquete {@link MODEL.Usuario} para los modelos de los usuarios.
+ *     </li>
+ *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
+ * </ul>
+ *
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class ActualizarUsuario {
     private static final Logger LOGGER = Logger.getLogger(ActualizarUsuario.class.getName());
 
