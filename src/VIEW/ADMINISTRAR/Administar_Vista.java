@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
 public class Administar_Vista extends JPanel {
-    private static int OFFSSET = ControladorDatos.LIMIT;
+    private static int OFFSSET = 0;
     private List<Publicacion> publicaciones;
     private int currentIndex = 0;
     private final JTextArea publicacionArea;
@@ -194,7 +194,7 @@ public class Administar_Vista extends JPanel {
                 return;
             }
 
-            // Llamar al método gestionarPublicacion antes de avanzar
+            // Llamar al METODO gestionarPublicacion antes de avanzar
             gestionarPublicacion();
 
             if (currentIndex < publicaciones.size() - 1) {

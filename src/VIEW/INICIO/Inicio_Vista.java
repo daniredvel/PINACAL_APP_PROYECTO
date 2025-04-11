@@ -21,7 +21,6 @@ import static DB.UTIL.CrearConn.conn;
 public class Inicio_Vista extends JPanel {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas
     private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
-
     private static int OFFSSET = 0;
     public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
     protected final DefaultListModel<Publicacion> listModel;
