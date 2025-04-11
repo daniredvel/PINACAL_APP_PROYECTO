@@ -21,7 +21,7 @@ public class Inicio_Empresa_Asociada_Vista extends Inicio_Vista {
     }
 
     @Override
-    protected void cargarPublicaciones() {
+    public void cargarPublicaciones() {
         System.out.println("Intentando cargar publicaciones...");
         System.out.println("Estado antes de cargar: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
 

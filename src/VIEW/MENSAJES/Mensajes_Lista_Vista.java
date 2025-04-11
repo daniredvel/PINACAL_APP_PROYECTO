@@ -87,7 +87,7 @@ public class Mensajes_Lista_Vista extends JPanel {
         return mensajesList;
     }
 
-    protected void cargarMensajes() {
+    public void cargarMensajes() {
         setBackground(new Color(211, 205, 192));
 
         LOGGER.log(Level.INFO, "Cargando mensajes");

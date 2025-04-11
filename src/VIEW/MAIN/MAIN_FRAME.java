@@ -11,6 +11,8 @@ import VIEW.PERSONAL.Personal_Usuario;
 import VIEW.RES.Rutas;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.sql.Connection;
 
@@ -32,7 +34,7 @@ public class MAIN_FRAME extends JFrame {
         // Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
-        //Fondo
+        // Fondo
         setBackground(new Color(211, 205, 192));
 
         // Panel principal con pestañas
@@ -42,6 +44,28 @@ public class MAIN_FRAME extends JFrame {
 
         // Agregar vistas al JTabbedPane
         agregarVistas();
+
+        // Agregar ChangeListener para actualizar las vistas
+        tabbedPane.addChangeListener(e -> {
+            int selectedIndex = tabbedPane.getSelectedIndex();
+            Component selectedComponent = tabbedPane.getComponentAt(selectedIndex);
+
+            if (selectedComponent instanceof Inicio_Empresa_Asociada_Vista) {
+                ((Inicio_Empresa_Asociada_Vista) selectedComponent).cargarPublicaciones();
+            } else if (selectedComponent instanceof Mensajes_Lista_Vista) {
+                ((Mensajes_Lista_Vista) selectedComponent).cargarMensajes();
+            } else if (selectedComponent instanceof Inicio_Vista) {
+                ((Inicio_Vista) selectedComponent).cargarPublicaciones();
+            } else if (selectedComponent instanceof Personal_Usuario) {
+                ((Personal_Usuario) selectedComponent).cargarPublicaciones();
+            } else if (selectedComponent instanceof Personal_Empresa) {
+                ((Personal_Empresa) selectedComponent).cargarPublicaciones();
+            } else if (selectedComponent instanceof Administar_Vista) {
+                ((Administar_Vista) selectedComponent).actualizarVista();
+            }
+
+
+        });
 
         // Establecer el contenido inicial
         setContentPane(mainPanel);

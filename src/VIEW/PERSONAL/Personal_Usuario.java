@@ -264,7 +264,7 @@ public class Personal_Usuario extends JPanel {
         return publicacionesList;
     }
 
-    protected void cargarPublicaciones() {
+    public void cargarPublicaciones() {
         System.out.println("Intentando cargar publicaciones...");
         System.out.println("Estado antes de cargar: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
 

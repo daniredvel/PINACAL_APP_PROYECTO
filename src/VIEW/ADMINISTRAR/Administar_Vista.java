@@ -342,4 +342,27 @@ public class Administar_Vista extends JPanel {
             JOptionPane.showMessageDialog(this, "No hay más publicaciones para administrar.");
         }
     }
+    public void actualizarVista() {
+        System.out.println("Actualizando la vista de administrar...");
+
+        // Limpiar los datos actuales
+        publicaciones.clear();
+        currentIndex = 0;
+
+        // Recargar las publicaciones desde la base de datos
+        List<Publicacion> nuevasPublicaciones = ControladorDatos.obtenerPublicaciones(conn, true, 0);
+
+        if (nuevasPublicaciones.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay publicaciones para administrar.");
+        } else {
+            publicaciones.addAll(nuevasPublicaciones);
+            mostrarPublicacion(); // Mostrar la primera publicación
+        }
+
+        // Actualizar la interfaz gráfica
+        revalidate();
+        repaint();
+
+        System.out.println("Vista de administrar actualizada.");
+    }
 }
