@@ -4,10 +4,8 @@ import CONTROLLER.CRUD.USER.ActualizarUsuario;
 import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
-import VIEW.INICIO.Inicio_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
-import VIEW.RES.Rutas;
 import VIEW.UTIL.Cambiar_Pass_Vista;
 
 import javax.swing.*;
@@ -16,8 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class Personal_Usuario extends JPanel {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas
@@ -30,7 +27,6 @@ public class Personal_Usuario extends JPanel {
     private static Usuario usuario_actual;
     private static Connection conn;
     protected final DefaultListModel<Publicacion> listModel;
-    public static final Logger LOGGER = Logger.getLogger(Personal_Usuario.class.getName());
 
     public Personal_Usuario(Usuario usuario_actual, Connection conn) {
         Personal_Usuario.conn = conn;
@@ -228,12 +224,6 @@ public class Personal_Usuario extends JPanel {
             }
         });
 
-        // Detectar el final de la lista
-        scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> {
-            if (!e.getValueIsAdjusting() && ControladorDatos.esUltimoElementoVisible(scrollPane)) {
-                cargarPublicaciones();
-            }
-        });
     }
 
     // PUBLICACIONES GUARDADAS
@@ -286,7 +276,7 @@ public class Personal_Usuario extends JPanel {
         cargando = true; // Marcar como cargando
         System.out.println("Cargando publicaciones con offset=" + OFFSSET + ", limit=" + ControladorDatos.LIMIT);
 
-        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, false, OFFSSET);
+        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicacionesGuardadas(conn, usuario_actual, OFFSSET);
 
         if (publicaciones.isEmpty()) {
             System.out.println("No se encontraron más publicaciones.");

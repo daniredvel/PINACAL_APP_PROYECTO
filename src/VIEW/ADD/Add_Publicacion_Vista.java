@@ -23,7 +23,6 @@ public class Add_Publicacion_Vista extends JDialog {
     private final Connection conn;
 
     public Add_Publicacion_Vista(JPanel owner, Usuario usuario_actual, Connection conexion) {
-        //super(owner, "Añadir Publicación", true);
         this.conn = conexion;
         this.usuario_actual = usuario_actual;
 

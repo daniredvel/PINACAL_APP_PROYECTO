@@ -3,7 +3,6 @@ package VIEW.PERFILES;
 import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
-import VIEW.INICIO.Inicio_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
 
@@ -13,7 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Perfil_Usuario_Vista extends JPanel {
@@ -21,7 +19,7 @@ public class Perfil_Usuario_Vista extends JPanel {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas
     private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
 
-    public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(Perfil_Usuario_Vista.class.getName());
     private static int OFFSSET = 0;
     private final Usuario usuario; // Usuario cuyo perfil se está viendo
     private final DefaultListModel<Publicacion> listModel; // Modelo de la lista de publicaciones
@@ -125,20 +123,6 @@ public class Perfil_Usuario_Vista extends JPanel {
         });
         return publicacionesList;
     }
-
-    // Método estático para abrir el diálogo modal
-    public static void mostrarDialogo(Window parent, Connection conn, Usuario autor, Usuario usuario_actual) {
-        JDialog dialog = new JDialog(parent, "Perfil de Usuario", Dialog.ModalityType.APPLICATION_MODAL);
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setSize(800, 600);
-        dialog.setLocationRelativeTo(parent);
-
-        Perfil_Usuario_Vista perfilVista = new Perfil_Usuario_Vista(conn, autor, usuario_actual);
-        dialog.setContentPane(perfilVista);
-
-        dialog.setVisible(true);
-    }
-
 
     protected void cargarPublicaciones() {
         System.out.println("Intentando cargar publicaciones...");

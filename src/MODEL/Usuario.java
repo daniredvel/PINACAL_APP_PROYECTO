@@ -5,7 +5,7 @@ public class Usuario {
     //El usuario administrador se encarga de la validación y tramitación de las publicaciones
     //Los usuarios de tipo 'Asociado' son los usuarios de las empresas asociadas a PINACAL
     //Los usuarios de tipo 'Empresa_no_asociada' son las empresas no asociadas
-    //Los usuarios de tipo 'Usuario' son los personas particulares
+    //Los usuarios de tipo 'Usuario' son las personas particulares
     private static final String [] tipos = {"ADMINISTRADOR", "USUARIO", "EMPRESA_ASOCIADA", "EMPRESA_NO_ASOCIADA","TEMPORAL"};
 
     public static final int ADMINISTRADOR = 0;

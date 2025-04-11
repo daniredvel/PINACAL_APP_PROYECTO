@@ -73,6 +73,8 @@ public class LeerUsuario {
                             );
                         }
                         System.out.println("Usuario encontrado: " + usuario.getUsuario()); // Debug
+                        System.out.println(mensaje);
+
                         return usuario;
                     } else {
                         mensaje = Mensajes.getMensaje(Mensajes.USUARIO_NO_EXISTE);
@@ -83,6 +85,7 @@ public class LeerUsuario {
         } catch (SQLException e) {
             mensaje = Mensajes.getMensaje(Mensajes.FALLO_CONEXION);
         }
+        System.out.println(mensaje);
         return null;
     }
 }

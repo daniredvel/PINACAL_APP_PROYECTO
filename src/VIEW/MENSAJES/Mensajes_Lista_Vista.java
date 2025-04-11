@@ -3,8 +3,6 @@ package VIEW.MENSAJES;
 import CONTROLLER.ControladorDatos;
 import MODEL.Mensaje;
 import MODEL.Usuario;
-import VIEW.INICIO.Inicio_Vista;
-import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +49,7 @@ public class Mensajes_Lista_Vista extends JPanel {
     protected JScrollPane getJScrollPane() {
         setBackground(new Color(211, 205, 192));
         JList<Mensaje> mensajesList = getMensajesJList();
-        mensajesList.setBackground(new Color(211, 205, 192));;
+        mensajesList.setBackground(new Color(211, 205, 192));
 
         mensajesList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

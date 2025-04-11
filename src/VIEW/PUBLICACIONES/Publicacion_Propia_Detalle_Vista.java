@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista {
-    private final JButton deleteButton; // Botón para eliminar la publicación
     private static final Logger LOGGER = Logger.getLogger(Publicacion_Propia_Detalle_Vista.class.getName());
 
 
@@ -19,7 +18,8 @@ public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista 
         super(owner, publicacion, usuario_actual, conn); // Llama al constructor de la clase base
 
         // Botón de eliminar
-        deleteButton = new JButton("Eliminar");
+        // Botón para eliminar la publicación
+        JButton deleteButton = new JButton("Eliminar");
         deleteButton.setFont(new Font("Arial", Font.PLAIN, 18));
         deleteButton.setBackground(new Color(220, 70, 90));
         deleteButton.setForeground(Color.WHITE);
@@ -36,7 +36,7 @@ public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista 
             );
 
             if (confirm == JOptionPane.YES_OPTION) {
-                boolean eliminado = EliminarPublicacion.eliminarPublicacion(publicacion, usuario_actual); // Método para eliminar
+                boolean eliminado = EliminarPublicacion.eliminarPublicacion(publicacion); // METODO para eliminar
                 if (eliminado) {
                     LOGGER.log(Level.INFO, "Publicación eliminada: " + publicacion.getTitulo());
                     JOptionPane.showMessageDialog(this, "Publicación eliminada correctamente.", "Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);

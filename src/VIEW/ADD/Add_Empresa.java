@@ -5,10 +5,8 @@ import MODEL.Publicacion;
 import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
 import VIEW.INICIO.Inicio_Vista;
-import VIEW.PERSONAL.Personal_Empresa;
 import VIEW.PUBLICACIONES.Publicacion_Propia_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
-import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;

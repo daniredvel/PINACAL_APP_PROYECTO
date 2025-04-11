@@ -31,7 +31,6 @@ public class ActualizarUsuario {
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
-        //int id, String nombre, String email, String telefono, String password, String calle, String numero, String localidad, String municipio, String provincia, String codigoPostal, String pais
 
         if (actualizarUsuarioBD(usuario,conn)) return Mensajes.getMensaje(Mensajes.USUARIO_ACTUALIZADO);
         else return Mensajes.getMensaje(Mensajes.ERROR_ACTUALIZAR_USUARIO);

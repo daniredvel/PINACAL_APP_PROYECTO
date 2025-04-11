@@ -3,15 +3,9 @@ package VIEW.INICIO;
 import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
-import VIEW.ADD.Add_Empresa;
-import VIEW.ADMINISTRAR.Administar_Vista;
 import VIEW.ERROR.Error_INICIAR_BD;
-import VIEW.MENSAJES.Mensajes_Lista_Vista;
-import VIEW.PERSONAL.Personal_Empresa;
-import VIEW.PERSONAL.Personal_Usuario;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
-import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +24,6 @@ public class Inicio_Vista extends JPanel {
 
     private static int OFFSSET = 0;
     public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
-    private JButton adminButton;
     protected final DefaultListModel<Publicacion> listModel;
     private static Usuario usuario_actual = null;
     public static Connection conn = null;

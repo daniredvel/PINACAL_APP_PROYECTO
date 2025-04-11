@@ -6,7 +6,6 @@ public class Publicacion {
     //Tipo de publicaciones
     //Ofertas de trabajo, maquinaria...
     //Demandas de trabajo, maquinaria...
-    private static final String [] tipos = {"OFERTA", "DEMANDA"};
 
     private int id_publicacion;
     private String titulo;

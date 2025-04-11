@@ -13,13 +13,10 @@ import VIEW.RES.Rutas;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
-import java.util.logging.Logger;
 
 public class MAIN_FRAME extends JFrame {
-    public static final Logger LOGGER = Logger.getLogger(MAIN_FRAME.class.getName());
 
-    private JTabbedPane tabbedPane;
-    private JPanel mainPanel;
+    private final JTabbedPane tabbedPane;
     private static Usuario usuario_actual;
     private static Connection conn;
 
@@ -39,7 +36,7 @@ public class MAIN_FRAME extends JFrame {
         setBackground(new Color(211, 205, 192));
 
         // Panel principal con pestañas
-        mainPanel = new JPanel(new BorderLayout());
+        JPanel mainPanel = new JPanel(new BorderLayout());
         tabbedPane = new JTabbedPane();
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
 

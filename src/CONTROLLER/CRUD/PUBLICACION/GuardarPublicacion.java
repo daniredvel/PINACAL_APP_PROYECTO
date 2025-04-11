@@ -4,7 +4,6 @@ import MODEL.Publicacion;
 import MODEL.UTIL.Mensajes;
 import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
-import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -18,7 +17,7 @@ import static DB.UTIL.CrearConn.conn;
 
 
 public class GuardarPublicacion {
-    private static final Logger LOGGER = Logger.getLogger(Publicacion_Detalle_Vista.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GuardarPublicacion.class.getName());
 
 
     public static String guardarPublicacion(Publicacion publicacion, Usuario usuario, Connection conexion){
@@ -39,12 +38,10 @@ public class GuardarPublicacion {
 
 
         //Indicamos la fecha de guardado, la publicacion guardad y el usuario que guarda dicha publicacion, el que ha iniciado sesion
-            //String sql = "INSERT INTO PUBLICACIONES_GUARDADAS (fecha_guardado, id_publicacion, id_usuario) VALUES ( ?, ?, ?)";
             String sql = "INSERT INTO PUBLICACIONES_GUARDADAS (id_publicacion, id_usuario) VALUES (?, ?)";
         try {
             assert conn != null;
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                //ps.setString(1, toStringDate(new Timestamp(System.currentTimeMillis())));
                 ps.setInt(1, publicacion.getId_publicacion());
                 ps.setInt(2, usuario.getId_usuario());
                 ps.executeUpdate();

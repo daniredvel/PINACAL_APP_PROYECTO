@@ -67,7 +67,7 @@ public class EliminarPublicacion {
             return false;
     }}
 
-      public static boolean eliminarPublicacion(Publicacion publicacion, Usuario de_usuario) {
+      public static boolean eliminarPublicacion(Publicacion publicacion) {
 
           Connection conn = GestorConexion.getConexion();
 

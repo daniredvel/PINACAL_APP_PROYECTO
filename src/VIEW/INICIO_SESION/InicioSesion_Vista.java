@@ -1,10 +1,6 @@
 package VIEW.INICIO_SESION;
 
-import DB.UTIL.CrearConn;
 import MODEL.Usuario;
-import VIEW.ERROR.Error_INICIAR_BD;
-import VIEW.INICIO.Inicio_Empresa_Asociada_Vista;
-import VIEW.INICIO.Inicio_Vista;
 import VIEW.MAIN.MAIN_FRAME;
 import VIEW.REGISTRO.Registro_Vista;
 import VIEW.RES.Rutas;
@@ -132,9 +128,6 @@ public class InicioSesion_Vista extends JFrame {
                         System.out.println("Creando la vista principal..."); // Debug
 
                         SwingUtilities.invokeLater(() -> new MAIN_FRAME(usuario_actual, conn).setVisible(true));
-
-                        //MAIN_FRAME vista_principal_MAIN_FRAME = new MAIN_FRAME(usuario_actual, conn);
-                        //vista_principal_MAIN_FRAME.setVisible(true);
 
                         System.out.println("Vista princiapl __ MAIN_FRAME __ creada y visible."); // Debug
                         break;

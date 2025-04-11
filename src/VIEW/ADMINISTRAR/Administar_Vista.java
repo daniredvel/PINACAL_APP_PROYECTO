@@ -10,8 +10,7 @@ import MODEL.Publicacion;
 import MODEL.UTIL.Mensajes;
 import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
-import VIEW.INICIO.Inicio_Vista;
-import VIEW.RES.Rutas;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -243,7 +242,7 @@ public class Administar_Vista extends JPanel {
                 return;
             }
             Mensaje mensaje = new Mensaje(asunto, justificacion, usuario_actual, ControladorDatos.obtenerUsuarioPorNombre(conn, publicacion.getUsuario()), false);
-            System.out.println("Mensaje: " + mensaje.toString());
+            System.out.println("Mensaje: " + mensaje);
             if (EliminarPublicacion.eliminarPublicacion(publicacion, mensaje , usuario_actual)) {
                 System.out.println("Publicación eliminada");
                 JOptionPane.showMessageDialog(this, "Publicación denegada y eliminada.");
