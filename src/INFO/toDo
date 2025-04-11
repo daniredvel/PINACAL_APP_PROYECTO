@@ -1,14 +1,44 @@
---General--
-
-Hacer que el método para cargar publicaciones las cargue de 50 en 50 y añadir un botón para cargar más publicaciones.
-
---Contraseñas--
-
+--GENERAL--
 ¿Olvide mi contraseña?
-    Validación por mail/notificación
 
-
-
-
-ELIMINAR METODOS, SENTENCIAS DEBUG Y PRUEBAS
+ELIMINAR MÉTODOS, SENTENCIAS DEBUG Y PRUEBAS
 ERROR LOGGER???
+
+
+
+
+ --Correo/Teléfono--
+ Al registrarse, enviar un sms al teléfono con un código de verificación
+ AL hacer clic en la botón de registro se pasa a la vista de verificación
+ En la vista de verificación se muestra un campo para ingresar el código de verificación
+ Si es correcto, se pasa a la vista de inicio de sesión
+
+ --EXTRA--
+ Validación del dominio de correo
+ Para validar que el dominio de un correo existe y es capaz de recibir correos, se puede hacer una consulta DNS al dominio del correo.
+ Se busca si el dominio tiene registros MX (Mail Exchange), que indican que puede recibir correos.
+ Si no hay registros MX, se puede asumir que ese dominio no está preparado para recibir emails.
+  1. Registro del usuario
+ Cuando alguien se registra (o envía un email para validación), se hace lo siguiente:
+ El sistema guarda su dirección de correo.
+ Se genera un token único y temporal (puede ser un hash o un código aleatorio).
+ Este token se asocia al usuario en la base de datos (ej: como "pendiente de verificación").
+  2. Envío del enlace
+ Se envía un correo con un enlace que contiene el token. Por ejemplo:
+ https://tusitio.com/verificar-email?token=abc123
+ Ese enlace lleva al usuario a una ruta específica en tu sistema que se encarga de procesar la verificación.
+  3. El usuario hace clic en el enlace
+  Cuando el usuario entra al enlace:
+  El sistema extrae el token de la URL.
+  Busca ese token en la base de datos.
+  Verifica que:
+  El token existe.
+  No haya expirado (los tokens suelen tener un tiempo de vida limitado).
+  Si todo está bien, marca el correo como verificado.
+
+   4. Opcional: eliminar o invalidar el token
+  Después de verificar, muchas veces:
+
+  Se borra el token.
+
+  O se invalida para que no se pueda usar de nuevo.
