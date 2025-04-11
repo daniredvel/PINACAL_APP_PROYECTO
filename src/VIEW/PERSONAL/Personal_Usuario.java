@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Personal_Usuario extends JPanel {
+    private static int OFFSSET = ControladorDatos.LIMIT;
     private final JTextField nombreField;
     private final JTextField emailField;
     private final JTextField telefonoField;
@@ -216,6 +217,13 @@ public class Personal_Usuario extends JPanel {
 
         // Cargar publicaciones
         cargarPublicaciones();
+
+        // Detectar el final de la lista
+        scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> {
+            if (!e.getValueIsAdjusting() && ControladorDatos.esUltimoElementoVisible(scrollPane)) {
+                cargarPublicaciones();
+            }
+        });
     }
 
     // PUBLICACIONES GUARDADAS
@@ -258,14 +266,16 @@ public class Personal_Usuario extends JPanel {
 
     protected void cargarPublicaciones() {
         LOGGER.log(Level.INFO, "Cargando publicaciones");
-        listModel.clear(); // Limpiar la lista antes de recargar
+        //listModel.clear(); // Limpiar la lista antes de recargar
 
-        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicacionesGuardadas(conn, usuario_actual);
+        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicacionesGuardadas(conn, usuario_actual, OFFSSET);
 
         for (Publicacion publicacion : publicaciones) {
             listModel.addElement(publicacion);
         }
         LOGGER.log(Level.INFO, "Publicaciones cargadas: {0}", listModel.size());
+
+        OFFSSET += ControladorDatos.LIMIT;
     }
 
     // METODO que valida los campos del formulario

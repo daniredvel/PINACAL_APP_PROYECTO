@@ -21,13 +21,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Personal_Empresa extends JPanel {
+    private boolean cargando = false; // Evitar múltiples cargas simultáneas
+    private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
+
+
+    private static int OFFSSET = ControladorDatos.LIMIT;
     private final JTextField nombreField;
     private final JTextField direccionField;
     private final JLabel messageLabel;
     private static Usuario usuario_actual;
     private static Connection conn;
     protected final DefaultListModel<Publicacion> listModel;
-    public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(Personal_Empresa.class.getName());
 
     public Personal_Empresa(Usuario usuario_actual, Connection conn) {
         Personal_Empresa.conn = conn;
@@ -235,6 +240,13 @@ public class Personal_Empresa extends JPanel {
 
         // Cargar publicaciones
         cargarPublicaciones();
+
+        // Detectar el final de la lista
+        scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> {
+            if (!e.getValueIsAdjusting() && ControladorDatos.esUltimoElementoVisible(scrollPane)) {
+                cargarPublicaciones();
+            }
+        });
     }
 
     // PUBLICACIONES GUARDADAS
@@ -277,14 +289,17 @@ public class Personal_Empresa extends JPanel {
 
     protected void cargarPublicaciones() {
         LOGGER.log(Level.INFO, "Cargando publicaciones");
-        listModel.clear(); // Limpiar la lista antes de recargar
+        //listModel.clear(); // Limpiar la lista antes de recargar
 
-        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicacionesGuardadas(conn, usuario_actual);
+        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicacionesGuardadas(conn, usuario_actual, OFFSSET);
 
         for (Publicacion publicacion : publicaciones) {
             listModel.addElement(publicacion);
         }
         LOGGER.log(Level.INFO, "Publicaciones cargadas: {0}", listModel.size());
+
+        OFFSSET += ControladorDatos.LIMIT;
+
     }
 
     // METODO que valida los campos del formulario

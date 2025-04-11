@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
 public class Administar_Vista extends JPanel {
+    private static int OFFSSET = ControladorDatos.LIMIT;
     private List<Publicacion> publicaciones;
     private int currentIndex = 0;
     private final JTextArea publicacionArea;
@@ -224,7 +225,7 @@ public class Administar_Vista extends JPanel {
     }
 
     private void cargarPublicaciones() {
-        publicaciones = ControladorDatos.obtenerPublicaciones(conn, true);
+        publicaciones = ControladorDatos.obtenerPublicaciones(conn, true, OFFSSET);
         if (!publicaciones.isEmpty()) {
             mostrarPublicacion();
         } else {

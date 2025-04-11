@@ -1,3 +1,4 @@
+/*
 package CONTROLLER;
 
 import CONTROLLER.ENCRIPTACION.ControladorEncriptacion;
@@ -21,30 +22,35 @@ import static DB.UTIL.CrearConn.conn;
 
 public class ControladorDatos {
     private static final Logger LOGGER = Logger.getLogger(ControladorDatos.class.getName());
-    public static final int LIMIT = 10;
 
+    // Obtener todas las publicaciones
+    /**
+     * @param empresaAsociada Indica si el usuario es una empresa asociada o Administrador
+     *  True -> Obtiene todas las publicaciones. False -> Solo obtiene las publicaciones de las empresas asocidas
+     *
 
-    // METODO para obtener las últimas 50 publicaciones
-    public static List<Publicacion> obtenerPublicaciones(Connection conexion, boolean empresaAsociada, int OFFSET) {
+    // Metodo para obtener todas las publicaciones
+    public static List<Publicacion> obtenerPublicaciones(Connection conexion, boolean empresaAsociada) {
         Connection conn = conexion;
 
+        // Si la conexión es nula, se crea una nueva
         if (conn == null) conn = conn();
 
+        // Nos aseguramos de que la conexión no sea nula
+        // Si la conexión es nula, se muestra la ventana de error de la aplicación
         if (conn == null) {
             LOGGER.log(Level.SEVERE, Mensajes.getMensaje(Mensajes.FALLO_CONEXION));
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
-
         List<Publicacion> publicaciones = new ArrayList<>();
-        String sql = getSql(empresaAsociada) + " LIMIT " + LIMIT + " OFFSET " + OFFSET;
-        System.out.println("Ejecutando consulta con LIMIT=" + LIMIT + " OFFSET=" + OFFSET);
-
+        String sql = getSql(empresaAsociada);
 
         try {
             assert conn != null;
             PreparedStatement stmt = conn.prepareStatement(sql);
-            try (stmt; ResultSet rs = stmt.executeQuery()) {
+            try (stmt; ResultSet rs = stmt.executeQuery(sql)) {
+
                 while (rs.next()) {
                     Publicacion publicacion = new Publicacion(
                             rs.getInt("id_publicacion"),
@@ -60,12 +66,13 @@ public class ControladorDatos {
             }
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, Mensajes.getMensaje(Mensajes.ERROR_CARGAR_PUBLICACIONES) + "{0}, {1}", new Object[]{e.getMessage(), e});
+            // Reabrir la conexión si se cierra debido a un error
         }
 
         return publicaciones;
     }
 
-    // METODO para obtener el SQL dependiendo de si la empresa es asociada o no
+    //SQL en funcion de si es una empresa asociada o no
     private static String getSql(boolean empresaAsociada) {
         String sql;
         if (empresaAsociada) {
@@ -75,29 +82,28 @@ public class ControladorDatos {
         } else {
             sql = "SELECT p.*, u.nombre AS usuario FROM PUBLICACIONES p " +
                     "JOIN USUARIOS u ON p.id_usuario = u.id_usuario " +
-                    "WHERE u.id_tipo_usuario IN (0, 2) " +
+                    "WHERE u.id_tipo_usuario IN (0, 2) " + // 0: Administrador, 2: Empresa asociada
                     "ORDER BY p.fecha DESC";
         }
-
         return sql;
     }
 
-    // METODO para obtener las últimas 50 publicaciones de un usuario
-    public static List<Publicacion> obtenerPublicaciones(Connection conexion, Usuario usuario, int OFFSET) {
+    // Obtener publicaciones por usuario
+    public static List<Publicacion> obtenerPublicaciones(Connection conexion, Usuario usuario) {
         Connection conn = conexion;
 
+        // Si la conexión es nula, se crea una nueva
         if (conn == null) conn = conn();
 
+        // Nos aseguramos de que la conexión no sea nula
+        // Si la conexión es nula, se muestra la ventana de error de la aplicación
         if (conn == null) {
             LOGGER.log(Level.SEVERE, Mensajes.getMensaje(Mensajes.FALLO_CONEXION));
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
         List<Publicacion> publicaciones = new ArrayList<>();
-        String sql = "SELECT p.*, u.nombre AS usuario FROM publicaciones p " +
-                "JOIN usuarios u ON p.id_usuario = u.id_usuario " +
-                "WHERE p.id_usuario = ? ORDER BY p.fecha DESC LIMIT " + LIMIT +" OFFSET " + OFFSET;
-        System.out.println("Ejecutando consulta con LIMIT=" + LIMIT + " OFFSET=" + OFFSET);
+        String sql = "SELECT p.*, u.nombre AS usuario FROM publicaciones p JOIN usuarios u ON p.id_usuario = u.id_usuario WHERE p.id_usuario = ? ORDER BY p.fecha DESC";
 
         try {
             assert conn != null;
@@ -121,51 +127,7 @@ public class ControladorDatos {
             }
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, Mensajes.getMensaje(Mensajes.ERROR_CARGAR_PUBLICACIONES) + "{0}, {1}", new Object[]{e.getMessage(), e});
-        }
-
-        return publicaciones;
-    }
-
-    // METODO para obtener las últimas 50 publicaciones guardadas por un usuario
-    public static List<Publicacion> obtenerPublicacionesGuardadas(Connection conexion, Usuario usuario, int OFFSET) {
-        Connection conn = conexion;
-
-        if (conn == null) conn = conn();
-
-        if (conn == null) {
-            LOGGER.log(Level.SEVERE, Mensajes.getMensaje(Mensajes.FALLO_CONEXION));
-            SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
-        }
-
-        List<Publicacion> publicaciones = new ArrayList<>();
-        String sql = "SELECT p.*, u.nombre AS usuario FROM PUBLICACIONES_GUARDADAS pg " +
-                "JOIN PUBLICACIONES p ON pg.id_publicacion = p.id_publicacion " +
-                "JOIN USUARIOS u ON p.id_usuario = u.id_usuario " +
-                "WHERE pg.id_usuario = ? ORDER BY pg.fecha_guardado DESC LIMIT " + LIMIT +" OFFSET " + OFFSET;
-        System.out.println("Ejecutando consulta con LIMIT=" + LIMIT + " OFFSET=" + OFFSET);
-
-        try {
-            assert conn != null;
-            try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                ps.setInt(1, usuario.getId_usuario());
-
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        Publicacion publicacion = new Publicacion(
-                                rs.getInt("id_publicacion"),
-                                rs.getString("titulo"),
-                                rs.getString("descripcion"),
-                                rs.getTimestamp("fecha"),
-                                rs.getString("tipo"),
-                                rs.getInt("id_usuario"),
-                                rs.getString("usuario")
-                        );
-                        publicaciones.add(publicacion);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            LOGGER.log(Level.INFO, Mensajes.getMensaje(Mensajes.ERROR_CARGAR_PUBLICACIONES) + "{0}, {1}", new Object[]{e.getMessage(), e});
+            // Reabrir la conexión si se cierra debido a un error
         }
 
         return publicaciones;
@@ -224,14 +186,60 @@ public class ControladorDatos {
                     usuarios.add(usuario);
                 }
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             LOGGER.log(Level.SEVERE, Mensajes.getMensaje(Mensajes.ERROR_CARGAR_USUARIOS) + " {0}", e.getMessage());
         }
 
         return usuarios;
     }
 
-    // METODO para obtener un usuario por su nombre
+    public static List<Publicacion> obtenerPublicacionesGuardadas(Connection conexion, Usuario usuario) {
+        Connection conn = conexion;
+
+        // Si la conexión es nula, se crea una nueva
+        if (conn == null) conn = conn();
+
+        // Nos aseguramos de que la conexión no sea nula
+        // Si la conexión es nula, se muestra la ventana de error de la aplicación
+        if (conn == null) {
+            LOGGER.log(Level.SEVERE, Mensajes.getMensaje(Mensajes.FALLO_CONEXION));
+            SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
+        }
+
+        List<Publicacion> publicaciones = new ArrayList<>();
+        String sql = "SELECT p.*, u.nombre AS usuario FROM PUBLICACIONES_GUARDADAS pg " +
+                "JOIN PUBLICACIONES p ON pg.id_publicacion = p.id_publicacion " +
+                "JOIN USUARIOS u ON p.id_usuario = u.id_usuario " +
+                "WHERE pg.id_usuario = ? ORDER BY pg.fecha_guardado DESC";
+
+        try {
+            assert conn != null;
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                ps.setInt(1, usuario.getId_usuario());
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        Publicacion publicacion = new Publicacion(
+                                rs.getInt("id_publicacion"),
+                                rs.getString("titulo"),
+                                rs.getString("descripcion"),
+                                rs.getTimestamp("fecha"),
+                                rs.getString("tipo"),
+                                rs.getInt("id_usuario"),
+                                rs.getString("usuario")
+                        );
+                        publicaciones.add(publicacion);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, Mensajes.getMensaje(Mensajes.ERROR_CARGAR_PUBLICACIONES) + "{0}, {1}", new Object[]{e.getMessage(), e});
+            // Reabrir la conexión si se cierra debido a un error
+        }
+
+        return publicaciones;
+    }
     public static Usuario obtenerUsuarioPorNombre(Connection conexion, String nombreUsuario) {
         Connection conn = conexion;
 
@@ -291,8 +299,6 @@ public class ControladorDatos {
 
         return usuario;
     }
-
-    // METODO para modificar la contraseña de un usuario
     public static boolean cambiarPass(Usuario usuario, String nuevaContrasena, Connection conn) {
         String sql = "UPDATE usuarios SET password = ? WHERE nombre = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -309,26 +315,6 @@ public class ControladorDatos {
             return false; // Devuelve false si ocurre un error
         }
     }
-
-    // METODO para marcar un mensaje como leído
-    public static void marcarComoLeido(Mensaje mensaje, Connection conn) {
-        String sql = "UPDATE MENSAJES SET leido = ? WHERE id_mensajes = ?";
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setBoolean(1, true); // Marcar como leído
-            ps.setInt(2, mensaje.getId_mensaje()); // ID del mensaje
-
-            int filasActualizadas = ps.executeUpdate();
-            if (filasActualizadas > 0) {
-                System.out.println("El mensaje ha sido marcado como leído correctamente.");
-            } else {
-                System.out.println("No se encontró el mensaje para marcar como leído.");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al marcar el mensaje como leído: " + e.getMessage());
-        }
-    }
-
-    // METODO para obtener los mensajes de un usuario
     public static List<Mensaje> obtenerMensajes(Connection conexion, Usuario usuario) {
         Connection conn = conexion;
 
@@ -385,11 +371,21 @@ public class ControladorDatos {
 
         return mensajes;
     }
+    public static void marcarComoLeido(Mensaje mensaje, Connection conn) {
+        String sql = "UPDATE MENSAJES SET leido = ? WHERE id_mensajes = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setBoolean(1, true); // Marcar como leído
+            ps.setInt(2, mensaje.getId_mensaje()); // ID del mensaje
 
-    public static boolean esUltimoElementoVisible(JScrollPane scrollPane) {
-        JScrollBar barra = scrollPane.getVerticalScrollBar();
-        boolean alFinal = barra.getValue() + barra.getVisibleAmount() >= barra.getMaximum();
-        System.out.println("¿Es el último elemento visible? " + alFinal);
-        return alFinal;
+            int filasActualizadas = ps.executeUpdate();
+            if (filasActualizadas > 0) {
+                System.out.println("El mensaje ha sido marcado como leído correctamente.");
+            } else {
+                System.out.println("No se encontró el mensaje para marcar como leído.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al marcar el mensaje como leído: " + e.getMessage());
+        }
     }
 }
+*/

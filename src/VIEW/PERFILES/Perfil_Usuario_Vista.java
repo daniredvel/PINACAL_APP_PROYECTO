@@ -3,6 +3,7 @@ package VIEW.PERFILES;
 import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
+import VIEW.INICIO.Inicio_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
 
@@ -12,8 +13,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Perfil_Usuario_Vista extends JPanel {
+
+    private boolean cargando = false; // Evitar múltiples cargas simultáneas
+    private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
+
+    public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
+    private static int OFFSSET = 0;
     private final Usuario usuario; // Usuario cuyo perfil se está viendo
     private final DefaultListModel<Publicacion> listModel; // Modelo de la lista de publicaciones
     private final Connection conn; // Conexión a la base de datos
@@ -23,12 +32,23 @@ public class Perfil_Usuario_Vista extends JPanel {
         this.conn = conn;
         this.usuario = usuario;
         this.usuario_actual = usuario_actual;
-        this.listModel = new DefaultListModel<>();
 
-        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, usuario);
-        for (Publicacion publicacion : publicaciones) {
-            listModel.addElement(publicacion);
-        }
+        // Lista de publicaciones en la parte inferior
+        this.listModel = new DefaultListModel<>();
+        JScrollPane scrollPane = getJScrollPane();
+        add(scrollPane, BorderLayout.CENTER);
+
+
+
+        cargarPublicaciones();
+
+        // Detectar el final de la lista
+        scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> {
+            if (!e.getValueIsAdjusting() && ControladorDatos.esUltimoElementoVisible(scrollPane)) {
+                cargarPublicaciones();
+            }
+        });
+
         initUI();
     }
 
@@ -118,4 +138,41 @@ public class Perfil_Usuario_Vista extends JPanel {
 
         dialog.setVisible(true);
     }
+
+
+    protected void cargarPublicaciones() {
+        System.out.println("Intentando cargar publicaciones...");
+        System.out.println("Estado antes de cargar: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
+
+        if (cargando || !hayMasPublicaciones) {
+            System.out.println("Carga bloqueada: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
+            return; // Evitar cargas innecesarias
+        }
+
+        cargando = true; // Marcar como cargando
+        System.out.println("Cargando publicaciones con offset=" + OFFSSET + ", limit=" + ControladorDatos.LIMIT);
+
+        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, false, OFFSSET);
+
+        if (publicaciones.isEmpty()) {
+            System.out.println("No se encontraron más publicaciones.");
+            hayMasPublicaciones = false; // No hay más publicaciones por cargar
+        } else {
+            for (Publicacion publicacion : publicaciones) {
+                listModel.addElement(publicacion);
+            }
+            System.out.println("OFFSET=" + OFFSSET);
+
+            if(!publicaciones.isEmpty()) OFFSSET += publicaciones.size(); //Solo se recarga el offset si hay publicaciones
+
+
+            System.out.println("OFFSET=" + OFFSSET);
+            System.out.println("Publicaciones cargadas: " + publicaciones.size() + ", nuevo offset=" + OFFSSET);
+        }
+
+        cargando = false; // Finalizar la carga
+        repaint();
+        System.out.println("Carga finalizada.");
+    }
+
 }

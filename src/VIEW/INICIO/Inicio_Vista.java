@@ -25,6 +25,10 @@ import java.util.logging.Logger;
 import static DB.UTIL.CrearConn.conn;
 
 public class Inicio_Vista extends JPanel {
+    private boolean cargando = false; // Evitar múltiples cargas simultáneas
+    private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
+
+    private static int OFFSSET = 0;
     public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
     private JButton adminButton;
     protected final DefaultListModel<Publicacion> listModel;
@@ -62,6 +66,14 @@ public class Inicio_Vista extends JPanel {
 
         // Cargar publicaciones
         cargarPublicaciones();
+
+        // Detectar el final de la lista
+        scrollPane.getVerticalScrollBar().addAdjustmentListener(e -> {
+            if (!e.getValueIsAdjusting() && ControladorDatos.esUltimoElementoVisible(scrollPane)) {
+                cargarPublicaciones();
+                repaint();
+            }
+        });
 
     }
 
@@ -101,14 +113,38 @@ public class Inicio_Vista extends JPanel {
     }
 
     protected void cargarPublicaciones() {
-        LOGGER.log(Level.INFO, "Cargando publicaciones");
-        listModel.clear(); // Limpiar la lista antes de recargar
+        System.out.println("Intentando cargar publicaciones...");
+        System.out.println("Estado antes de cargar: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
 
-        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, false);
-
-        for (Publicacion publicacion : publicaciones) {
-            listModel.addElement(publicacion);
+        if (cargando || !hayMasPublicaciones) {
+            System.out.println("Carga bloqueada: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
+            return; // Evitar cargas innecesarias
         }
-        LOGGER.log(Level.INFO, "Publicaciones cargadas: {0}", listModel.size());
+
+        cargando = true; // Marcar como cargando
+        System.out.println("Cargando publicaciones con offset=" + OFFSSET + ", limit=" + ControladorDatos.LIMIT);
+
+        List<Publicacion> publicaciones = ControladorDatos.obtenerPublicaciones(conn, false, OFFSSET);
+
+        if (publicaciones.isEmpty()) {
+            System.out.println("No se encontraron más publicaciones.");
+            hayMasPublicaciones = false; // No hay más publicaciones por cargar
+        } else {
+            for (Publicacion publicacion : publicaciones) {
+                listModel.addElement(publicacion);
+            }
+            System.out.println("OFFSET=" + OFFSSET);
+
+            if(!publicaciones.isEmpty()) OFFSSET += publicaciones.size(); //Solo se recarga el offset si hay publicaciones
+
+
+            System.out.println("OFFSET=" + OFFSSET);
+            System.out.println("Publicaciones cargadas: " + publicaciones.size() + ", nuevo offset=" + OFFSSET);
+        }
+
+        cargando = false; // Finalizar la carga
+        repaint();
+        System.out.println("Carga finalizada.");
     }
+
 }
