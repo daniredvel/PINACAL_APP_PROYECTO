@@ -18,6 +18,18 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase que representa la vista detallada de una publicación en la aplicación.
+ * Muestra la información completa de la publicación, incluyendo su tipo, título, autor y fecha de publicación.
+ * Permite al usuario guardar la publicación.
+ * <p>
+ * La clase cuenta con componentes de interfaz de usuario para mostrar la información de la publicación y métodos para manejar los eventos de la publicación.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Publicacion_Detalle_Vista extends JDialog {
     private static boolean isOriginalIcon = true;
     private final JButton saveButton;

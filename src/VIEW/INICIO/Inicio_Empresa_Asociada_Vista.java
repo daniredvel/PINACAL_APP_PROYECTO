@@ -8,6 +8,19 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.logging.Level;
 
+/**
+ * Clase que representa la vista de la ventana de inicio de empresa asociada y administrador en la aplicación.
+ * Esta clase extiende la clase {@link Inicio_Vista} y se encarga de mostrar todas las publicaciones de la app.
+ * <p>
+ * La clase cuenta con dos variables de instancia para controlar el estado de carga de publicaciones: {@link #cargando} y {@link #hayMasPublicaciones}.
+ * <p>
+ * La clase también cuenta con un metodo {@link #cargarPublicaciones()} que se encarga de cargar las publicaciones de la empresa asociada.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Inicio_Empresa_Asociada_Vista extends Inicio_Vista {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas
     private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
@@ -19,6 +32,18 @@ public class Inicio_Empresa_Asociada_Vista extends Inicio_Vista {
 
 
     }
+
+    /**
+     * Metodo que se encarga de cargar las publicaciones de la empresa asociada.
+     * <p>
+     * Este metodo verifica si se están cargando publicaciones actualmente o si no hay más publicaciones por cargar.
+     * Si se cumplen estas condiciones, no se carga nada.
+     * <p>
+     * De lo contrario, se procede a cargar las publicaciones.
+     *
+     * @see #cargando
+     * @see #hayMasPublicaciones
+     */
 
     @Override
     public void cargarPublicaciones() {

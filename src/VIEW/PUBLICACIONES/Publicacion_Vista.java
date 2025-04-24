@@ -6,6 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 
+/**
+ * Clase que representa la vista de una publicación en la lista.
+ * Esta clase muestra la versión simplificada de una publicación, incluyendo su tipo, título, autor y fecha de publicación.
+ * <p>
+ * Esta vista solo muestra una versión simplificada de la publicación.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Publicacion_Vista extends JPanel {
     public Publicacion_Vista(Publicacion publicacion) {
         setLayout(new BorderLayout());

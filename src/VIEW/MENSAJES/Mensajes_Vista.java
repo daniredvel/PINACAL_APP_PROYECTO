@@ -6,6 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 
+/**
+ * Clase que representa la interfaz de los mensajes.
+ * Esta clase se encarga de mostrar los detalles de un mensaje y de permitir al usuario interactuar con él.
+ * <p>
+ * La clase cuenta con componentes de interfaz de usuario para mostrar los detalles del mensaje y métodos para manejar los eventos del mensaje.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Mensajes_Vista extends JPanel{
     public Mensajes_Vista(Mensaje mensaje) {
         setLayout(new BorderLayout());

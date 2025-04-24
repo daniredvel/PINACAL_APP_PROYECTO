@@ -22,6 +22,19 @@ import java.util.logging.Level;
 
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
+/**
+ * Clase que representa la vista de la ventana de administrador de la app.
+ * Esta clase solo se muestra si el usuario es ADMINISTRADOR.
+ * <p>
+ * Esta clase esta divida en dos paneles.
+ * Panel superior: contiene la administración de publicaciones.
+ * Panel inferior: contiene la administración de usuarios.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Administar_Vista extends JPanel {
     private static int OFFSSET = 0;
     private List<Publicacion> publicaciones;

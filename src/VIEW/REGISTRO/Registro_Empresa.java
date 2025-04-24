@@ -10,6 +10,18 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.sql.Connection;
 
+/**
+ * Clase que representa la vista de registro para empresas.
+ * Esta clase se muestra al usuario un formulario con los datos necesarios para completar el registro.
+ * La clase cuenta con los métodos para la validación de los campos del formulario y la fuerza de la contraseña.
+ * <p>
+ * La clase instancia a la clase USUARIO y se lo pasa como parámetro a la siguiente vista para completar la dirección.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Registro_Empresa extends JDialog {
     private final JTextField companyNameField;
     private final JTextField companyEmailField;

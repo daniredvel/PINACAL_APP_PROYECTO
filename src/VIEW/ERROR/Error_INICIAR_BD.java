@@ -5,6 +5,17 @@ import VIEW.RES.Rutas;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase que representa la vista en caso de error al no poder conectarse con la base de datos
+ * o en caso de que se cierre la conexión de la misma durante la ejecución del programa.
+ * <p>
+ * La clase muestra un mensaje de error y una disculpa al usuario.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Error_INICIAR_BD extends JFrame {
 
     public Error_INICIAR_BD() {

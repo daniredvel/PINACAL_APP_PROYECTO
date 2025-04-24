@@ -13,6 +13,18 @@ import java.sql.Connection;
 import static CONTROLLER.CRUD.USER.LeerUsuario.leerUsuarioPorNombre;
 import static CONTROLLER.VALIDATION.ControladorInicioSesion.comprobarPass;
 
+/**
+ * Clase que representa la vista de la ventana de inicio de sesión de la aplicación.
+ * Esta clase se encarga de mostrar un formulario para que el usuario pueda introducir su nombre de usuario y contraseña.
+ * <p>
+ * La clase cuenta con varios componentes de interfaz de usuario, como campos de texto para el nombre de usuario y la contraseña,
+ * un botón para iniciar sesión y un botón para registrarse.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class InicioSesion_Vista extends JFrame {
     public static Usuario usuario_actual = null;
     private final JTextField userField;

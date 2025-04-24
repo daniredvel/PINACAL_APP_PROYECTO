@@ -11,10 +11,19 @@ import VIEW.PERSONAL.Personal_Usuario;
 import VIEW.RES.Rutas;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.sql.Connection;
+
+/**
+ * Clase que representa la ventana principal de la aplicación.
+ * Esta clase se encarga de mostrar la vista de inicio de la aplicación y de gestionar las diferentes vistas que se muestran.
+ * <p>
+ * La clase cuenta con varios componentes de interfaz de usuario, como un panel de navegación y un panel de contenido.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
 
 public class MAIN_FRAME extends JFrame {
 

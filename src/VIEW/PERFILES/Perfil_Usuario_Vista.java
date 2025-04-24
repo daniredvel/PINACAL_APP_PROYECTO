@@ -14,6 +14,17 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Clase que representa la vista del perfil de un usuario a través de la aplicación.
+ * Esta clase se encarga de mostrar la información del usuario.
+ * <p>
+ * La clase cuenta con componentes de interfaz de usuario para mostrar la información del mismo.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Perfil_Usuario_Vista extends JPanel {
 
     private boolean cargando = false; // Evitar múltiples cargas simultáneas

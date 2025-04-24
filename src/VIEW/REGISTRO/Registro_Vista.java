@@ -6,6 +6,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 
+/**
+ * Clase que representa la vista de registro de usuario o empresa.
+ * Esta vista muestra la opción de registrar un usuario o una empresa..
+ * A través de dos botones, el usuario puede elegir entre registrarse como empresa o como usuario.
+ * <p>
+ * La clase se encarga de redirigir al usuario en función de la opción de registro deseada.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Registro_Vista extends JDialog {
     public Registro_Vista(JFrame parent, Connection conn) {
         super(parent, "REGISTRO", true); // Hacer que el diálogo sea modal

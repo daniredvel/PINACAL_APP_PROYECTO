@@ -10,6 +10,18 @@ import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase que representa la vista detallada de una publicación propia del usuario en la aplicación.
+ * Muestra la información completa de la publicación, incluyendo su tipo, título, autor y fecha de publicación.
+ * Permite al usuario eliminar su propia publicación.
+ * <p>
+ * La clase cuenta con componentes de interfaz de usuario para mostrar la información de la publicación y métodos para manejar los eventos de la publicación.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista {
     private static final Logger LOGGER = Logger.getLogger(Publicacion_Propia_Detalle_Vista.class.getName());
 

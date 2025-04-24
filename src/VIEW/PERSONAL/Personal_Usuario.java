@@ -15,6 +15,17 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * Clase que representa el perfil de un usuario en la aplicación para el propio usuario.
+ * Esta clase se encarga de almacenar y gestionar la información del usuario.
+ * La interfaz muestra la información del usuario y le permite modificarla.
+ * <p>
+ * La clase cuenta con atributos para almacenar la información del usuario y métodos para acceder y modificar esa información.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
 
 public class Personal_Usuario extends JPanel {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas

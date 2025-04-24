@@ -18,6 +18,20 @@ import java.util.logging.Logger;
 
 import static DB.UTIL.CrearConn.conn;
 
+/**
+ * Clase que representa la vista de la ventana de inicio de la aplicación.
+ * Esta clase se encarga de mostrar al usuario las publicaciones del administrador y de la empresa asociada.
+ * <p>
+ * La clase cuenta con varias variables de instancia para controlar el estado de la vista, como {@link #cargando}, {@link #hayMasPublicaciones} y {@link #OFFSSET}.
+ * <p>
+ * La clase también cuenta con varios métodos para cargar y gestionar las publicaciones, como {@link #cargarPublicaciones()} y {@link #getJScrollPane()}.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
+
 public class Inicio_Vista extends JPanel {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas
     private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
@@ -103,6 +117,19 @@ public class Inicio_Vista extends JPanel {
         });
         return publicacionesList;
     }
+
+    /**
+     * Metodo que se encarga de cargar las publicaciones de la aplicación.
+     * <p>
+     * Este metodo verifica si se están cargando publicaciones actualmente o si no hay más publicaciones por cargar.
+     * Si se cumplen estas condiciones, no se carga nada.
+     * <p>
+     * De lo contrario, se procede a cargar las publicaciones y se actualiza el offset para la próxima carga.
+     *
+     * @see #cargando
+     * @see #hayMasPublicaciones
+     * @see #OFFSSET
+     */
 
     public void cargarPublicaciones() {
         System.out.println("Intentando cargar publicaciones...");

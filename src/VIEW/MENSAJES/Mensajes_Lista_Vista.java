@@ -13,6 +13,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase que representa la vista de la lista de mensajes de la aplicación.
+ * Esta clase se encarga de mostrar una lista de mensajes y de permitir al usuario interactuar con ellos.
+ * <p>
+ * La clase cuenta con un componente de interfaz de usuario para mostrar la lista de mensajes y métodos para manejar los eventos de la lista.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Mensajes_Lista_Vista extends JPanel {
     public static final Logger LOGGER = Logger.getLogger(Mensajes_Lista_Vista.class.getName());
     private final DefaultListModel<Mensaje> listModel;

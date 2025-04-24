@@ -10,6 +10,18 @@ import java.sql.Connection;
 
 import static CONTROLLER.CRUD.USER.AddUsuario.addEmpresa;
 
+/**
+ * Clase que representa la vista de registro para empresas donde indicar la dirección.
+ * Esta clase se muestra al usuario un formulario con los datos de la dirección.
+ * La clase cuenta con los métodos para normalizar el formato de la dirección.
+ * <p>
+ * La clase instancia a la clase USUARIO y se lo pasa al controlador para añadirlo a la base de datos.
+ *
+ * @author DANIEL REDONDO VELASCO
+ * @version 1.0
+ * @since 2025
+ */
+
 public class Registro_Empresa_Direccion extends JDialog {
     private final JTextField streetField;
     private final JTextField numberField;
