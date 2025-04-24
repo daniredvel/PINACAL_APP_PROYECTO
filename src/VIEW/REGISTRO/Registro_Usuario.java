@@ -146,8 +146,8 @@ public class Registro_Usuario extends JDialog {
         // Botón de registro
         JButton registerButton = new JButton("Registrar");
         registerButton.setFont(font);
-        registerButton.setBackground(new Color(174, 101, 7)); // Button background color
-        registerButton.setForeground(new Color(255, 255, 255)); // Button text color
+        registerButton.setBackground(Rutas.getColor(Rutas.NARANJA)); // Button background color
+        registerButton.setForeground(Rutas.getColor(Rutas.BLANCO)); // Button text color
         constraints.gridx = 1;
         constraints.gridy = 6;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -156,7 +156,7 @@ public class Registro_Usuario extends JDialog {
         // Etiqueta para mostrar mensajes
         messageLabel = new JLabel("");
         messageLabel.setFont(font);
-        messageLabel.setForeground(Color.RED);
+        messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
         constraints.gridx = 0;
         constraints.gridy = 7;
         constraints.gridwidth = 2;
@@ -240,13 +240,13 @@ public class Registro_Usuario extends JDialog {
         passwordStrengthBar.setValue(strength);
         if (strength < 50) {
             passwordStrengthBar.setString("Débil");
-            passwordStrengthBar.setForeground(new Color(255, 102, 102)); // Soft red
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.ROJO_SUAVE));
         } else if (strength < 75) {
             passwordStrengthBar.setString("Media");
-            passwordStrengthBar.setForeground(new Color(255, 178, 102)); // Soft orange
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.NARANAJA_SUAVE));
         } else {
             passwordStrengthBar.setString("Fuerte");
-            passwordStrengthBar.setForeground(new Color(153, 255, 153)); // Soft green
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.VERDE_SUAVE));
         }
     }
 

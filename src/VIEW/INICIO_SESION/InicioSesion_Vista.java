@@ -44,7 +44,7 @@ public class InicioSesion_Vista extends JFrame {
         // Panel principal
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(new Color(255, 255, 255)); // Fondo
+        panel.setBackground(Rutas.getColor(Rutas.BLANCO)); // Fondo
 
         // Constraints para el layout
         GridBagConstraints constraints = new GridBagConstraints();
@@ -67,7 +67,7 @@ public class InicioSesion_Vista extends JFrame {
         // Etiqueta y Campo de texto del usuario
         JLabel userLabel = new JLabel("Usuario:");
         userLabel.setFont(font);
-        userLabel.setForeground(new Color(0, 0, 0)); // Color del texto
+        userLabel.setForeground(Rutas.getColor(Rutas.NEGRO)); // Color del texto
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -85,7 +85,7 @@ public class InicioSesion_Vista extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 2;
         panel.add(passLabel, constraints);
-        panel.setBackground(new Color(211, 205, 192));
+        panel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         passField = new JPasswordField(20);
         passField.setFont(font);
@@ -96,7 +96,7 @@ public class InicioSesion_Vista extends JFrame {
         // Checkbox para mostrar la contraseña
         JCheckBox showPasswordCheckBox = new JCheckBox("Mostrar Contraseña");
         showPasswordCheckBox.setFont(new Font("Arial", Font.PLAIN, 18));
-        showPasswordCheckBox.setBackground(new Color(211, 205, 192));
+        showPasswordCheckBox.setBackground(Rutas.getColor(Rutas.GRIS));
         constraints.gridx = 1;
         constraints.gridy = 3;
         panel.add(showPasswordCheckBox, constraints);
@@ -104,8 +104,8 @@ public class InicioSesion_Vista extends JFrame {
         // Botón de inicio de sesión
         JButton loginButton = new JButton("Iniciar Sesión");
         loginButton.setFont(font);
-        loginButton.setBackground(new Color(174, 101, 7)); // Color del fondo del botón
-        loginButton.setForeground(new Color(255, 255, 255)); // Color del texto del botón
+        loginButton.setBackground(Rutas.getColor(Rutas.NARANJA)); // Color del fondo del botón
+        loginButton.setForeground(Rutas.getColor(Rutas.BLANCO)); // Color del texto del botón
         constraints.gridx = 1;
         constraints.gridy = 4;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -145,12 +145,12 @@ public class InicioSesion_Vista extends JFrame {
                         break;
                         case -1: case 0:
                         messageLabel.setText("Contraseña o usuario incorrectos");
-                        messageLabel.setForeground(new Color(233, 30, 99));
+                        messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
                         break;
                         }
             } catch (Exception ex) {
                 messageLabel.setText("Error al iniciar sesión");
-                messageLabel.setForeground(new Color(233, 30, 99));
+                messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
             }
         });
         // «Escuchador» del botón de registro

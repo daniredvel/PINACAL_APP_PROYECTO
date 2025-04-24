@@ -5,6 +5,7 @@ import MODEL.Publicacion;
 import MODEL.Usuario;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,11 +64,11 @@ public class Perfil_Usuario_Vista extends JPanel {
 
     private void initUI() {
         setLayout(new BorderLayout());
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
 
         // Panel de información del usuario
         JPanel infoPanel = new JPanel(new GridBagLayout());
-        infoPanel.setBackground(new Color(211, 205, 192));
+        infoPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -101,7 +102,7 @@ public class Perfil_Usuario_Vista extends JPanel {
 
     private JScrollPane getJScrollPane() {
         JList<Publicacion> publicacionesList = getPublicacionJList();
-        publicacionesList.setBackground(new Color(211, 205, 192));
+        publicacionesList.setBackground(Rutas.getColor(Rutas.GRIS));
 
         publicacionesList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -124,11 +125,11 @@ public class Perfil_Usuario_Vista extends JPanel {
         publicacionesList.setCellRenderer((list, publicacion, index, isSelected, cellHasFocus) -> {
             Publicacion_Vista publicacionVista = new Publicacion_Vista(publicacion);
             if (isSelected) {
-                publicacionVista.setBackground(new Color(174, 101, 7));
-                publicacionVista.setForeground(Color.WHITE);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.NARANJA));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.BLANCO));
             } else {
-                publicacionVista.setBackground(new Color(211, 205, 192));
-                publicacionVista.setForeground(Color.BLACK);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.GRIS));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.NEGRO));
             }
             return publicacionVista;
         });

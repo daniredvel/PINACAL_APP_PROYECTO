@@ -3,6 +3,7 @@ package VIEW.MENSAJES;
 import CONTROLLER.ControladorDatos;
 import MODEL.Mensaje;
 import MODEL.Usuario;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,19 +38,19 @@ public class Mensajes_Lista_Vista extends JPanel {
         // Si la conexión es nula, se crea una nueva
         if (conn == null) conn = conexion;
 
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
 
         setLayout(new BorderLayout());
 
         // Panel superior con botones centrados
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
-        topPanel.setBackground(new Color(211, 205, 192));
+        topPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         // Lista de mensajes en la parte inferior
         listModel = new DefaultListModel<>();
         JScrollPane scrollPane = getJScrollPane();
-        scrollPane.setBackground(new Color(211, 205, 192));
+        scrollPane.setBackground(Rutas.getColor(Rutas.GRIS));
         add(scrollPane, BorderLayout.CENTER);
 
         // Cargar mensajes
@@ -58,9 +59,9 @@ public class Mensajes_Lista_Vista extends JPanel {
     }
 
     protected JScrollPane getJScrollPane() {
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
         JList<Mensaje> mensajesList = getMensajesJList();
-        mensajesList.setBackground(new Color(211, 205, 192));
+        mensajesList.setBackground(Rutas.getColor(Rutas.GRIS));
 
         mensajesList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -80,18 +81,18 @@ public class Mensajes_Lista_Vista extends JPanel {
     }
 
     private JList<Mensaje> getMensajesJList() {
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
 
         JList<Mensaje> mensajesList = new JList<>(listModel);
         mensajesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         mensajesList.setCellRenderer((list, mensaje, index, isSelected, cellHasFocus) -> {
             Mensajes_Vista mensajeVista = new Mensajes_Vista(mensaje);
             if (isSelected) {
-                mensajeVista.setBackground(new Color(174, 101, 7));
-                mensajeVista.setForeground(Color.WHITE);
+                mensajeVista.setBackground(Rutas.getColor(Rutas.NARANJA));
+                mensajeVista.setForeground(Rutas.getColor(Rutas.BLANCO));
             } else {
-                mensajeVista.setBackground(new Color(211, 205, 192));
-                mensajeVista.setForeground(Color.BLACK);
+                mensajeVista.setBackground(Rutas.getColor(Rutas.GRIS));
+                mensajeVista.setForeground(Rutas.getColor(Rutas.NEGRO));
             }
             return mensajeVista;
         });
@@ -99,7 +100,7 @@ public class Mensajes_Lista_Vista extends JPanel {
     }
 
     public void cargarMensajes() {
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
 
         LOGGER.log(Level.INFO, "Cargando mensajes");
         listModel.clear(); // Limpiar la lista antes de recargar

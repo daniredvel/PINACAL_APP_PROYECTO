@@ -3,6 +3,7 @@ package VIEW.PUBLICACIONES;
 import CONTROLLER.CRUD.PUBLICACION.EliminarPublicacion;
 import MODEL.Publicacion;
 import MODEL.Usuario;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,8 +34,8 @@ public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista 
         // Botón para eliminar la publicación
         JButton deleteButton = new JButton("Eliminar");
         deleteButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        deleteButton.setBackground(new Color(220, 70, 90));
-        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setBackground(Rutas.getColor(Rutas.ROJO));
+        deleteButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         deleteButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // Acción del botón de eliminar
@@ -62,7 +63,7 @@ public class Publicacion_Propia_Detalle_Vista extends Publicacion_Detalle_Vista 
 
         // Agregar el botón al diseño existente
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBackground(new Color(211, 205, 192));
+        buttonPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         buttonPanel.add(deleteButton);
 
         // Añadir el panel del botón al final del contenido

@@ -6,6 +6,7 @@ import MODEL.Publicacion;
 import MODEL.Usuario;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
+import VIEW.RES.Rutas;
 import VIEW.UTIL.Cambiar_Pass_Vista;
 
 import javax.swing.*;
@@ -43,7 +44,7 @@ public class Personal_Usuario extends JPanel {
         Personal_Usuario.conn = conn;
         Personal_Usuario.usuario_actual = usuario_actual;
 
-        Color backgroundColor = new Color(211, 205, 192);
+        Color backgroundColor = Rutas.getColor(Rutas.GRIS);
         setLayout(new BorderLayout());
 
         JPanel panelSuperior = new JPanel();
@@ -54,23 +55,23 @@ public class Personal_Usuario extends JPanel {
 
         JButton modificarButton = new JButton("Modificar");
         modificarButton.setFont(fuenteButton);
-        modificarButton.setBackground(new Color(174, 101, 7));
-        modificarButton.setForeground(Color.WHITE);
+        modificarButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        modificarButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         modificarButton.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen para que se adapte al texto
         modificarButton.setPreferredSize(null); // Permite que el tamaño se ajuste automáticamente
 
         JButton aceptarButton = new JButton("Aceptar");
         aceptarButton.setFont(fuenteButton);
-        aceptarButton.setBackground(new Color(174, 101, 7));
-        aceptarButton.setForeground(Color.WHITE);
+        aceptarButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        aceptarButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         aceptarButton.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen para que se adapte al texto
         aceptarButton.setPreferredSize(null); // Permite que el tamaño se ajuste automáticamente
         aceptarButton.setEnabled(false);
 
         JButton cancelarButton = new JButton("Cancelar");
         cancelarButton.setFont(fuenteButton);
-        cancelarButton.setBackground(new Color(174, 101, 7));
-        cancelarButton.setForeground(Color.WHITE);
+        cancelarButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        cancelarButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         cancelarButton.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen para que se adapte al texto
         cancelarButton.setPreferredSize(null); // Permite que el tamaño se ajuste automáticamente
         cancelarButton.setEnabled(false);
@@ -145,7 +146,7 @@ public class Personal_Usuario extends JPanel {
         userPanel.add(telefonoField, gbc);
 
         JLabel cambiarContrasenaLabel = new JLabel("<html><u>Cambiar contraseña</u></html>");
-        cambiarContrasenaLabel.setForeground(Color.BLUE);
+        cambiarContrasenaLabel.setForeground(Rutas.getColor(Rutas.AZUL));
         cambiarContrasenaLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         cambiarContrasenaLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -161,7 +162,7 @@ public class Personal_Usuario extends JPanel {
         // Añadir etiqueta para mostrar mensajes de error
         messageLabel = new JLabel("");
         messageLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        messageLabel.setForeground(Color.RED);
+        messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
@@ -241,7 +242,7 @@ public class Personal_Usuario extends JPanel {
 
     protected JScrollPane getJScrollPane() {
         JList<Publicacion> publicacionesList = getPublicacionJList();
-        publicacionesList.setBackground(new Color(211, 205, 192)); // Establecer el color de fondo de la lista
+        publicacionesList.setBackground(Rutas.getColor(Rutas.GRIS)); // Establecer el color de fondo de la lista
 
         publicacionesList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -264,11 +265,11 @@ public class Personal_Usuario extends JPanel {
         publicacionesList.setCellRenderer((list, publicacion, index, isSelected, cellHasFocus) -> {
             Publicacion_Vista publicacionVista = new Publicacion_Vista(publicacion);
             if (isSelected) {
-                publicacionVista.setBackground(new Color(174, 101, 7));
-                publicacionVista.setForeground(Color.WHITE);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.NARANJA));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.BLANCO));
             } else {
-                publicacionVista.setBackground(new Color(211, 205, 192));
-                publicacionVista.setForeground(Color.BLACK);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.GRIS));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.NEGRO));
             }
             return publicacionVista;
         });

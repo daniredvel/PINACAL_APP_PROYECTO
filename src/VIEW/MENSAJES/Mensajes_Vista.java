@@ -1,6 +1,7 @@
 package VIEW.MENSAJES;
 
 import MODEL.Mensaje;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,14 +21,14 @@ import java.text.SimpleDateFormat;
 public class Mensajes_Vista extends JPanel{
     public Mensajes_Vista(Mensaje mensaje) {
         setLayout(new BorderLayout());
-        setBackground(new Color(211, 205, 192));
-        setBorder(BorderFactory.createLineBorder(new Color(174, 101, 7), 2));
+        setBackground(Rutas.getColor(Rutas.GRIS));
+        setBorder(BorderFactory.createLineBorder(Rutas.getColor(Rutas.NARANJA), 2));
         setPreferredSize(new Dimension(800, 150));
 
         JPanel leftPanel = getJPanel(mensaje, mensaje.isLeido());
 
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(new Color(211, 205, 192));
+        contentPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 
@@ -37,7 +38,7 @@ public class Mensajes_Vista extends JPanel{
         textViewFecha.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        datePanel.setBackground(new Color(211, 205, 192));
+        datePanel.setBackground(Rutas.getColor(Rutas.GRIS));
         datePanel.add(textViewFecha);
 
         contentPanel.add(datePanel, BorderLayout.EAST);
@@ -48,7 +49,7 @@ public class Mensajes_Vista extends JPanel{
     private static JPanel getJPanel(Mensaje mensaje, boolean leido) {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setBackground(new Color(211, 205, 192));
+        leftPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
 
         JLabel textViewAsunto = new JLabel(mensaje.getAsunto());
@@ -65,9 +66,9 @@ public class Mensajes_Vista extends JPanel{
         textViewContenido.setFont(new Font("Arial", Font.PLAIN, 15));
         textViewContenido.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        textViewContenido.setForeground(leido ? Color.GRAY : Color.BLACK);
-        textViewAsunto.setForeground(leido ? Color.GRAY : Color.BLACK);
-        textViewUsuario.setForeground(leido ? Color.GRAY : Color.BLACK);
+        textViewContenido.setForeground(leido ? Rutas.getColor(Rutas.GRIS_OSCURO) : Rutas.getColor(Rutas.NEGRO));
+        textViewAsunto.setForeground(leido ? Rutas.getColor(Rutas.GRIS_OSCURO) : Rutas.getColor(Rutas.NEGRO));
+        textViewUsuario.setForeground(leido ? Rutas.getColor(Rutas.GRIS_OSCURO) : Rutas.getColor(Rutas.NEGRO));
 
         leftPanel.add(textViewAsunto);
         leftPanel.add(textViewUsuario);

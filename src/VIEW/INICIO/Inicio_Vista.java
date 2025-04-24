@@ -6,6 +6,7 @@ import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,7 +61,7 @@ public class Inicio_Vista extends JPanel {
         // Panel superior con botones centrados
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout()); // Usar GridBagLayout para centrar botones
-        topPanel.setBackground(new Color(211, 205, 192));
+        topPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
 
 
@@ -107,11 +108,11 @@ public class Inicio_Vista extends JPanel {
         publicacionesList.setCellRenderer((list, publicacion, index, isSelected, cellHasFocus) -> {
             Publicacion_Vista publicacionVista = new Publicacion_Vista(publicacion);
             if (isSelected) {
-                publicacionVista.setBackground(new Color(174, 101, 7));
-                publicacionVista.setForeground(Color.WHITE);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.NARANJA));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.BLANCO));
             } else {
-                publicacionVista.setBackground(new Color(211, 205, 192));
-                publicacionVista.setForeground(Color.BLACK);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.GRIS));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.NEGRO));
             }
             return publicacionVista;
         });

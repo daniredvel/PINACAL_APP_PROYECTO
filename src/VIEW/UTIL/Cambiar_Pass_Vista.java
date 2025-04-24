@@ -3,6 +3,7 @@ package VIEW.UTIL;
 import CONTROLLER.ControladorDatos;
 import CONTROLLER.VALIDATION.ControladorInicioSesion;
 import MODEL.Usuario;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -18,11 +19,11 @@ public class Cambiar_Pass_Vista extends JDialog {
     private final JLabel messageLabel;
 
     // Colores del esquema de la aplicación
-    private static final Color BACKGROUND_COLOR = new Color(211, 205, 192);
-    private static final Color TEXT_COLOR = Color.BLACK;
-    private static final Color ERROR_COLOR = Color.RED;
-    private static final Color BUTTON_COLOR = new Color(174, 101, 7);
-    private static final Color BUTTON_TEXT_COLOR = Color.WHITE;
+    private static final Color BACKGROUND_COLOR = Rutas.getColor(Rutas.GRIS);
+    private static final Color TEXT_COLOR = Rutas.getColor(Rutas.NEGRO);
+    private static final Color ERROR_COLOR = Rutas.getColor(Rutas.ROJO);
+    private static final Color BUTTON_COLOR = Rutas.getColor(Rutas.NARANJA);
+    private static final Color BUTTON_TEXT_COLOR = Rutas.getColor(Rutas.BLANCO);
 
     public Cambiar_Pass_Vista(JPanel parent, Usuario usuario_actual, Connection conn) {
         setSize(700, 450);
@@ -215,13 +216,13 @@ public class Cambiar_Pass_Vista extends JDialog {
         passwordStrengthBar.setValue(strength);
         if (strength < 50) {
             passwordStrengthBar.setString("Débil");
-            passwordStrengthBar.setForeground(new Color(255, 102, 102)); // Soft red
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.ROJO_SUAVE));
         } else if (strength < 75) {
             passwordStrengthBar.setString("Media");
-            passwordStrengthBar.setForeground(new Color(255, 178, 102)); // Soft orange
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.NARANAJA_SUAVE));
         } else {
             passwordStrengthBar.setString("Fuerte");
-            passwordStrengthBar.setForeground(new Color(153, 255, 153)); // Soft green
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.VERDE_SUAVE));
         }
     }
     // METODO para calcular la fuerza de la contraseña

@@ -31,17 +31,17 @@ public class Error_INICIAR_BD extends JFrame {
         // Panel principal
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.setBackground(new Color(255, 255, 255));
+        panel.setBackground(Rutas.getColor(Rutas.BLANCO));
 
         // Etiqueta de error
         JLabel errorMessage = new JLabel("No se puede acceder a la aplicación.", SwingConstants.CENTER);
         errorMessage.setFont(new Font("Arial", Font.BOLD, 16));
-        errorMessage.setForeground(Color.RED);
+        errorMessage.setForeground(Rutas.getColor(Rutas.ROJO));
 
         // Etiqueta de disculpas
         JLabel apologyMessage = new JLabel("Lo sentimos por los inconvenientes.", SwingConstants.CENTER);
         apologyMessage.setFont(new Font("Arial", Font.PLAIN, 14));
-        apologyMessage.setForeground(Color.BLACK);
+        apologyMessage.setForeground(Rutas.getColor(Rutas.NEGRO));
 
         // Añaddor etiquetas al panel
         panel.add(errorMessage, BorderLayout.CENTER);

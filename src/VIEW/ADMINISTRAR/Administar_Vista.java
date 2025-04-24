@@ -10,6 +10,7 @@ import MODEL.Publicacion;
 import MODEL.UTIL.Mensajes;
 import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
+import VIEW.RES.Rutas;
 
 
 import javax.swing.*;
@@ -50,7 +51,7 @@ public class Administar_Vista extends JPanel {
     private static Usuario usuario_actual;
 
     public Administar_Vista(Usuario usuario_actual, Connection conexion) {
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
         Administar_Vista.usuario_actual = usuario_actual;
         LOGGER.log(Level.INFO, "Iniciando vista de administrar");
         Administar_Vista.conn = conexion;
@@ -69,7 +70,7 @@ public class Administar_Vista extends JPanel {
 
         // Panel superior
         JPanel topPanel = new JPanel(new GridBagLayout());
-        topPanel.setBackground(new Color(211, 205, 192));
+        topPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
 
 
@@ -84,15 +85,15 @@ public class Administar_Vista extends JPanel {
 
         // Botones de radio
         JPanel radioPanel = new JPanel(new GridLayout(1, 2, 5, 5));
-        radioPanel.setBackground(new Color(211, 205, 192));
+        radioPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         aceptadaButton = new JRadioButton("Aceptada");
         aceptadaButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        aceptadaButton.setBackground(new Color(211, 205, 192));
+        aceptadaButton.setBackground(Rutas.getColor(Rutas.GRIS));
 
         denegadaButton = new JRadioButton("Denegada");
         denegadaButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        denegadaButton.setBackground(new Color(211, 205, 192));
+        denegadaButton.setBackground(Rutas.getColor(Rutas.GRIS));
 
         group = new ButtonGroup();
         group.add(aceptadaButton);
@@ -148,13 +149,13 @@ public class Administar_Vista extends JPanel {
 
         JButton modificarPermisosButton = new JButton("Modificar Permisos");
         modificarPermisosButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        modificarPermisosButton.setBackground(new Color(174, 101, 7));
-        modificarPermisosButton.setForeground(Color.WHITE);
+        modificarPermisosButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        modificarPermisosButton.setForeground(Rutas.getColor(Rutas.BLANCO));
 
         JButton eliminarUsuarioButton = new JButton("Eliminar Usuario");
         eliminarUsuarioButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        eliminarUsuarioButton.setBackground(new Color(174, 101, 7));
-        eliminarUsuarioButton.setForeground(Color.WHITE);
+        eliminarUsuarioButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        eliminarUsuarioButton.setForeground(Rutas.getColor(Rutas.BLANCO));
 
         buttonPanel.add(modificarPermisosButton);
         buttonPanel.add(eliminarUsuarioButton);
@@ -193,8 +194,8 @@ public class Administar_Vista extends JPanel {
     private JPanel getSiguientePanel() {
         JButton siguienteButton = new JButton("Siguiente");
         siguienteButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        siguienteButton.setBackground(new Color(174, 101, 7));
-        siguienteButton.setForeground(Color.WHITE);
+        siguienteButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        siguienteButton.setForeground(Rutas.getColor(Rutas.BLANCO));
 
         siguienteButton.addActionListener(e -> {
             if (!aceptadaButton.isSelected() && !denegadaButton.isSelected()) {
@@ -219,7 +220,7 @@ public class Administar_Vista extends JPanel {
         });
         JPanel siguientePanel = new JPanel();
         siguientePanel.add(siguienteButton);
-        siguientePanel.setBackground(new Color(211, 205, 192));
+        siguientePanel.setBackground(Rutas.getColor(Rutas.GRIS));
         return siguientePanel;
     }
 

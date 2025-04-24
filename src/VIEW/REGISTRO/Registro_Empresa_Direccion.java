@@ -43,7 +43,7 @@ public class Registro_Empresa_Direccion extends JDialog {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(new Color(211, 205, 192));
+        panel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10, 10, 10, 10);
@@ -138,8 +138,8 @@ public class Registro_Empresa_Direccion extends JDialog {
         // Botón de registro
         JButton registerButton = new JButton("Registrar");
         registerButton.setFont(font);
-        registerButton.setBackground(new Color(174, 101, 7));
-        registerButton.setForeground(new Color(255, 255, 255));
+        registerButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        registerButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         constraints.gridx = 1;
         constraints.gridy = 7;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -148,7 +148,7 @@ public class Registro_Empresa_Direccion extends JDialog {
         // Añade etiqueta para mostrar mensajes
         messageLabel = new JLabel("");
         messageLabel.setFont(font);
-        messageLabel.setForeground(Color.RED);
+        messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
         constraints.gridx = 0;
         constraints.gridy = 8;
         constraints.gridwidth = 2;

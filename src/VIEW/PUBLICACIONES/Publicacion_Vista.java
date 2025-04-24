@@ -1,6 +1,7 @@
 package VIEW.PUBLICACIONES;
 
 import MODEL.Publicacion;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +21,12 @@ import java.text.SimpleDateFormat;
 public class Publicacion_Vista extends JPanel {
     public Publicacion_Vista(Publicacion publicacion) {
         setLayout(new BorderLayout());
-        setBackground(new Color(211, 205, 192));
-        setBorder(BorderFactory.createLineBorder(new Color(174, 101, 7), 2));
+        setBackground(Rutas.getColor(Rutas.GRIS));
+        setBorder(BorderFactory.createLineBorder(Rutas.getColor(Rutas.NARANJA), 2));
         setPreferredSize(new Dimension(800, 150));
 
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(new Color(211, 205, 192));
+        contentPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JPanel leftPanel = getJPanel(publicacion);
@@ -38,7 +39,7 @@ public class Publicacion_Vista extends JPanel {
         textViewFecha.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        datePanel.setBackground(new Color(211, 205, 192));
+        datePanel.setBackground(Rutas.getColor(Rutas.GRIS));
         datePanel.add(textViewFecha);
 
         contentPanel.add(datePanel, BorderLayout.EAST);
@@ -57,12 +58,12 @@ public class Publicacion_Vista extends JPanel {
     private static JPanel getJPanel() {
         JLabel doubleClickLabel = new JLabel("Doble click para ver la publicación completa");
         doubleClickLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-        doubleClickLabel.setForeground(new Color(174, 101, 7));
+        doubleClickLabel.setForeground(Rutas.getColor(Rutas.NARANJA));
         doubleClickLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Crear un panel para la etiqueta y añadirla
         JPanel labelPanel = new JPanel(new BorderLayout());
-        labelPanel.setBackground(new Color(211, 205, 192));
+        labelPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         labelPanel.add(doubleClickLabel, BorderLayout.CENTER);
         return labelPanel;
     }
@@ -70,11 +71,11 @@ public class Publicacion_Vista extends JPanel {
     private static JPanel getJPanel(Publicacion publicacion) {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setBackground(new Color(211, 205, 192));
+        leftPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         JLabel textViewTipo = new JLabel(publicacion.getTipo());
         textViewTipo.setFont(new Font("Arial", Font.PLAIN, 30));
-        textViewTipo.setForeground(new Color(174, 101, 7));
+        textViewTipo.setForeground(Rutas.getColor(Rutas.NARANJA));
         textViewTipo.setAlignmentX(Component.LEFT_ALIGNMENT);
         leftPanel.add(textViewTipo);
 

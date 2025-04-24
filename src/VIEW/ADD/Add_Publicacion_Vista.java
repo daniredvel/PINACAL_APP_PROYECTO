@@ -45,12 +45,12 @@ public class Add_Publicacion_Vista extends JDialog {
         setLocationRelativeTo(owner);
 
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(211, 205, 192));
+        getContentPane().setBackground(Rutas.getColor(Rutas.GRIS));
 
         // Panel central con los campos de entrada
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
-        centerPanel.setBackground(new Color(211, 205, 192));
+        centerPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -93,11 +93,11 @@ public class Add_Publicacion_Vista extends JDialog {
 
         // Panel inferior con el botón de aceptar
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setBackground(new Color(211, 205, 192));
+        bottomPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         JButton aceptarButton = new JButton("Aceptar");
         aceptarButton.setFont(new Font("Arial", Font.PLAIN, 18));
-        aceptarButton.setBackground(new Color(174, 101, 7));
-        aceptarButton.setForeground(Color.WHITE);
+        aceptarButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        aceptarButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         aceptarButton.addActionListener(e -> crearPublicacion());
         bottomPanel.add(aceptarButton);
         add(bottomPanel, BorderLayout.SOUTH);

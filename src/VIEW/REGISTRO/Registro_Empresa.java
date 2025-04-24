@@ -42,7 +42,7 @@ public class Registro_Empresa extends JDialog {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(new Color(211, 205, 192));
+        panel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10, 10, 10, 10);
@@ -126,7 +126,7 @@ public class Registro_Empresa extends JDialog {
         // Añadir un checkbox para mostrar/ocultar la contraseña
         showPasswordCheckBox = new JCheckBox("Mostrar Contraseña");
         showPasswordCheckBox.setFont(font);
-        showPasswordCheckBox.setBackground(new Color(211, 205, 192));
+        showPasswordCheckBox.setBackground(Rutas.getColor(Rutas.GRIS));
         showPasswordCheckBox.setFocusPainted(false);
         constraints.gridx = 1;
         constraints.gridy = 5;
@@ -143,8 +143,8 @@ public class Registro_Empresa extends JDialog {
         // Botón de registro
         JButton registerButton = new JButton("Registrar");
         registerButton.setFont(font);
-        registerButton.setBackground(new Color(174, 101, 7)); // Button background color
-        registerButton.setForeground(new Color(255, 255, 255)); // Button text color
+        registerButton.setBackground(Rutas.getColor(Rutas.NARANJA)); // Button background color
+        registerButton.setForeground(Rutas.getColor(Rutas.BLANCO)); // Button text color
         constraints.gridx = 1;
         constraints.gridy = 6;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -153,7 +153,7 @@ public class Registro_Empresa extends JDialog {
         // Etiqueta para mostrar mensajes
         messageLabel = new JLabel("");
         messageLabel.setFont(font);
-        messageLabel.setForeground(Color.RED);
+        messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
         constraints.gridx = 0;
         constraints.gridy = 7;
         constraints.gridwidth = 2;
@@ -233,13 +233,13 @@ public class Registro_Empresa extends JDialog {
         passwordStrengthBar.setValue(strength);
         if (strength < 50) {
             passwordStrengthBar.setString("Débil");
-            passwordStrengthBar.setForeground(new Color(255, 102, 102)); // Soft red
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.ROJO_SUAVE));
         } else if (strength < 75) {
             passwordStrengthBar.setString("Media");
-            passwordStrengthBar.setForeground(new Color(255, 178, 102)); // Soft orange
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.NARANAJA_SUAVE));
         } else {
             passwordStrengthBar.setString("Fuerte");
-            passwordStrengthBar.setForeground(new Color(153, 255, 153)); // Soft green
+            passwordStrengthBar.setForeground(Rutas.getColor(Rutas.VERDE_SUAVE));
         }
     }
 

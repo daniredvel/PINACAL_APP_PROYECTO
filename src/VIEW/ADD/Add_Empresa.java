@@ -7,6 +7,7 @@ import VIEW.ERROR.Error_INICIAR_BD;
 import VIEW.INICIO.Inicio_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Propia_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
+import VIEW.RES.Rutas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,15 +53,15 @@ public class Add_Empresa extends JPanel {
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
-        topPanel.setBackground(new Color(211, 205, 192));
+        topPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         Font buttonFont = new Font("Arial", Font.PLAIN, 18);
 
 
         JButton nuevaPublicacionButton = new JButton("Nueva Publicación");
         nuevaPublicacionButton.setFont(buttonFont);
-        nuevaPublicacionButton.setBackground(new Color(174, 101, 7));
-        nuevaPublicacionButton.setForeground(Color.WHITE);
+        nuevaPublicacionButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        nuevaPublicacionButton.setForeground(Rutas.getColor(Rutas.BLANCO));
         nuevaPublicacionButton.setPreferredSize(new Dimension(200, 50));
         nuevaPublicacionButton.setMargin(new Insets(10, 20, 10, 20));
 
@@ -111,17 +112,17 @@ public class Add_Empresa extends JPanel {
 
     private JList<Publicacion> getPublicacionJList() {
         JList<Publicacion> publicacionesList = new JList<>(listModel);
-        publicacionesList.setBackground(new Color(211, 205, 192));
+        publicacionesList.setBackground(Rutas.getColor(Rutas.GRIS));
 
         publicacionesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         publicacionesList.setCellRenderer((list, publicacion, index, isSelected, cellHasFocus) -> {
             Publicacion_Vista publicacionVista = new Publicacion_Vista(publicacion);
             if (isSelected) {
-                publicacionVista.setBackground(new Color(174, 101, 7));
-                publicacionVista.setForeground(Color.WHITE);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.NARANJA));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.BLANCO));
             } else {
-                publicacionVista.setBackground(new Color(211, 205, 192));
-                publicacionVista.setForeground(Color.BLACK);
+                publicacionVista.setBackground(Rutas.getColor(Rutas.GRIS));
+                publicacionVista.setForeground(Rutas.getColor(Rutas.NEGRO));
             }
             return publicacionVista;
         });

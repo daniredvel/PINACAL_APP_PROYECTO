@@ -44,7 +44,7 @@ public class MAIN_FRAME extends JFrame {
         setIconImage(Rutas.getImage(Rutas.ICONO));
 
         // Fondo
-        setBackground(new Color(211, 205, 192));
+        setBackground(Rutas.getColor(Rutas.GRIS));
 
         // Panel principal con pestañas
         JPanel mainPanel = new JPanel(new BorderLayout());

@@ -54,18 +54,18 @@ public class Publicacion_Detalle_Vista extends JDialog {
 
         // Panel principal
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(new Color(211, 205, 192));
+        contentPanel.setBackground(Rutas.getColor(Rutas.GRIS));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Panel izquierdo con información de la publicación
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.setBackground(new Color(211, 205, 192));
+        leftPanel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         // Tipo de publicación
         JLabel textViewTipo = new JLabel(publicacion.getTipo());
         textViewTipo.setFont(new Font("Arial", Font.PLAIN, 30));
-        textViewTipo.setForeground(new Color(174, 101, 7));
+        textViewTipo.setForeground(Rutas.getColor(Rutas.NARANJA));
         textViewTipo.setAlignmentX(Component.LEFT_ALIGNMENT);
         leftPanel.add(textViewTipo);
 
@@ -111,7 +111,7 @@ public class Publicacion_Detalle_Vista extends JDialog {
         textViewFecha.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        datePanel.setBackground(new Color(211, 205, 192));
+        datePanel.setBackground(Rutas.getColor(Rutas.GRIS));
         datePanel.add(textViewFecha);
 
         contentPanel.add(datePanel, BorderLayout.EAST);
