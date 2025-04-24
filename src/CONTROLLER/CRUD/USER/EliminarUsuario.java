@@ -15,24 +15,23 @@ import static DB.UTIL.CrearConn.conn;
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
 
 /**
- * Clase encargada de eliminar usuarios a la base de datos.
+ * Clase encargada de eliminar usuarios de la base de datos.
  *
  * <p>Esta clase se conecta a la base de datos y realiza operaciones de eliminación
- * (DELETE) en la tabla `USUARIOS`.</p>
+ * (DELETE) en la tabla <code>USUARIOS</code>.</p>
  *
- * <strong>Dependencias:</strong>
+ * <p><strong>Dependencias:</strong></p>
  * <ul>
  *     <li>La clase depende de los paquetes {@link DB.UTIL.GestorConexion} para gestionar la conexión
- *         a la base de datos y el paquete {@link MODEL.Usuario} para los modelos de los usuarios.
- *     </li>
+ *         a la base de datos y el paquete {@link MODEL.Usuario} para los modelos de los usuarios.</li>
  *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
  * </ul>
- *
  *
  * @author DANIEL REDONDO VELASCO
  * @version 1.0
  * @since 2025
  */
+
 
 public class EliminarUsuario {
 

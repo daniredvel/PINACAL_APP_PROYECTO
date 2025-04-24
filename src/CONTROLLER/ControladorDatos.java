@@ -24,19 +24,18 @@ import static DB.UTIL.CrearConn.conn;
  *
  * <p>Esta clase se encarga de obtener las listas de publicaciones y de usuarios desde la base de datos en función de lo solicitado por las vistas.</p>
  *
- * <strong>Dependencias:</strong>
+ * <p><strong>Dependencias:</strong></p>
  * <ul>
  *     <li>La clase depende de los paquetes {@link MODEL.Publicacion} para crear objetos de publicaciones
- *     y de {@link MODEL.Usuario} para instanciar a los usuarios.</li>
- *     </li>
+ *         y de {@link MODEL.Usuario} para instanciar a los usuarios.</li>
  *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
  * </ul>
- *
  *
  * @author DANIEL REDONDO VELASCO
  * @version 1.0
  * @since 2025
  */
+
 
 public class ControladorDatos {
     private static final Logger LOGGER = Logger.getLogger(ControladorDatos.class.getName());

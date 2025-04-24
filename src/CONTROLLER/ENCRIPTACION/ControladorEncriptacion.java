@@ -8,20 +8,20 @@ import java.security.MessageDigest;
 import java.util.Objects;
 
 /**
- * Clase encargada de encriptar los datos que entran en la base de datos.
+ * Clase encargada de encriptar los datos antes de almacenarlos en la base de datos.
  *
- * <p>Esta clase recibe un String y lo encripta utilizando el algoritmo SHA-256.</p>
+ * <p>Esta clase recibe un <code>String</code> y lo encripta utilizando el algoritmo SHA-256.</p>
  *
- * <strong>Dependencias:</strong>
+ * <p><strong>Dependencias:</strong></p>
  * <ul>
- *     <li>Utiliza el paquete <code>java.security.MessageDigest</code> para encriptar los datos.</li>
+ *     <li>Utiliza el paquete <code>java.security.MessageDigest</code> para realizar la encriptación.</li>
  * </ul>
- *
  *
  * @author DANIEL REDONDO VELASCO
  * @version 1.0
  * @since 2025
  */
+
 
 public class ControladorEncriptacion {
 

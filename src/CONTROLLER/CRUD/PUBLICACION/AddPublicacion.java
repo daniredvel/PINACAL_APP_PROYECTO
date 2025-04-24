@@ -21,11 +21,12 @@ import static DB.UTIL.CrearConn.conn;
  * Proporciona métodos para insertar nuevos registros en la tabla de publicaciones.
  *
  * <p>Esta clase se conecta a la base de datos y realiza una operación de inserción (INSERT)
- * en la tabla `PUBLICACIONES` para crear una nueva entrada.</p>
+ * en la tabla <code>PUBLICACIONES</code> para crear una nueva entrada.</p>
  *
- * <strong>Dependencias:</strong>
+ * <p><strong>Dependencias:</strong></p>
  * <ul>
- *     <li>La clase depende de los paquetes {@link DB.UTIL.GestorConexion}, {@link MODEL.Publicacion} y {@link VIEW.ERROR.Error_INICIAR_BD}.</li>
+ *     <li>La clase depende de los paquetes {@link DB.UTIL.GestorConexion}, {@link MODEL.Publicacion}
+ *         y {@link VIEW.ERROR.Error_INICIAR_BD}.</li>
  *     <li>Utiliza el paquete estándar de <code>java.sql</code> para conectarse y operar con la base de datos.</li>
  * </ul>
  *
@@ -33,6 +34,7 @@ import static DB.UTIL.CrearConn.conn;
  * @version 1.0
  * @since 2025
  */
+
 
 
 
