@@ -78,6 +78,7 @@ public class Publicacion_Detalle_Vista extends JDialog {
         // Autor de la publicación
         JLabel textViewUsuario = new JLabel("Autor: " + publicacion.getUsuario());
         textViewUsuario.setFont(new Font("Arial", Font.PLAIN, 20));
+        textViewUsuario.setForeground(Rutas.getColor(Rutas.AZUL));
         textViewUsuario.setAlignmentX(Component.LEFT_ALIGNMENT);
         leftPanel.add(textViewUsuario);
 
