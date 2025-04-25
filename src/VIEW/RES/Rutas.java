@@ -22,8 +22,8 @@ public class Rutas {
         return new ImageIcon(Objects.requireNonNull(Rutas.class.getResource(RUTAS[codigo]))).getImage();
     }
     // Iconos
-    public static final int BLANCO = 0;
-    public static final int NEGRO = 1;
+    public static final int NEGRO = 0;
+    public static final int BLANCO = 1;
     public static final int NARANJA = 2;
     public static final int CREMA = 3;
     public static final int GRIS = 4;

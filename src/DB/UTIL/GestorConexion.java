@@ -39,8 +39,8 @@ public class GestorConexion {
 
     public static int crearConexion(String bd, String usr, String pass) {
         //URL para conexiones remotas
-        //String url = "jdbc:mysql://85.251.134.6:3306/";
-        String url = "jdbc:mysql://localhost:3306/";
+        String url = "jdbc:mysql://192.168.0.11:3306/";
+        //String url = "jdbc:mysql://localhost:3306/";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(
@@ -53,6 +53,8 @@ public class GestorConexion {
             System.err.println("Error: Driver no encontrado."); // Debug
             return Mensajes.FALLO_DRIVER;
         } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+            System.out.println(sqle.getErrorCode());
             System.err.println("Error: No se pudo establecer la conexión a la base de datos."); // Debug
             return Mensajes.FALLO_CONEXION;
         }

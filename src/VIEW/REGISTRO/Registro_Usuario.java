@@ -175,7 +175,6 @@ public class Registro_Usuario extends JDialog {
 
                 // Cierra la ventana actual y abre la de inicio de sesión
                 dispose();
-                new InicioSesion_Vista(conn).setVisible(true);
             }
         });
 

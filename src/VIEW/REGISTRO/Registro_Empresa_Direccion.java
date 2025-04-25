@@ -167,7 +167,6 @@ public class Registro_Empresa_Direccion extends JDialog {
                 JOptionPane.showMessageDialog(null, mensaje, "Registro Empresa", JOptionPane.INFORMATION_MESSAGE);
                 //Se cierra la ventana y se abre la de inicio de sesión
                 dispose();
-                new InicioSesion_Vista(conn).setVisible(true);
             }
         });
         add(panel);

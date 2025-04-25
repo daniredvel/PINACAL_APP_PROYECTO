@@ -81,7 +81,7 @@ public class InicioSesion_Vista extends JFrame {
         // Etiqueta y Campo de texto de la contraseña
         JLabel passLabel = new JLabel("Contraseña:");
         passLabel.setFont(font);
-        passLabel.setForeground(new Color(0, 0, 0)); // Color del texto
+        passLabel.setForeground(Rutas.getColor(Rutas.NEGRO)); // Color del texto
         constraints.gridx = 0;
         constraints.gridy = 2;
         panel.add(passLabel, constraints);

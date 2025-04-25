@@ -124,3 +124,22 @@ Esquema de red:
               ├── Backend/API (Spring Boot .jar)
               └── Carpeta de backups
 
+
+
+Asegúrate de que el puerto 3306 no esté bloqueado por el firewall de Windows.
+
+Puedes habilitarlo con este comando (en PowerShell como admin):
+//
+
+New-NetFirewallRule -DisplayName 192.168.0.11 -Direction Inbound -Protocol TCP -LocalPort 3306 -Action Allow
+
+//
+
+MySQL está escuchando en 0.0.0.0
+Puedes comprobarlo con:
+//
+
+netstat -an | find "3306"
+
+//
+Res: TCP    0.0.0.0:3306           0.0.0.0:0              LISTENING
