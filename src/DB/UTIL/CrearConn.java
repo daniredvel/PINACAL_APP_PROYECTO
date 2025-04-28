@@ -20,9 +20,9 @@ import java.sql.Connection;
  */
 
 public class CrearConn {
-    private static final String DB_NAME = "Pinacal";
-    private static final String DB_USER = "Pinacal";
-    private static final String DB_PASSWORD = "pinacal";
+    private static final String DB_NAME = "";
+    private static final String DB_USER = "";
+    private static final String DB_PASSWORD = "";
     public static boolean crearConexion() {
         int estadoConexion = GestorConexion.crearConexion(DB_NAME, DB_USER, DB_PASSWORD);
         return estadoConexion == 0;
