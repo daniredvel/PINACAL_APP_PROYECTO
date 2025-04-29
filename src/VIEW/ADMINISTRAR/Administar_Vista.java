@@ -20,7 +20,6 @@ import java.awt.*;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.logging.Level;
 
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
