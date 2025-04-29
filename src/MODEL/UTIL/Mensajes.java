@@ -38,14 +38,17 @@ public class Mensajes {
     public static final int PUBLICACION_RETIRADA = 17;
     public static final int ERROR_GUARDAR_PUBLICACION = 18;
     public static final int ERROR_RETIRAR_PUBLICACION = 19;
+    public static final int PUBLICACION_ACEPTADA = 20;
+    public static final int PUBLICACION_DENEGADA = 21;
+    public static final int ERROR_ACEPTAR_PUBLICACION = 22;
 
     //Constantes de otros mensajes
-    public static final int ERROR_ELIMINAR = 20;
-    public static final int ERROR_CARGAR_USUARIOS = 21;
-    public static final int ERROR_CARGAR_PUBLICACIONES = 22;
-    public static final int ERROR_AL_CIFRAR = 23;
-    public static final int ERROR_CARGAR_USUARIO = 24;
-    public static final int ERROR_CARGAR_MENSAJES = 25;
+    public static final int ERROR_ELIMINAR = 23;
+    public static final int ERROR_CARGAR_USUARIOS = 24;
+    public static final int ERROR_CARGAR_PUBLICACIONES = 25;
+    public static final int ERROR_AL_CIFRAR = 26;
+    public static final int ERROR_CARGAR_USUARIO = 27;
+    public static final int ERROR_CARGAR_MENSAJES = 28;
 
 
 
@@ -75,6 +78,9 @@ public class Mensajes {
             "Publicación retirada de guardados",
             "No se pudo guardar la publicación",
             "No se pudo eliminar de guardados",
+            "Publicación aceptada correctamente",
+            "Publicación denegada correctamente",
+            "Error al aceptar la publicación",
             "Error al eliminar",
             "Error al cargar los usuarios: ",
             "Error al cargar las publicaciones: ",

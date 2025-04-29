@@ -1,5 +1,6 @@
 package VIEW.ADMINISTRAR;
 
+import CONTROLLER.CRUD.PUBLICACION.AceptarPublicacion;
 import CONTROLLER.CRUD.PUBLICACION.EliminarPublicacion;
 import CONTROLLER.CRUD.USER.ActualizarUsuario;
 import CONTROLLER.CRUD.USER.EliminarUsuario;
@@ -19,6 +20,7 @@ import java.awt.*;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 
 import static VIEW.INICIO.Inicio_Vista.LOGGER;
@@ -39,6 +41,7 @@ import static VIEW.INICIO.Inicio_Vista.LOGGER;
 public class Administar_Vista extends JPanel {
     private static int OFFSSET = 0;
     private List<Publicacion> publicaciones;
+    private Publicacion publicacion;
     private int currentIndex = 0;
     private final JTextArea publicacionArea;
     private final JTextField justificacionField = new JTextField(20);
@@ -100,8 +103,17 @@ public class Administar_Vista extends JPanel {
         group.add(denegadaButton);
 
         justificacionField.setPreferredSize(new Dimension(justificacionField.getWidth()+50, justificacionField.getHeight()+30));
-        aceptadaButton.addActionListener(e -> justificacionField.setEnabled(false));
-        denegadaButton.addActionListener(e -> justificacionField.setEnabled(true));
+        aceptadaButton.addActionListener(e -> {
+            justificacionField.setEnabled(false);
+            assert publicacion != null;
+            publicacion.setAceptada(true);
+            publicacion.setAceptada(AceptarPublicacion.aceptarPublicacion(publicacion));
+        });
+        denegadaButton.addActionListener(e -> {
+                justificacionField.setEnabled(true);
+                System.out.println(Mensajes.getMensaje(Mensajes.PUBLICACION_DENEGADA));
+
+        });
 
         radioPanel.add(aceptadaButton);
         radioPanel.add(denegadaButton);
@@ -213,6 +225,7 @@ public class Administar_Vista extends JPanel {
 
             if (currentIndex < publicaciones.size() - 1) {
                 currentIndex++;
+                System.out.println("1Mostrando publicación " + currentIndex);
                 mostrarPublicacion();
             } else {
                 JOptionPane.showMessageDialog(this, "No hay más publicaciones para administrar.");
@@ -225,14 +238,29 @@ public class Administar_Vista extends JPanel {
     }
 
     private void mostrarPublicacion() {
-        Publicacion publicacion = publicaciones.get(currentIndex);
-        publicacionArea.setText(
-                "Título:" + publicacion.getTitulo() +
-                        "\nTipo:" + publicacion.getTipo() +
-                        "\nUsuario:" + publicacion.getUsuario() +
-                        "\n\nDescripción:" + publicacion.getDescripcion() +
-                        "\n\n\nFecha de publicación:" + publicacion.getFecha_publicacion()
-        );
+        this.publicacion = publicaciones.get(currentIndex);
+
+        //Las publicaciones son denegadas por defecto a la espera de que sean validadas.
+        //Si las publicaciones son denegadas se eliminan de la base de datos, por lo que si existen publicaciones con el boolean aceptada en 'false', se entienden como que no han sido validadas.
+        if ( publicacion.getAceptada()) {
+            currentIndex++;
+            System.out.println("2Mostrando publicación " + currentIndex);
+
+            //En caso de que la publicación leida de la base de datos es aceptada, se muestra la siguiente publicación
+            mostrarPublicacion();
+
+        } else {
+            publicacionArea.setText(
+                    "Título:" + publicacion.getTitulo() +
+                            "\nTipo:" + publicacion.getTipo() +
+                            "\nUsuario:" + publicacion.getUsuario() +
+                            "\n\nDescripción:" + publicacion.getDescripcion() +
+                            "\n\n\nFecha de publicación:" + publicacion.getFecha_publicacion()
+            );
+            currentIndex++;
+            System.out.println("3Mostrando publicación " + currentIndex);
+
+        }
         justificacionField.setText("");
         group.clearSelection();
     }

@@ -71,7 +71,9 @@ public class ControladorDatos {
                             rs.getTimestamp("fecha"),
                             rs.getString("tipo"),
                             rs.getInt("id_usuario"),
-                            rs.getString("usuario")
+                            rs.getString("usuario"),
+                            rs.getBoolean("aceptada"
+                            )
                     );
                     publicaciones.add(publicacion);
                 }
@@ -131,7 +133,8 @@ public class ControladorDatos {
                                 rs.getTimestamp("fecha"),
                                 rs.getString("tipo"),
                                 rs.getInt("id_usuario"),
-                                rs.getString("usuario")
+                                rs.getString("usuario"),
+                                rs.getBoolean("aceptada")
                         );
                         publicaciones.add(publicacion);
                     }
@@ -176,7 +179,8 @@ public class ControladorDatos {
                                 rs.getTimestamp("fecha"),
                                 rs.getString("tipo"),
                                 rs.getInt("id_usuario"),
-                                rs.getString("usuario")
+                                rs.getString("usuario"),
+                                rs.getBoolean("aceptada")
                         );
                         publicaciones.add(publicacion);
                     }

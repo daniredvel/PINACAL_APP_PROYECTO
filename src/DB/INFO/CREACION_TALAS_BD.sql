@@ -35,6 +35,7 @@ CREATE TABLE PUBLICACIONES (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, -- Fecha de la publicación
     tipo VARCHAR(50) NOT NULL, -- Tipo de publicación (oferta o demanda) No afecta a la lógica de la aplicación
     id_usuario INT NOT NULL, -- ID del usuario que publica
+    aceptada BOOLEAN DEFAULT FALSE, -- Indica si la publicación ha sido aceptada o no
     FOREIGN KEY (id_usuario) REFERENCES USUARIOS(id_usuario) ON DELETE CASCADE -- Clave foránea de la tabla USUARIOS
 );
 
@@ -65,7 +66,3 @@ INSERT INTO TIPOS_USUARIOS (id_tipo_usuario, nombre_tipo, permisos) VALUES (0, '
 INSERT INTO TIPOS_USUARIOS (id_tipo_usuario, nombre_tipo, permisos) VALUES (1, 'Usuario', 'guardar_publicacion, ver_publicaciones');
 INSERT INTO TIPOS_USUARIOS (id_tipo_usuario, nombre_tipo, permisos) VALUES (2, 'Empresa_asociada', 'publicar, guardar_publicacion, ver_publicaciones, ver_publicaciones_guardadas, eliminar_publicacion_propia, ver_todas_las_publicaciones');
 INSERT INTO TIPOS_USUARIOS (id_tipo_usuario, nombre_tipo, permisos) VALUES (3, 'Empresa_no_asociada', 'publicar, guardar_publicacion, ver_publicaciones, ver_publicaciones_guardadas, eliminar_publicacion_propia, ver_las_publicaciones_de_la_empresas_asociadas');
-
--- USUARIO ADMINISTRADOR
-INSERT INTO USUARIOS (nombre, password, email, direccion, telefono, id_tipo_usuario)
-VALUES ('adm', 'adm', 'adm@inser.com', 'ej direccion', '000000000', 0);

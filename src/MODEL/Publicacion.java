@@ -21,6 +21,7 @@ public class Publicacion {
     private String tipo;
     private int id_usuario;
     private String usuario;
+    private boolean aceptada;
 
 
     //CONSTRUCTORES
@@ -33,12 +34,13 @@ public class Publicacion {
             String  titulo,
             String  descripcion,
             String  tipo,
-            int     id_usuario){
+            int     id_usuario, boolean aceptada){
         this.titulo             = titulo;
         this.descripcion        = descripcion;
         this.fecha_publicacion  = new Timestamp(System.currentTimeMillis());
         this.tipo               = tipo.toUpperCase();
         this.id_usuario         = id_usuario;
+        this.aceptada = aceptada;
     }
 
     //Constructor para leer publicaciones de la base de datos
@@ -49,7 +51,8 @@ public class Publicacion {
             Timestamp fecha_publicacion,
             String     tipo,
             int     id_usuario,
-            String usuario
+            String usuario,
+            boolean aceptada
     ){
         this.id_publicacion     = id_publicacion;
         this.titulo             = titulo;
@@ -58,6 +61,7 @@ public class Publicacion {
         this.tipo               = tipo.toUpperCase();
         this.id_usuario         = id_usuario;
         this.usuario            = usuario;
+        this.aceptada = aceptada;
     }
     //GETTER
 
@@ -89,6 +93,10 @@ public class Publicacion {
         return usuario;
     }
 
+    public boolean getAceptada(){
+        return aceptada;
+    }
+
     //SETTER
 
     public void setId_publicacion(int id_publicacion){
@@ -117,5 +125,9 @@ public class Publicacion {
 
     public void setUsuario(String usuario){
         this.usuario = usuario;
+    }
+
+    public void setAceptada(boolean aceptada){
+        this.aceptada = aceptada;
     }
 }
