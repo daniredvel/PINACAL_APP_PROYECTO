@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PINACAL_APP_PROYECTO:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PINACAL_APP_PROYECTO_jar</output-path>
+    <root id="archive" name="PINACAL_APP_PROYECTO.jar">
+      <element id="module-output" name="PINACAL_APP_PROYECTO" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/mysql-connector-j-9.2.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

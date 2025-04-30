@@ -39,9 +39,8 @@ public class GestorConexion {
 
     public static int crearConexion(String bd, String usr, String pass) {
         //URL para conexiones remotas
-        //Para la ip: ipconfig
-        String url = "jdbc:mysql://192.168.0.11:3306/";
-        //String url = "jdbc:mysql://localhost:3306/";
+        //String url = "jdbc:mysql://192.168.0.11:3306/";
+        String url = "jdbc:mysql://localhost:3306/";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(
