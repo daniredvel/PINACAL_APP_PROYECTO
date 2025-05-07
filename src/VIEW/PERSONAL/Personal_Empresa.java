@@ -18,11 +18,11 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * Clase que representa el perfil de una empresa y un administrador en la aplicación para la propia empresa.
- * Esta clase se encarga de almacenar y gestionar la información de la empresa.
- * La interfaz muestra la información de la empresa y permite al usuario modificarla.
+ * Clase que representa el perfil de un usuario en la aplicación.
+ * Esta clase se encarga de almacenar y gestionar la información del usuario.
+ * La interfaz muestra la información personal y permite al usuario modificarla.
  * <p>
- * La clase cuenta con atributos para almacenar la información de la empresa y métodos para acceder y modificar esa información.
+ * La clase cuenta con atributos para almacenar la información del usuario y métodos para acceder y modificar esa información.
  *
  * @author DANIEL REDONDO VELASCO
  * @version 1.0

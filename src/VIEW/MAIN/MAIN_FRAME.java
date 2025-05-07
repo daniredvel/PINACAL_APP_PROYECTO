@@ -7,7 +7,6 @@ import VIEW.INICIO.Inicio_Empresa_Asociada_Vista;
 import VIEW.INICIO.Inicio_Vista;
 import VIEW.MENSAJES.Mensajes_Lista_Vista;
 import VIEW.PERSONAL.Personal_Empresa;
-import VIEW.PERSONAL.Personal_Empresa;
 import VIEW.RES.Rutas;
 
 import javax.swing.*;
@@ -65,8 +64,6 @@ public class MAIN_FRAME extends JFrame {
                 ((Mensajes_Lista_Vista) selectedComponent).cargarMensajes();
             } else if (selectedComponent instanceof Inicio_Vista) {
                 ((Inicio_Vista) selectedComponent).cargarPublicaciones();
-            } else if (selectedComponent instanceof Personal_Empresa) {
-                ((Personal_Empresa) selectedComponent).cargarPublicaciones();
             } else if (selectedComponent instanceof Personal_Empresa) {
                 ((Personal_Empresa) selectedComponent).cargarPublicaciones();
             } else if (selectedComponent instanceof Administar_Vista) {
