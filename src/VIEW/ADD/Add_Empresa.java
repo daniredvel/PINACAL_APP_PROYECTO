@@ -5,6 +5,7 @@ import MODEL.Publicacion;
 import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
 import VIEW.INICIO.Inicio_Vista;
+import VIEW.PERSONAL.Personal_Empresa;
 import VIEW.PUBLICACIONES.Publicacion_Propia_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
 import VIEW.RES.Rutas;
@@ -32,7 +33,7 @@ public class Add_Empresa extends JPanel {
     private boolean cargando = false; // Evitar múltiples cargas simultáneas
     private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
 
-    private final DefaultListModel<Publicacion> listModel;
+    private static DefaultListModel<Publicacion> listModel;
     private static Connection conn = null;
 
     public Add_Empresa(Usuario usuario_actual, Connection conexion) {
@@ -132,7 +133,7 @@ public class Add_Empresa extends JPanel {
 
 
 
-    private void cargarPublicaciones(Usuario usuario_actual) {
+    public void cargarPublicaciones(Usuario usuario_actual) {
         System.out.println("Intentando cargar publicaciones...");
         System.out.println("Estado antes de cargar: cargando=" + cargando + ", hayMasPublicaciones=" + hayMasPublicaciones);
 
@@ -166,5 +167,30 @@ public class Add_Empresa extends JPanel {
         repaint();
         System.out.println("Carga finalizada.");
     }
+    public boolean getCargando() {
+        return cargando;
+    }
 
+    public void setCargando(boolean cargando) {
+        this.cargando = cargando;
+    }
+
+    public boolean getHayMasPublicaciones() {
+        return hayMasPublicaciones;
+    }
+
+    public void setHayMasPublicaciones(boolean hayMasPublicaciones) {
+        this.hayMasPublicaciones = hayMasPublicaciones;
+    }
+
+    public static int getOFFSSET() {
+        return OFFSSET;
+    }
+
+    public static void setOFFSSET(int OFFSSET) {
+        Add_Empresa.OFFSSET = OFFSSET;
+    }
+    public static void limpiar() {
+        listModel.clear();
+    }
 }

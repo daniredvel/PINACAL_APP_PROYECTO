@@ -165,6 +165,20 @@ public class MAIN_FRAME extends JFrame {
             Personal_Empresa.limpiar();
             ((Personal_Empresa) selectedComponent).cargarPublicaciones();
 
+        }else if (selectedComponent instanceof Add_Empresa) {
+
+            ((Add_Empresa) selectedComponent).setCargando(cargando);
+            cargando = ((Add_Empresa) selectedComponent).getCargando();
+
+            ((Add_Empresa) selectedComponent).setHayMasPublicaciones(hayMasPublicaciones);
+            hayMasPublicaciones = ((Add_Empresa) selectedComponent).getHayMasPublicaciones();
+
+            Add_Empresa.setOFFSSET(OFFSSET);
+            OFFSSET = Add_Empresa.getOFFSSET();
+
+            Add_Empresa.limpiar();
+            ((Add_Empresa) selectedComponent).cargarPublicaciones(usuario_actual);
+
         } else if (selectedComponent instanceof Administar_Vista) {
             ((Administar_Vista) selectedComponent).actualizarVista();
         }
