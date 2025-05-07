@@ -124,7 +124,11 @@ public class Personal_Empresa extends JPanel {
         direccionField = new JTextField(usuario_actual.getDireccion());
         direccionField.setFont(new Font("Arial", Font.PLAIN, 14));
         direccionField.setEnabled(false);
-        direccionField.setColumns(usuario_actual.getDireccion().length());
+        try {
+            direccionField.setColumns(usuario_actual.getDireccion().length());
+        } catch (Exception e) {
+            direccionField.setColumns(0);
+        }
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         userPanel.add(direccionField, gbc);

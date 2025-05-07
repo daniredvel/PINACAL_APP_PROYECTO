@@ -7,7 +7,7 @@ import VIEW.INICIO.Inicio_Empresa_Asociada_Vista;
 import VIEW.INICIO.Inicio_Vista;
 import VIEW.MENSAJES.Mensajes_Lista_Vista;
 import VIEW.PERSONAL.Personal_Empresa;
-import VIEW.PERSONAL.Personal_Usuario;
+import VIEW.PERSONAL.Personal_Empresa;
 import VIEW.RES.Rutas;
 
 import javax.swing.*;
@@ -65,8 +65,8 @@ public class MAIN_FRAME extends JFrame {
                 ((Mensajes_Lista_Vista) selectedComponent).cargarMensajes();
             } else if (selectedComponent instanceof Inicio_Vista) {
                 ((Inicio_Vista) selectedComponent).cargarPublicaciones();
-            } else if (selectedComponent instanceof Personal_Usuario) {
-                ((Personal_Usuario) selectedComponent).cargarPublicaciones();
+            } else if (selectedComponent instanceof Personal_Empresa) {
+                ((Personal_Empresa) selectedComponent).cargarPublicaciones();
             } else if (selectedComponent instanceof Personal_Empresa) {
                 ((Personal_Empresa) selectedComponent).cargarPublicaciones();
             } else if (selectedComponent instanceof Administar_Vista) {
@@ -89,7 +89,7 @@ public class MAIN_FRAME extends JFrame {
         if (usuario_actual.getPermisos().equals(Usuario.getTipos(Usuario.USUARIO))) {
 
             tabbedPane.addTab("Inicio", new Inicio_Vista(usuario_actual, conn));
-            tabbedPane.addTab("Personal", new Personal_Usuario(usuario_actual, conn));
+            tabbedPane.addTab("Personal", new Personal_Empresa(usuario_actual, conn));
 
         } else if (usuario_actual.getPermisos().equals(Usuario.getTipos(Usuario.EMPRESA_ASOCIADA))) {
 
@@ -117,6 +117,7 @@ public class MAIN_FRAME extends JFrame {
         // Cambiar la fuente de las pestañas
         Font font = new Font("Arial", Font.ITALIC, 18);
         tabbedPane.setFont(font);
+
 
     }
 }
