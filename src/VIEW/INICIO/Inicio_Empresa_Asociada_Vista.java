@@ -3,7 +3,9 @@ package VIEW.INICIO;
 import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
+import VIEW.PERSONAL.Personal_Empresa;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.util.List;
 import java.util.logging.Level;
@@ -81,4 +83,40 @@ public class Inicio_Empresa_Asociada_Vista extends Inicio_Vista {
         System.out.println("Carga finalizada.");
     }
 
+    public boolean getCargando() {
+        return cargando;
+    }
+
+    public void setCargando(boolean cargando) {
+        this.cargando = cargando;
+    }
+
+    public boolean getHayMasPublicaciones() {
+        return hayMasPublicaciones;
+    }
+
+    public void setHayMasPublicaciones(boolean hayMasPublicaciones) {
+        this.hayMasPublicaciones = hayMasPublicaciones;
+    }
+
+    public static int getOFFSSET() {
+        return OFFSSET;
+    }
+
+
+    public static void setOFFSSET(int OFFSSET) {
+        Inicio_Empresa_Asociada_Vista.OFFSSET = OFFSSET;
+    }
+    public void setListModel(DefaultListModel<Publicacion> listModel) {
+        Inicio_Empresa_Asociada_Vista.listModel = listModel;
+    }
+
+
+    public DefaultListModel<Publicacion> getListModel() {
+        return listModel;
+    }
+
+    public static void limpiar() {
+        listModel.clear();
+    }
 }

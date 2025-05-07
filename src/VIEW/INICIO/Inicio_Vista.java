@@ -4,6 +4,7 @@ import CONTROLLER.ControladorDatos;
 import MODEL.Publicacion;
 import MODEL.Usuario;
 import VIEW.ERROR.Error_INICIAR_BD;
+import VIEW.PERSONAL.Personal_Empresa;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
 import VIEW.RES.Rutas;
@@ -38,9 +39,18 @@ public class Inicio_Vista extends JPanel {
     private boolean hayMasPublicaciones = true; // Controlar si hay más publicaciones por cargar
     private static int OFFSSET = 0;
     public static final Logger LOGGER = Logger.getLogger(Inicio_Vista.class.getName());
-    protected final DefaultListModel<Publicacion> listModel;
+    protected static DefaultListModel<Publicacion> listModel;
     private static Usuario usuario_actual = null;
     public static Connection conn = null;
+
+    public void setListModel(DefaultListModel<Publicacion> listModel) {
+        Inicio_Vista.listModel = listModel;
+    }
+
+
+    public DefaultListModel<Publicacion> getListModel() {
+        return listModel;
+    }
 
     public Inicio_Vista(Usuario usuario_actual, Connection conexion) {
         LOGGER.log(Level.INFO, "Iniciando vista de inicio");
@@ -167,4 +177,30 @@ public class Inicio_Vista extends JPanel {
         System.out.println("Carga finalizada.");
     }
 
+    public boolean getCargando() {
+        return cargando;
+    }
+
+    public void setCargando(boolean cargando) {
+        this.cargando = cargando;
+    }
+
+    public boolean getHayMasPublicaciones() {
+        return hayMasPublicaciones;
+    }
+
+    public void setHayMasPublicaciones(boolean hayMasPublicaciones) {
+        this.hayMasPublicaciones = hayMasPublicaciones;
+    }
+
+    public static int getOFFSSET() {
+        return OFFSSET;
+    }
+
+    public static void setOFFSSET(int OFFSSET) {
+        Inicio_Vista.OFFSSET = OFFSSET;
+    }
+    public static void limpiar() {
+        listModel.clear();
+    }
 }

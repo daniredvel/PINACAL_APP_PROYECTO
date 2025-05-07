@@ -5,6 +5,7 @@ import CONTROLLER.ControladorDatos;
 import CONTROLLER.VALIDATION.ControladorInicioSesion;
 import MODEL.Publicacion;
 import MODEL.Usuario;
+import VIEW.INICIO.Inicio_Empresa_Asociada_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Detalle_Vista;
 import VIEW.PUBLICACIONES.Publicacion_Vista;
 import VIEW.RES.Rutas;
@@ -38,7 +39,16 @@ public class Personal_Empresa extends JPanel {
     private final JLabel messageLabel;
     private static Usuario usuario_actual;
     private static Connection conn;
-    protected final DefaultListModel<Publicacion> listModel;
+    protected static DefaultListModel<Publicacion> listModel;
+
+    public void setListModel(DefaultListModel<Publicacion> listModel) {
+        Personal_Empresa.listModel = listModel;
+    }
+
+
+    public DefaultListModel<Publicacion> getListModel() {
+        return listModel;
+    }
 
     public Personal_Empresa(Usuario usuario_actual, Connection conn) {
         Personal_Empresa.conn = conn;
@@ -376,5 +386,31 @@ public class Personal_Empresa extends JPanel {
             }
         }
         return false;
+    }
+    public boolean getCargando() {
+        return cargando;
+    }
+
+    public void setCargando(boolean cargando) {
+        this.cargando = cargando;
+    }
+
+    public boolean getHayMasPublicaciones() {
+        return hayMasPublicaciones;
+    }
+
+    public void setHayMasPublicaciones(boolean hayMasPublicaciones) {
+        this.hayMasPublicaciones = hayMasPublicaciones;
+    }
+
+    public static int getOFFSSET() {
+        return OFFSSET;
+    }
+
+    public static void setOFFSSET(int OFFSSET) {
+        Personal_Empresa.OFFSSET = OFFSSET;
+    }
+    public static void limpiar() {
+        listModel.clear();
     }
 }
