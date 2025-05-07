@@ -38,7 +38,10 @@ public class LeerUsuario {
     static String mensaje;
     private static final Logger LOGGER = Logger.getLogger(LeerUsuario.class.getName());
 
-    public static Usuario leerUsuarioPorNombre(String username) {
+    public static short NOMBRE = 0;
+    public static short EMAIL = 1;
+
+    public static Usuario leerUsuario(String username, int opcion) {
 
         Connection conn = GestorConexion.getConexion();
 
@@ -52,11 +55,19 @@ public class LeerUsuario {
             SwingUtilities.invokeLater(() -> new Error_INICIAR_BD().setVisible(true));
         }
 
-
         // Consulta SQL para unir las tablas USUARIOS y TIPOS_USUARIOS
-        String sql = "SELECT u.*, t.nombre_tipo FROM USUARIOS u " +
+        String sql="";
+
+        if (opcion == NOMBRE) {
+        sql = "SELECT u.*, t.nombre_tipo FROM USUARIOS u " +
                 "JOIN TIPOS_USUARIOS t ON u.id_tipo_usuario = t.id_tipo_usuario " +
                 "WHERE u.nombre = ?";
+        }
+        else if (opcion == EMAIL) {
+            sql = "SELECT u.*, t.nombre_tipo FROM USUARIOS u JOIN TIPOS_USUARIOS t ON u.id_tipo_usuario = t.id_tipo_usuario WHERE u.email = ?";
+        }
+
+
         try {
             assert conn != null;
             try (PreparedStatement ps = conn.prepareStatement(sql)) {

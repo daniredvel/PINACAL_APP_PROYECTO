@@ -31,18 +31,39 @@ public class ControladorInicioSesion {
 
     /**
      * @param usuario El nombre de usuario a comprobar
-     * @param pass   La contraseña a comprobar
-     * @return  1 si el usuario y la contraseña son correctos, -1 si la contraseña es incorrecta, 0 si el usuario no existe
+     * @param pass    La contraseña a comprobar
+     * @return 1 si el usuario y la contraseña son correctos, -1 si la contraseña es incorrecta, 0 si el usuario no existe
      * @throws Exception Si ocurre un error al acceder a la base de datos
      */
     public static int comprobarPass(String usuario, String pass) throws Exception {
+        System.out.println("Comprobando usuario: " + usuario);
 
         ResultSet resultSet = getResultSet(usuario);
 
         //Comprobamos si el usuario existe
         if (resultSet.next()) {
             String passDB = resultSet.getString("password");
-                //Comprobamos si la contraseña es correcta
+            //Comprobamos si la contraseña es correcta
+            if (ControladorEncriptacion.comprobar(pass, passDB)) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+            return 0;
+        }
+
+    }
+
+    public static int comprobarCorreo(String correo, String pass) throws Exception {
+        System.out.println("Comprobando correo: " + correo);
+
+        ResultSet resultSet = getResultSetCorreo(correo);
+
+        //Comprobamos si el usuario existe
+        if (resultSet.next()) {
+            String passDB = resultSet.getString("password");
+            //Comprobamos si la contraseña es correcta
             if (ControladorEncriptacion.comprobar(pass, passDB)) {
                 return 1;
             } else {
@@ -62,5 +83,16 @@ public class ControladorInicioSesion {
         consulta.setString(1, usuario);
 
         return consulta.executeQuery();
+    }
+
+    private static ResultSet getResultSetCorreo(String correo) throws SQLException {
+        Connection conn = GestorConexion.getConexion();
+
+        //Obtenemos la contraseña del usuario
+        PreparedStatement consulta = conn.prepareStatement("SELECT * FROM usuarios WHERE email = ?");
+        consulta.setString(1, correo);
+
+        return consulta.executeQuery();
+
     }
 }

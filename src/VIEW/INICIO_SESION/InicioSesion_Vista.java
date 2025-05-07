@@ -1,5 +1,6 @@
 package VIEW.INICIO_SESION;
 
+import CONTROLLER.CRUD.USER.LeerUsuario;
 import MODEL.Usuario;
 import VIEW.MAIN.MAIN_FRAME;
 import VIEW.REGISTRO.Registro_Vista;
@@ -10,7 +11,8 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 
-import static CONTROLLER.CRUD.USER.LeerUsuario.leerUsuarioPorNombre;
+import static CONTROLLER.CRUD.USER.LeerUsuario.leerUsuario;
+import static CONTROLLER.VALIDATION.ControladorInicioSesion.comprobarCorreo;
 import static CONTROLLER.VALIDATION.ControladorInicioSesion.comprobarPass;
 
 /**
@@ -128,11 +130,15 @@ public class InicioSesion_Vista extends JFrame {
             String password = new String(passField.getPassword());
 
             try {
-                int result = comprobarPass(username, password);
+                int result;
+                if(username.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) result = comprobarCorreo(username, password);
+                else result = comprobarPass(username, password);
                 System.out.println("comprobarPass result: " + result); // Debug
                 switch (result) {
                     case 1:
-                        usuario_actual = leerUsuarioPorNombre(username);
+
+                        if(username.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) usuario_actual = leerUsuario(username, LeerUsuario.EMAIL);
+                        else usuario_actual = leerUsuario(username, LeerUsuario.NOMBRE);
                         assert usuario_actual != null;
                         System.out.println("Permisos de usuario: " + usuario_actual.getPermisos()); // Debug
                         System.out.println("Usuario encontrado: " + usuario_actual); // Debug

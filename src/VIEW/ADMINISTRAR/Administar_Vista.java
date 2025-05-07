@@ -183,7 +183,7 @@ public class Administar_Vista extends JPanel {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {
                 String usuario = (String) tableModel.getValueAt(selectedRow, 0);
-                modificarPermisos(Objects.requireNonNull(LeerUsuario.leerUsuarioPorNombre(usuario)));
+                modificarPermisos(Objects.requireNonNull(LeerUsuario.leerUsuario(usuario, LeerUsuario.NOMBRE)));
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un usuario para modificar los permisos.");
             }
@@ -193,7 +193,7 @@ public class Administar_Vista extends JPanel {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {
                 String usuario = (String) tableModel.getValueAt(selectedRow, 0);
-                eliminarUsuario(Objects.requireNonNull(LeerUsuario.leerUsuarioPorNombre(usuario)));
+                eliminarUsuario(Objects.requireNonNull(LeerUsuario.leerUsuario(usuario, LeerUsuario.NOMBRE)));
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un usuario para eliminar.");
             }
