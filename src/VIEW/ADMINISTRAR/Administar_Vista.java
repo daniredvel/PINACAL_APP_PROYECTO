@@ -282,7 +282,10 @@ public class Administar_Vista extends JPanel {
                 JOptionPane.showMessageDialog(this, "Debe proporcionar una justificación para denegar la publicación.");
                 return;
             }
-            Mensaje mensaje = new Mensaje(asunto, justificacion, usuario_actual, ControladorDatos.obtenerUsuarioPorNombre(conn, publicacion.getUsuario()), false);
+            Mensaje mensaje = new Mensaje(asunto, justificacion, publicacion.getTitulo(), usuario_actual, ControladorDatos.obtenerUsuarioPorNombre(conn, publicacion.getUsuario()), false);
+            System.out.println(publicacion.toString());
+            System.out.println(mensaje.getTitulo_Publicacion());
+
             System.out.println("Mensaje: " + mensaje);
             if (EliminarPublicacion.eliminarPublicacion(publicacion, mensaje , usuario_actual)) {
                 System.out.println("Publicación eliminada");

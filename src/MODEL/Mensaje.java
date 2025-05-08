@@ -17,6 +17,7 @@ public class Mensaje {
     private String contenido;
     private Usuario de_usuario;
     private Usuario para_usuario;
+    private String  titulo_publicacion;
 
     public int getId_mensaje() {
         return id_mensaje;
@@ -30,24 +31,26 @@ public class Mensaje {
     private boolean leido;
     private Timestamp fecha_envio;
 
-    public Mensaje(String asunto, String contenido, Usuario de_usuario, Usuario para_usuario, boolean leido) {
+    public Mensaje(String asunto, String contenido, String titulo_publicacion, Usuario de_usuario, Usuario para_usuario, boolean leido) {
         this.asunto = asunto;
         this.contenido = contenido;
+        this.titulo_publicacion = titulo_publicacion;
         this.de_usuario = de_usuario;
         this.para_usuario = para_usuario;
         this.fecha_envio = new Timestamp(System.currentTimeMillis());
         this.leido = leido;
     }
-    public Mensaje(int id_mensaje, String asunto, String contenido, Usuario de_usuario, Usuario para_usuario, boolean leido) {
+    public Mensaje(int id_mensaje, String asunto, String contenido, String titulo_publicacion, Usuario de_usuario, Usuario para_usuario, boolean leido) {
         this.id_mensaje = id_mensaje;
         this.asunto = asunto;
+        this.titulo_publicacion = titulo_publicacion;
         this.contenido = contenido;
         this.de_usuario = de_usuario;
         this.para_usuario = para_usuario;
         this.fecha_envio = new Timestamp(System.currentTimeMillis());
         this.leido = leido;
     }
-    public Mensaje(int id_mensaje, String asunto, String contenido, Usuario de_usuario, Usuario para_usuario,Timestamp fecha_envio ,boolean leido) {
+    public Mensaje(int id_mensaje, String asunto, String contenido, String titulo_publicacion, Usuario de_usuario, Usuario para_usuario,Timestamp fecha_envio ,boolean leido) {
         this.id_mensaje = id_mensaje;
         this.asunto = asunto;
         this.contenido = contenido;
@@ -104,11 +107,20 @@ public class Mensaje {
     public void setLeido(boolean leido) {
         this.leido = leido;
     }
+
+    public String getTitulo_Publicacion() {
+        return titulo_publicacion;
+    }
+
+    public void setTitulo_Publicacion(String titulo_publicacion) {
+        this.titulo_publicacion = titulo_publicacion;
+    }
     @Override
     public String toString() {
         return "Mensaje{" +
                 "asunto='" + asunto + '\'' +
                 ", contenido='" + contenido + '\'' +
+                ", publicacion='" + titulo_publicacion + '\'' +
                 ", de_usuario=" + de_usuario.getUsuario() +
                 ", para_usuario=" + para_usuario.getUsuario() +
                 ", id_mensaje=" + id_mensaje +

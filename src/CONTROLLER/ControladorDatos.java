@@ -365,6 +365,7 @@ public class ControladorDatos {
 
         List<Mensaje> mensajes = new ArrayList<>();
         String sql = "SELECT m.id_mensajes, m.id_usuario_de, m.id_usuario_para, m.asunto, m.contenido, m.fecha, m.leido, " +
+                "m.titulo_publicacion, " +
                 "u_de.nombre AS nombre_emisor, u_para.nombre AS nombre_receptor " +
                 "FROM MENSAJES m " +
                 "JOIN USUARIOS u_de ON m.id_usuario_de = u_de.id_usuario " +
@@ -391,6 +392,7 @@ public class ControladorDatos {
                         Mensaje mensaje = new Mensaje(
                                 rs.getInt("id_mensajes"),
                                 rs.getString("asunto"),
+                                rs.getString("titulo_publicacion"),
                                 rs.getString("contenido"),
                                 usuarioEmisor,
                                 usuarioReceptor,

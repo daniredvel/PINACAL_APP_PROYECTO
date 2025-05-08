@@ -57,7 +57,7 @@ public class Mensajes_Vista extends JPanel{
         textViewAsunto.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 
-        JLabel textViewUsuario = new JLabel("Autor: " + mensaje.getDe_usuario().getUsuario());
+        JLabel textViewUsuario = new JLabel("Publicación: " + mensaje.getTitulo_Publicacion());
         textViewUsuario.setFont(new Font("Arial", Font.PLAIN, 20));
         textViewUsuario.setAlignmentX(Component.LEFT_ALIGNMENT);
 
