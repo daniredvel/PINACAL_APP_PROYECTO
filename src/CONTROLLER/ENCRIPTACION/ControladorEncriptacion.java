@@ -7,10 +7,12 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Objects;
 
+
 /**
  * Clase encargada de encriptar los datos antes de almacenarlos en la base de datos.
  *
- * <p>Esta clase recibe un <code>String</code> y lo encripta utilizando el algoritmo SHA-256.</p>
+ * <p>Esta clase recibe un <code>String</code> y lo encripta utilizando el algoritmo BCrypt.</p>
+ * <p>El algoritmo BCrypt genera un HASH unico</p>
  *
  * <p><strong>Dependencias:</strong></p>
  * <ul>
@@ -24,7 +26,6 @@ import java.util.Objects;
 
 
 public class ControladorEncriptacion {
-
     /**
      * Encripta una clave utilizando el algoritmo SHA-256.
      * @param clave La clave a encriptar.
@@ -48,6 +49,7 @@ public class ControladorEncriptacion {
         }
     }
 
+
     /**
      * Compara una clave con su versión encriptada.
      * @param clave La clave a comparar.
@@ -58,5 +60,6 @@ public class ControladorEncriptacion {
     public static boolean comprobar(String clave, String claveEncriptada) {
         return Objects.equals(encriptar(clave), claveEncriptada);
     }
+
 
 }

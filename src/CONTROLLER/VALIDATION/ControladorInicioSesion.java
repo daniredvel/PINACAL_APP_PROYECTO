@@ -54,6 +54,25 @@ public class ControladorInicioSesion {
         }
 
     }
+    public static int comprobarPassCifrada(String usuario, String pass) throws Exception {
+        System.out.println("Comprobando usuario: " + usuario);
+
+        ResultSet resultSet = getResultSet(usuario);
+
+        //Comprobamos si el usuario existe
+        if (resultSet.next()) {
+            String passDB = resultSet.getString("password");
+            //Comprobamos si la contraseña es correcta
+            if (pass.equals(passDB)) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+            return 0;
+        }
+
+    }
 
     public static int comprobarCorreo(String correo, String pass) throws Exception {
         System.out.println("Comprobando correo: " + correo);

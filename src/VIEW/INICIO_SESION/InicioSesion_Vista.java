@@ -1,6 +1,7 @@
 package VIEW.INICIO_SESION;
 
 import CONTROLLER.CRUD.USER.LeerUsuario;
+import CONTROLLER.ENCRIPTACION.ControladorEncriptacion;
 import MODEL.Usuario;
 import VIEW.MAIN.MAIN_FRAME;
 import VIEW.REGISTRO.Registro_Vista;
@@ -12,51 +13,82 @@ import java.awt.event.ItemEvent;
 import java.sql.Connection;
 
 import static CONTROLLER.CRUD.USER.LeerUsuario.leerUsuario;
-import static CONTROLLER.VALIDATION.ControladorInicioSesion.comprobarCorreo;
-import static CONTROLLER.VALIDATION.ControladorInicioSesion.comprobarPass;
+import static CONTROLLER.VALIDATION.ControladorInicioSesion.*;
 
-/**
- * Clase que representa la vista de la ventana de inicio de sesión de la aplicación.
- * Esta clase se encarga de mostrar un formulario para que el usuario pueda introducir su nombre de usuario y contraseña.
- * <p>
- * La clase cuenta con varios componentes de interfaz de usuario, como campos de texto para el nombre de usuario y la contraseña,
- * un botón para iniciar sesión y un botón para registrarse.
- *
- * @author DANIEL REDONDO VELASCO
- * @version 1.0
- * @since 2025
- */
+import java.io.*;
+import java.util.Properties;
 
 public class InicioSesion_Vista extends JFrame {
     public static Usuario usuario_actual = null;
-    private final JTextField userField;
-    private final JPasswordField passField;
-    private final JLabel messageLabel;
+    private  JTextField userField;
+    private  JPasswordField passField;
+    private  JLabel messageLabel;
+    private  JCheckBox saveCredentialsCheckBox;
+
+    private static final String CRED_FILE = "datos.properties";
 
     public InicioSesion_Vista(Connection conn) {
-        // Propiedades del frame (Marco)
+
+        // Revisa si hay credenciales guardadas
+        File credFile = new File(CRED_FILE);
+        setBackground(Rutas.getColor(Rutas.GRIS));
+        if (credFile.exists()) {
+            try {
+                Properties props = new Properties();
+                FileInputStream fis = new FileInputStream(CRED_FILE);
+                props.load(fis);
+                fis.close();
+
+                String usuario = props.getProperty("usuario");
+                String contrasena = props.getProperty("contrasena");
+
+                int confirm = JOptionPane.showConfirmDialog(
+                        null,
+                        "¿Quieres iniciar sesión como: " + usuario + "?",
+                        "Inicio Rápido",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    int result;
+                    if (usuario.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) {
+                        result = comprobarCorreo(usuario, contrasena);
+                        usuario_actual = leerUsuario(usuario, LeerUsuario.EMAIL);
+                    } else {
+                        result = comprobarPassCifrada(usuario, contrasena);
+                        usuario_actual = leerUsuario(usuario, LeerUsuario.NOMBRE);
+                    }
+
+                    if (result == 1 && usuario_actual != null) {
+                        dispose();
+                        SwingUtilities.invokeLater(() -> new MAIN_FRAME(usuario_actual, conn).setVisible(true));
+                        return;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Credenciales guardadas inválidas", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error leyendo las credenciales guardadas", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        // Configuración del JFrame
         setTitle("Inicio de Sesión");
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Ajustar la ventana al tamaño de la pantalla
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        //Icono
         setIconImage(Rutas.getImage(Rutas.ICONO));
+        setBackground(Rutas.getColor(Rutas.GRIS));
 
-        // Panel principal
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        panel.setBackground(Rutas.getColor(Rutas.BLANCO)); // Fondo
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Rutas.getColor(Rutas.GRIS));
 
-        // Constraints para el layout
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(20, 20, 20, 20); // Padding
+        constraints.insets = new Insets(20, 20, 20, 20);
         constraints.anchor = GridBagConstraints.WEST;
 
-        // Fuente de los elementos
         Font font = new Font("Arial", Font.PLAIN, 24);
 
-        // Etiqueta de mensaje
         messageLabel = new JLabel("");
         messageLabel.setFont(font);
         messageLabel.setForeground(Color.RED);
@@ -66,10 +98,9 @@ public class InicioSesion_Vista extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         panel.add(messageLabel, constraints);
 
-        // Etiqueta y Campo de texto del usuario
         JLabel userLabel = new JLabel("Usuario:");
         userLabel.setFont(font);
-        userLabel.setForeground(Rutas.getColor(Rutas.NEGRO)); // Color del texto
+        userLabel.setForeground(Rutas.getColor(Rutas.NEGRO));
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -80,22 +111,19 @@ public class InicioSesion_Vista extends JFrame {
         constraints.gridx = 1;
         panel.add(userField, constraints);
 
-        // Etiqueta y Campo de texto de la contraseña
         JLabel passLabel = new JLabel("Contraseña:");
         passLabel.setFont(font);
-        passLabel.setForeground(Rutas.getColor(Rutas.NEGRO)); // Color del texto
+        passLabel.setForeground(Rutas.getColor(Rutas.NEGRO));
         constraints.gridx = 0;
         constraints.gridy = 2;
         panel.add(passLabel, constraints);
-        panel.setBackground(Rutas.getColor(Rutas.GRIS));
 
         passField = new JPasswordField(20);
         passField.setFont(font);
-        passField.setEchoChar('•'); // Caracter para ocultar la contraseña
+        passField.setEchoChar('•');
         constraints.gridx = 1;
         panel.add(passField, constraints);
 
-        // Checkbox para mostrar la contraseña
         JCheckBox showPasswordCheckBox = new JCheckBox("Mostrar Contraseña");
         showPasswordCheckBox.setFont(new Font("Arial", Font.PLAIN, 18));
         showPasswordCheckBox.setBackground(Rutas.getColor(Rutas.GRIS));
@@ -103,28 +131,31 @@ public class InicioSesion_Vista extends JFrame {
         constraints.gridy = 3;
         panel.add(showPasswordCheckBox, constraints);
 
-        // Botón de inicio de sesión
+        // Nuevo checkbox para guardar credenciales
+        saveCredentialsCheckBox = new JCheckBox("Guardar credenciales");
+        saveCredentialsCheckBox.setFont(new Font("Arial", Font.PLAIN, 18));
+        saveCredentialsCheckBox.setBackground(Rutas.getColor(Rutas.GRIS));
+        constraints.gridy = 4;
+        panel.add(saveCredentialsCheckBox, constraints);
+
         JButton loginButton = new JButton("Iniciar Sesión");
         loginButton.setFont(font);
-        loginButton.setBackground(Rutas.getColor(Rutas.NARANJA)); // Color del fondo del botón
-        loginButton.setForeground(Rutas.getColor(Rutas.BLANCO)); // Color del texto del botón
-        constraints.gridx = 1;
-        constraints.gridy = 4;
+        loginButton.setBackground(Rutas.getColor(Rutas.NARANJA));
+        loginButton.setForeground(Rutas.getColor(Rutas.BLANCO));
+        constraints.gridy = 5;
         constraints.anchor = GridBagConstraints.CENTER;
         panel.add(loginButton, constraints);
 
-        // Botón de registro
         JButton registerButton = new JButton("REGÍSTRATE");
         registerButton.setFont(new Font("Arial", Font.PLAIN, 18));
         registerButton.setForeground(Color.BLUE);
         registerButton.setContentAreaFilled(false);
         registerButton.setBorderPainted(false);
         registerButton.setFocusPainted(false);
-        constraints.gridx = 1;
-        constraints.gridy = 5;
+        constraints.gridy = 6;
         panel.add(registerButton, constraints);
 
-        // «Escuchador» del botón de inicio de sesión
+        // Evento iniciar sesión
         loginButton.addActionListener(e -> {
             String username = userField.getText();
             String password = new String(passField.getPassword());
@@ -133,48 +164,53 @@ public class InicioSesion_Vista extends JFrame {
                 int result;
                 if(username.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) result = comprobarCorreo(username, password);
                 else result = comprobarPass(username, password);
-                System.out.println("comprobarPass result: " + result); // Debug
+
                 switch (result) {
                     case 1:
-
                         if(username.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) usuario_actual = leerUsuario(username, LeerUsuario.EMAIL);
                         else usuario_actual = leerUsuario(username, LeerUsuario.NOMBRE);
-                        assert usuario_actual != null;
-                        System.out.println("Permisos de usuario: " + usuario_actual.getPermisos()); // Debug
-                        System.out.println("Usuario encontrado: " + usuario_actual); // Debug
+
+                        if (saveCredentialsCheckBox.isSelected()) {
+                            saveCredentials(username, ControladorEncriptacion.encriptar(password));
+                        }
+
                         dispose();
-                        System.out.println("Creando la vista principal..."); // Debug
-
                         SwingUtilities.invokeLater(() -> new MAIN_FRAME(usuario_actual, conn).setVisible(true));
-
-                        System.out.println("Vista princiapl __ MAIN_FRAME __ creada y visible."); // Debug
                         break;
-                        case -1: case 0:
+                    case -1: case 0:
                         messageLabel.setText("Contraseña o usuario incorrectos");
                         messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
                         break;
-                        }
+                }
             } catch (Exception ex) {
                 messageLabel.setText("Error al iniciar sesión");
                 messageLabel.setForeground(Rutas.getColor(Rutas.ROJO));
             }
         });
-        // «Escuchador» del botón de registro
-        registerButton.addActionListener(e -> {
-            // Abre la ventana de registro como un diálogo modal
-            new Registro_Vista(this, conn).setVisible(true);
-        });
 
-        // «Escuchador» del checkbox para mostrar la contraseña
+        registerButton.addActionListener(e -> new Registro_Vista(this, conn).setVisible(true));
+
         showPasswordCheckBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                passField.setEchoChar((char) 0); // Muestra la contraseña
+                passField.setEchoChar((char) 0);
             } else {
-                passField.setEchoChar('•'); // Oculta la contraseña
+                passField.setEchoChar('•');
             }
         });
 
-        // Añade el panel al marco
         add(panel);
+    }
+
+    private void saveCredentials(String usuario, String contrasena) {
+        try {
+            Properties props = new Properties();
+            props.setProperty("usuario", usuario);
+            props.setProperty("contrasena", contrasena);
+            FileOutputStream fos = new FileOutputStream(CRED_FILE);
+            props.store(fos, "Credenciales guardadas");
+            fos.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar credenciales", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
