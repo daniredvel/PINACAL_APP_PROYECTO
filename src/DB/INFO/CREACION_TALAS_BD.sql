@@ -45,6 +45,7 @@ CREATE TABLE MENSAJES (
     id_usuario_para INT NOT NULL,  -- ID del usuario que recibe el mensaje
     asunto VARCHAR(255) NOT NULL, -- Asunto del mensaje
     contenido TEXT NOT NULL, -- Contenido del mensaje o Justificación de la eliminación de la publicación
+    titulo_publicacion VARCHAR(50) NOT NULL DEFAULT 'PUBLICACIÓN NO REGISTRADA', -- Título de la publicación
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, -- Fecha y hora de envío del mensaje
     leido BOOLEAN DEFAULT FALSE, -- Indica si el mensaje ha sido leído o no
     FOREIGN KEY (id_usuario_de) REFERENCES USUARIOS(id_usuario) ON DELETE CASCADE, -- ID del usuario que envia el mensaje
