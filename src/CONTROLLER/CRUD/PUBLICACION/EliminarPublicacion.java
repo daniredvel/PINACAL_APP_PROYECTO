@@ -61,13 +61,14 @@ public class EliminarPublicacion {
         try {
             try {
                 // Registrar la justificación en la tabla de justificaciones
-                    String insertSQL = "INSERT INTO mensajes (id_usuario_de, id_usuario_para, asunto, contenido) VALUES (?,?,?,?)";
+                    String insertSQL = "INSERT INTO mensajes (id_usuario_de, id_usuario_para, asunto, contenido, titulo_publicacion) VALUES (?,?,?,?,?)";
                 assert conn != null;
                 try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
                     pstmt.setInt(1, de_usuario.getId_usuario());
                     pstmt.setInt(2, publicacion.getId_usuario());
                     pstmt.setString(3, mensaje.getAsunto());
                     pstmt.setString(4, mensaje.getContenido());
+                    pstmt.setString(5, mensaje.getTitulo_Publicacion());
                     pstmt.executeUpdate();
                 }
 
