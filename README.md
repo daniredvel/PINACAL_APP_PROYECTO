@@ -68,9 +68,7 @@ Los usuarios deben iniciar sesión para acceder a las funcionalidades de la apli
 
 ## ⏳ Tareas Pendientes
 
-- 🔧 Interfaz gráfica: Revisar y mejorar el diseño de las vistas.
 - 🔐 Recuperación de contraseñas: Implementar validación por correo electrónico o notificación.
-- 🧹 Depuración: Eliminar métodos y sentencias de prueba o depuración.
 
 ## 📄 Licencia
 
